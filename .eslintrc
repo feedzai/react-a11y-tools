@@ -1,0 +1,53 @@
+{
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:cypress/recommended",
+		"prettier",
+		"prettier/react"
+	],
+	"env": {
+		"browser": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+	"rules": {
+		"react/no-did-mount-set-state": "warn",
+		"react/no-did-update-set-state": "warn",
+		"consistent-return": "warn",
+		"complexity": "warn",
+		"jest/no-disabled-tests": "off",
+		"react/no-access-state-in-setstate": "warn",
+		"import/order": "warn",
+		"no-prototype-builtins": "warn",
+		"jsx-a11y/no-autofocus": 0,
+		"spaced-comment": ["error", "always", { "markers": ["/"] }],
+		"@typescript-eslint/no-unused-vars": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"no-use-before-define": "off",
+		"camelcase": "off"
+	},
+	"settings": {
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"]
+		},
+		"import/resolver": {
+			"typescript": {
+				"project": "./"
+			},
+			"node": {
+				"extensions": [".js", ".jsx", ".ts", ".tsx"],
+				"moduleDirectory": ["node_modules", "src/"]
+			}
+		}
+	},
+	"overrides": [
+		{
+			"files": ["**/*.tsx", "**/*.ts"],
+			"rules": {
+				"react/prop-types": "off",
+				"no-undef": "off",
+				"react/display-name": "off"
+			}
+		}
+	]
+}

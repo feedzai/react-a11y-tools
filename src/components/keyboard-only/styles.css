@@ -1,0 +1,4 @@
+.no-mouse *,
+.no-mouse *:hover {
+	cursor: none !important;
+}

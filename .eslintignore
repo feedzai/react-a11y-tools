@@ -1,0 +1,11 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore build files
+dist/
+
+# Ignore styleguide configuration file
+styleguide.config.js
+
+# Ignore development files
+*.css

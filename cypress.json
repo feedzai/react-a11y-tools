@@ -1,0 +1,11 @@
+{
+	"reporter": "mochawesome",
+	"reporterOptions": {
+		"reportDir": "cypress/results",
+		"overwrite": false,
+		"html": false,
+		"json": true
+	},
+	"baseUrl": "http://localhost:6006",
+	"projectId": "zjxn8d"
+}

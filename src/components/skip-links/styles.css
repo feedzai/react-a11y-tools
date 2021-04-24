@@ -1,0 +1,36 @@
+.skip-links__item {
+	--skip-link-background: #111;
+	--skip-link-color: #fff;
+
+	position: absolute;
+	top: 1rem;
+	left: 2rem;
+	right: auto;
+	font-size: 0.875rem;
+	font-family: sans-serif;
+	background: var(--skip-link-background, #111);
+	color: var(--skip-link-color, #fff);
+	display: flex;
+	justify-content: center;
+	letter-spacing: 0.5px;
+	line-height: 2rem;
+	padding: 0 1rem;
+	appearance: none;
+	text-align: center;
+	text-decoration: none;
+	height: 2rem;
+	min-width: 10rem;
+	z-index: 100;
+}
+
+.skip-links__item:not(:focus) {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	white-space: nowrap;
+}

@@ -1,0 +1,176 @@
+{
+	"name": "react-a11y-tools",
+	"author": "João Dias",
+	"version": "1.0.3",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"start": "tsdx watch",
+		"build": "tsdx build",
+		"format:fix": "npm run prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
+		"lint": "tsdx lint src --fix",
+		"typecheck": "tsc --project ./tsconfig.json",
+		"prettier:base": "prettier --parser typescript",
+		"prepare": "tsdx build",
+		"size": "size-limit",
+		"analyze": "size-limit --why",
+		"storybook": "start-storybook -p 6006",
+		"storybook:ci": "npm run storybook -- --ci",
+		"build:index": "cp -a ./documentation/. public/",
+		"build:storybook": "build-storybook -c .storybook -o public/docs",
+		"build:documentation": "npm run build:storybook && npm run build:index",
+		"reinstall": "rm -rf node_modules && clear && npm install",
+		"pretest": "rm -rf .nyc_output jest-coverage cypress-coverage reports || true",
+		"report:combined": "node ./scripts/merge-coverage.js",
+		"test:jest": "tsdx test --coverage --passWithNoTests",
+		"test:watch": "tsdx test --watch",
+		"test:cypress": "cypress open",
+		"test:cypress-headless": "start-server-and-test storybook:ci 6006 'cypress run'",
+		"test:cypress-record": "cypress run --record --key process.env.CYPRESS_RECORD_KEY",
+		"test": "npm run test:jest && npm run test:cypress-headless && npm run report:combined"
+	},
+	"peerDependencies": {
+		"react": ">=16"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/JoaoTMDias/react-a11y-tools.git"
+	},
+	"prettier": {
+		"printWidth": 100,
+		"singleQuote": false,
+		"semi": true,
+		"tabWidth": 2,
+		"trailingComma": "all",
+		"useTabs": true
+	},
+	"module": "dist/react-a11y-tools.esm.js",
+	"size-limit": [
+		{
+			"path": "dist/react-a11y-tools.cjs.production.min.js",
+			"limit": "15 KB",
+			"ignore": [
+				"fs"
+			]
+		},
+		{
+			"path": "dist/react-a11y-tools.esm.js",
+			"limit": "15 KB",
+			"ignore": [
+				"fs"
+			]
+		}
+	],
+	"devDependencies": {
+		"@babel/core": "^7.13.15",
+		"@cypress/code-coverage": "^3.9.4",
+		"@emotion/react": "^11.1.5",
+		"@emotion/styled": "^11.3.0",
+		"@size-limit/preset-small-lib": "^4.10.2",
+		"@storybook/addon-essentials": "^6.2.7",
+		"@storybook/addon-info": "^5.3.21",
+		"@storybook/addon-links": "^6.2.7",
+		"@storybook/addons": "^6.2.7",
+		"@storybook/react": "^6.2.7",
+		"@storybook/theming": "^6.2.7",
+		"@testing-library/cypress": "^7.0.5",
+		"@testing-library/jest-dom": "5.11.10",
+		"@testing-library/react": "11.2.6",
+		"@testing-library/react-hooks": "^5.1.1",
+		"@testing-library/user-event": "13.1.2",
+		"@types/classnames": "^2.2.11",
+		"@types/jest": "^26.0.22",
+		"@types/jsdom": "^16.2.10",
+		"@types/node": "14.14.37",
+		"@types/react": "^17.0.3",
+		"@types/react-dom": "^17.0.3",
+		"@typescript-eslint/eslint-plugin": "4.21.0",
+		"@typescript-eslint/parser": "4.21.0",
+		"autoprefixer": "^10.2.5",
+		"babel-loader": "^8.2.2",
+		"babel-plugin-istanbul": "^6.0.0",
+		"babel-plugin-styled-components": "^1.12.0",
+		"check-code-coverage": "1.10.0",
+		"cypress": "^7.0.1",
+		"cypress-multi-reporters": "^1.4.0",
+		"cypress-plugin-tab": "^1.0.5",
+		"eslint": "7.24.0",
+		"eslint-config-prettier": "8.1.0",
+		"eslint-import-resolver-typescript": "2.4.0",
+		"eslint-plugin-cypress": "^2.11.2",
+		"eslint-plugin-import": "2.22.1",
+		"eslint-plugin-jest": "24.3.4",
+		"eslint-plugin-jsx-a11y": "6.4.1",
+		"eslint-plugin-prettier": "3.3.1",
+		"eslint-plugin-react": "7.23.2",
+		"eslint-plugin-react-hooks": "4.2.0",
+		"fs": "0.0.1-security",
+		"history": "^5.0.0",
+		"husky": "^6.0.0",
+		"identity-obj-proxy": "^3.0.0",
+		"istanbul-lib-coverage": "^3.0.0",
+		"jest": "^26.6.3",
+		"jsdom": "^16.5.2",
+		"lint-staged": "^10.5.4",
+		"mochawesome": "^6.2.2",
+		"mochawesome-merge": "^4.2.0",
+		"mochawesome-report-generator": "^5.2.0",
+		"node-sass": "^5.0.0",
+		"nyc": "^15.1.0",
+		"postcss": "^8.2.9",
+		"prettier": "^2.2.1",
+		"raf": "^3.4.1",
+		"react": ">=17",
+		"react-dom": "^17.0.2",
+		"react-is": "^17.0.2",
+		"react-test-renderer": "^17.0.2",
+		"rollup-plugin-analyzer": "^4.0.0",
+		"rollup-plugin-postcss": "^4.0.0",
+		"sass": "^1.32.8",
+		"sass-loader": "^11.0.1",
+		"size-limit": "^4.10.2",
+		"start-server-and-test": "^1.12.1",
+		"ts-jest": "^26.5.4",
+		"tsconfig-paths-webpack-plugin": "^3.5.1",
+		"tsdx": "^0.14.1",
+		"tslib": "^2.2.0",
+		"typescript": "^4.2.4"
+	},
+	"browser": {
+		"fs": false
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,html}": [
+			"npm run format:fix",
+			"tsdx lint src --fix"
+		]
+	},
+	"nyc": {
+		"report-dir": "cypress-coverage",
+		"reporter": [
+			"json",
+			"lcov"
+		],
+		"exclude": [
+			".storybook/**",
+			"test/**",
+			"stories/**"
+		]
+	},
+	"np": {
+		"testScript": "test:jest",
+		"contents": "dist"
+	}
+}
