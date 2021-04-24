@@ -1,10 +1,15 @@
+/*
+ * Please refer to the terms of the license
+ * agreement.
+ *
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
 /**
  * webpack.config.js
  *
- * Webpack configuration used in Cypress
- *
- * @author João Dias <contacto@joaodias.me>
- * @since 0.0.1
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import path from "path";
 

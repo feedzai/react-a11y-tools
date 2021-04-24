@@ -1,3 +1,16 @@
+/*
+ * Please refer to the terms of the license
+ * agreement.
+ *
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * styles.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
+ */
 import styled from "@emotion/styled";
 
 export const Layout = styled.div`
