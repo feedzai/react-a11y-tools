@@ -4,7 +4,8 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 /**
  * route-announcer.test.tsx
  *
@@ -12,15 +13,10 @@
  * @since 1.0.0
  */
 import { Link, RouteComponentProps, Router, useLocation } from "@reach/router";
-import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@testing-library/react";
+import { mount as render } from "@cypress/react";
 import React, { FunctionComponent, useEffect } from "react";
-import {
-	defaultProps,
-	RouteAnnouncer,
-	getHeadingText,
-} from "../../../src/components/announcer/route-announcer";
-import { IRouteAnnouncerProps } from "../../../src/components/announcer/route-announcer";
+import { defaultProps, RouteAnnouncer } from "../../../../src/components/announcer/route-announcer";
+import { IRouteAnnouncerProps } from "../../../../src/components/announcer/route-announcer";
 import { renderWithRouter } from "../../helpers/renderWithRouter";
 
 const Home: FunctionComponent<RouteComponentProps> = () => {
@@ -97,90 +93,74 @@ describe("<RouteAnnouncer />", () => {
 	});
 
 	it("should render without errors", () => {
-		const component = render(<RouteAnnouncer id="app-focus-wrapper" {...props} />);
+		render(<RouteAnnouncer {...props} />);
 
-		expect(component).toMatchSnapshot();
+		cy.get(`#${defaultProps.id}`).snapshot();
 	});
 
 	it("should find the heading on the document", () => {
 		renderWithRouter(<App />);
-		expect(getHeadingText("content-focus-wrapper")).toEqual("Home");
+		cy.get("#content-focus-wrapper h1").should("have.text", "Home");
 	});
 
-	it("should not update the announcer on the first location", async () => {
+	it("should not update the announcer on the first location", () => {
 		// 0. Render the app with the `router`
 		renderWithRouter(<App />);
 
 		// 2. Expect the new heading and paragraphs to exist
-		expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Home");
-		expect(screen.getByText("You are on the initial page")).toBeVisible();
+		cy.findByRole("heading", { level: 1 }).should("have.text", "Home");
+		cy.findByText("You are on the initial page").should("be.visible");
 
 		// 3. The Announcer should not have any text
-		expect(screen.getByTestId("rat-announcer")).not.toHaveTextContent("Navigated to Home");
+		cy.findByTestId("fdz-rat-announcer").should("not.have.text", "Navigated to Home");
 	});
 
 	describe("should update the announcer when the location changes", () => {
-		it("By it's heading", async () => {
+		it("By it's heading", () => {
 			// 0. Render the app with the `router`
-			const {
-				history: { navigate },
-			} = renderWithRouter(<App />);
+			renderWithRouter(<App />);
 
 			// 1. Transition to another page
-			await navigate("/about");
+			cy.findByRole("link", { name: "About" }).click();
 
 			// 2. Expect the new heading and paragraphs to exist
-			expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About");
-			expect(screen.getByText("You are on the about page")).toBeVisible();
+			cy.findByRole("heading", { level: 1 }).should("have.text", "About");
+			cy.findByText("You are on the about page").should("be.visible");
 
 			// 3. The Announcer should have new text
-			await waitFor(() => {
-				expect(screen.getByText("Navigated to About")).toBeInTheDocument();
-			});
+			cy.findByText("Navigated to About").should("exist");
 		});
 
-		it("By it's location", async () => {
+		it("By it's location", () => {
 			// 0. Render the app with the `router`
-			const {
-				history: { navigate },
-			} = renderWithRouter(<App />);
+			renderWithRouter(<App />);
 
 			// 1. Transition to another page
-			await navigate("/contacts");
+			cy.findByRole("link", { name: "Contacts" }).click();
 
 			// 2. Expect the new heading and paragraphs to exist
-			expect(screen.getByText("You are on the contacts page")).toBeVisible();
+			cy.findByText("You are on the contacts page").should("be.visible");
 
 			// 3. The Announcer should have new text
-			await waitFor(() => {
-				expect(
-					screen.getByText(
-						`${defaultProps.action?.navigation} ${defaultProps.action?.fallback} /contacts`,
-					),
-				).toBeInTheDocument();
-			});
+			cy.findByText(`${defaultProps.action?.navigation} Components App`).should("exist");
 		});
 
-		it("By it's page title", async () => {
+		it("By it's page title", () => {
 			// 0. Render the app with the `router`
-			const {
-				history: { navigate },
-			} = renderWithRouter(<App />);
+			renderWithRouter(<App />);
 
 			// 1. Expect the heading and paragraph to exist
-			expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Home");
-			expect(screen.getByText("You are on the initial page")).toBeVisible();
+			cy.findByRole("heading", { level: 1 }).should("have.text", "Home");
+			cy.findByText("You are on the initial page").should("be.visible");
 
 			// 2. Transition to a new page
-			await navigate("/work");
+			cy.findByRole("link", { name: "Work" }).click();
 
 			// 3. Expect the new paragraph to exist
-			expect(screen.getByText("You are on the work page")).toBeVisible();
+			cy.findByText("You are on the work page").should("be.visible");
 
 			// 4. The Announcer should have new text set by the page's title.
-			await waitFor(() => {
-				expect(screen.getByText("Navigated to Work")).toBeInTheDocument();
-			});
+			cy.findByText(`${defaultProps.action?.navigation} Work`).should("exist");
 		});
 	});
 });

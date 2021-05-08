@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 /*
  * Please refer to the terms of the license agreement.
  *
@@ -10,14 +12,15 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
 import React from "react";
+import { mount } from "@cypress/react";
 import AuditInPage from "./mocks/AuditInPage";
 
 describe("<Audit>", () => {
 	it("should render the KeyboardOnly component", () => {
-		const component = render(<AuditInPage />);
-		expect(component).toMatchSnapshot();
+		mount(<AuditInPage />);
+
+		cy.findByTestId("audit").should("have.class", "");
+		cy.root().should("have.class", "no-mouse");
 	});
 });

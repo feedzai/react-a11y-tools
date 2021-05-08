@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 /// <reference types="@testing-library/cypress" />
-/// <reference types="cypress-plugin-tab/src/index.d" />
 /*
  * Please refer to the terms of the license
  * agreement.

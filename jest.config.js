@@ -6,14 +6,6 @@ module.exports = {
 	collectCoverage: true,
 	coverageDirectory: "<rootDir>/jest-coverage",
 	coverageReporters: ["json", "lcov", "text-summary", "clover"],
-	coverageThreshold: {
-		global: {
-			statements: 90,
-			branches: 90,
-			functions: 90,
-			lines: 90,
-		},
-	},
 	testURL: "http://localhost/",
 	setupFiles: ["raf/polyfill"],
 	moduleNameMapper: {

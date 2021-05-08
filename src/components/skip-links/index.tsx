@@ -17,6 +17,14 @@ export interface ISkipLinksProps {
 	items?: ISkipLink[];
 }
 
+export const SKIP_LINK_ITEMS_DEFAULT_PROPS = {
+	items: [
+		{
+			...SKIP_LINK_DEFAULT_PROPS,
+		},
+	],
+};
+
 /**
  * Skip Links are links at the top of the page which jumps the user down to an anchor
  * or target at the beginning of the main content
@@ -52,10 +60,4 @@ export const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
 	return renderLinks();
 };
 
-SkipLinks.defaultProps = {
-	items: [
-		{
-			...SKIP_LINK_DEFAULT_PROPS,
-		},
-	],
-};
+SkipLinks.defaultProps = SKIP_LINK_ITEMS_DEFAULT_PROPS;

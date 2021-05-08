@@ -6,12 +6,11 @@
  */
 
 /**
- * index.js
+ * commands.js
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-require("@cypress/snapshot").register();
-
-import "@cypress/code-coverage/support";
-import "./commands";
+import "cypress-plugin-tab";
+import "@testing-library/cypress/add-commands";
+import "cypress-real-events/support";

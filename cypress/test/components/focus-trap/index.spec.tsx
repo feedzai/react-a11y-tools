@@ -5,34 +5,23 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 /**
  * index.test.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import "@testing-library/jest-dom";
-import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
-import { IFocusManagerProps } from "../../../src/components/focus-manager";
-import { FocusManager } from "../../../src/components/focus-manager/index";
+import { mount } from "@cypress/react";
+import { IFocusManagerProps } from "../../../../src/components/focus-manager";
+import { FocusManager } from "../../../../src/components/focus-manager/index";
 
 describe("FocusManager", () => {
-	beforeEach(() => {
-		// @ts-ignore
-		jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => cb());
-	});
-
-	afterEach(() => {
-		// @ts-ignore
-		window.requestAnimationFrame.mockRestore();
-	});
-
 	describe("focus containment", () => {
 		it("should contain focus within the scope", () => {
-			render(
+			mount(
 				<FocusManager contain>
 					<input data-testid="input1" />
 					<input data-testid="input2" />
@@ -40,46 +29,17 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input1 = screen.getByTestId("input1");
-			const input2 = screen.getByTestId("input2");
-			const input3 = screen.getByTestId("input3");
-
-			act(() => {
-				input1.focus();
-			});
-			expect(input1).toHaveFocus();
-
-			userEvent.tab();
-			expect(input2).toHaveFocus();
-
-			userEvent.tab();
-
-			expect(input3).toHaveFocus();
-
-			userEvent.tab();
-
-			expect(input1).toHaveFocus();
-
-			userEvent.tab({
-				shift: true,
-			});
-			expect(input3).toHaveFocus();
-
-			userEvent.tab({
-				shift: true,
-			});
-
-			expect(input2).toHaveFocus();
-
-			userEvent.tab({
-				shift: true,
-			});
-
-			expect(input1).toHaveFocus();
+			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("input2").should("have.focus").realPress("Tab");
+			cy.findByTestId("input3").should("have.focus").realPress("Tab");
+			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input1").focus().should("have.focus");
 		});
 
 		it("should work with nested elements", () => {
-			const { getByTestId } = render(
+			mount(
 				<FocusManager contain>
 					<input data-testid="input1" />
 					<div>
@@ -91,36 +51,17 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input1 = getByTestId("input1");
-			const input2 = getByTestId("input2");
-			const input3 = getByTestId("input3");
-
-			act(() => {
-				input1.focus();
-			});
-			expect(input1).toHaveFocus();
-
-			userEvent.tab();
-			expect(input2).toHaveFocus();
-
-			userEvent.tab();
-			expect(input3).toHaveFocus();
-
-			userEvent.tab();
-			expect(input1).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input3).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input2).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input1).toHaveFocus();
+			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("input2").should("have.focus").realPress("Tab");
+			cy.findByTestId("input3").should("have.focus").realPress("Tab");
+			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input1").should("have.focus");
 		});
 
 		it("should skip non-tabbable elements", () => {
-			const { getByTestId } = render(
+			mount(
 				<FocusManager contain>
 					<input data-testid="input1" />
 					<div />
@@ -130,36 +71,17 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input1 = getByTestId("input1");
-			const input2 = getByTestId("input2");
-			const input3 = getByTestId("input3");
-
-			act(() => {
-				input1.focus();
-			});
-			expect(input1).toHaveFocus();
-
-			userEvent.tab();
-			expect(input2).toHaveFocus();
-
-			userEvent.tab();
-			expect(input3).toHaveFocus();
-
-			userEvent.tab();
-			expect(input1).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input3).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input2).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input1).toHaveFocus();
+			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("input2").should("have.focus").realPress("Tab");
+			cy.findByTestId("input3").should("have.focus").realPress("Tab");
+			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input1").should("have.focus");
 		});
 
 		it("should do nothing if a modifier key is pressed", () => {
-			const { getByTestId } = render(
+			mount(
 				<FocusManager contain>
 					<input data-testid="input1" />
 					<input data-testid="input2" />
@@ -167,19 +89,12 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input1 = getByTestId("input1");
-
-			act(() => {
-				input1.focus();
-			});
-			expect(input1).toHaveFocus();
-
-			fireEvent.keyDown(input1, { key: "Tab", altKey: true });
-			expect(input1).toHaveFocus();
+			cy.findByTestId("input1").focus().should("have.focus").realPress(["Alt", "Meta", "P"]);
+			cy.findByTestId("input1").should("have.focus");
 		});
 
 		it("should work with multiple focus scopes", () => {
-			const { getByTestId } = render(
+			mount(
 				<div>
 					<FocusManager contain>
 						<input data-testid="input1" />
@@ -194,62 +109,25 @@ describe("FocusManager", () => {
 				</div>,
 			);
 
-			const input1 = getByTestId("input1");
-			const input2 = getByTestId("input2");
-			const input3 = getByTestId("input3");
-			const input4 = getByTestId("input4");
-			const input5 = getByTestId("input5");
-			const input6 = getByTestId("input6");
+			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("input2").should("have.focus").realPress("Tab");
+			cy.findByTestId("input3").should("have.focus").realPress("Tab");
+			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input1").should("have.focus");
 
-			act(() => {
-				input1.focus();
-			});
-			expect(input1).toHaveFocus();
-
-			userEvent.tab();
-			expect(input2).toHaveFocus();
-
-			userEvent.tab();
-			expect(input3).toHaveFocus();
-
-			userEvent.tab();
-			expect(input1).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input3).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input2).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input1).toHaveFocus();
-
-			act(() => {
-				input4.focus();
-			});
-			expect(input4).toHaveFocus();
-
-			userEvent.tab();
-			expect(input5).toHaveFocus();
-
-			userEvent.tab();
-			expect(input6).toHaveFocus();
-
-			userEvent.tab();
-			expect(input4).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input6).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input5).toHaveFocus();
-
-			userEvent.tab({ shift: true });
-			expect(input4).toHaveFocus();
+			cy.findByTestId("input4").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("input5").should("have.focus").realPress("Tab");
+			cy.findByTestId("input6").should("have.focus").realPress("Tab");
+			cy.findByTestId("input4").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input6").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input5").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("input4").should("have.focus");
 		});
 
 		it("uses document.activeElement instead of e.relatedTarget on blur to determine if focus is still in scope", () => {
-			const { getByTestId } = render(
+			mount(
 				<div>
 					<FocusManager contain>
 						<input data-testid="input1" />
@@ -258,28 +136,24 @@ describe("FocusManager", () => {
 				</div>,
 			);
 
-			const input1 = getByTestId("input1");
-			const input2 = getByTestId("input2");
+			cy.findByTestId("input1")
+				.focus()
+				.should("have.focus")
+				.then(() => {
+					expect(document.activeElement).to.have.attr("data-testid", "input1");
+				});
 
-			act(() => {
-				input1.focus();
-			});
-			fireEvent.focusIn(input1); // jsdom doesn't fire this automatically
-			expect(document.activeElement).toBe(input1);
-
-			act(() => {
-				// set document.activeElement to input2
-				input2.focus();
-				// if onBlur didn't fallback to checking document.activeElement, this would reset focus to input1
-				fireEvent.blur(input1, { relatedTarget: null });
-			});
-
-			expect(document.activeElement).toBe(input2);
+			cy.findByTestId("input2")
+				.focus()
+				.should("have.focus")
+				.then(() => {
+					expect(document.activeElement).to.have.attr("data-testid", "input2");
+				});
 		});
 	});
 
 	describe("focus restoration", () => {
-		it("should restore focus to the previously focused node on unmount", async () => {
+		it("should restore focus to the previously focused node on unmount", () => {
 			const Test: React.FunctionComponent<IFocusManagerProps> = (props) => {
 				const [isVisible, setIsVisible] = React.useState(false);
 				return (
@@ -373,18 +247,13 @@ describe("FocusManager", () => {
 				);
 			};
 
-			render(<Test contain={false} restoreFocus autoFocus />);
+			mount(<Test contain={false} restoreFocus autoFocus />);
 
-			userEvent.tab();
-			userEvent.click(screen.getByTestId("show-button"));
+			cy.realPress("Tab");
+			cy.findByTestId("show-button").click();
 
-			expect(screen.getByTestId("close-button")).toHaveFocus();
-
-			userEvent.click(screen.getByTestId("close-button"));
-
-			await waitFor(() => {
-				expect(screen.getByTestId("show-button")).toHaveFocus();
-			});
+			cy.findByTestId("close-button").should("have.focus").click();
+			cy.findByTestId("show-button").should("have.focus");
 		});
 
 		it("should move focus to the next element after the previously focused node on Tab", () => {
@@ -392,7 +261,7 @@ describe("FocusManager", () => {
 				return (
 					<div>
 						<input data-testid="before" />
-						<button data-testid="trigger" />
+						<button data-testid="trigger">Trigger</button>
 						<input data-testid="after" />
 						{show && (
 							<FocusManager contain={false} restoreFocus autoFocus>
@@ -405,25 +274,15 @@ describe("FocusManager", () => {
 				);
 			}
 
-			const { getByTestId, rerender } = render(<Test />);
+			mount(<Test />).then(({ rerender }) => {
+				cy.findByTestId("trigger").focus();
 
-			const trigger = getByTestId("trigger");
-			act(() => {
-				trigger.focus();
+				rerender(<Test show />);
+
+				cy.findByTestId("input1").should("have.focus");
+				cy.findByTestId("input3").focus().realPress("Tab");
+				cy.findByTestId("after").should("have.focus");
 			});
-
-			rerender(<Test show />);
-
-			const input1 = getByTestId("input1");
-			expect(document.activeElement).toBe(input1);
-
-			const input3 = getByTestId("input3");
-			act(() => {
-				input3.focus();
-			});
-
-			fireEvent.keyDown(input3, { key: "Tab" });
-			expect(getByTestId("after")).toHaveFocus();
 		});
 
 		it("should move focus to the previous element after the previously focused node on Shift+Tab", () => {
@@ -444,20 +303,14 @@ describe("FocusManager", () => {
 				);
 			}
 
-			const { getByTestId, rerender } = render(<Test />);
+			mount(<Test />).then(({ rerender }) => {
+				cy.findByTestId("trigger").focus();
 
-			const trigger = getByTestId("trigger");
-			act(() => {
-				trigger.focus();
+				rerender(<Test show />);
+
+				cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+				cy.findByTestId("before").should("have.focus");
 			});
-
-			rerender(<Test show />);
-
-			const input1 = getByTestId("input1");
-			expect(document.activeElement).toBe(input1);
-
-			fireEvent.keyDown(input1, { key: "Tab", shiftKey: true });
-			expect(getByTestId("before")).toHaveFocus();
 		});
 
 		it("should skip over elements within the scope when moving focus to the next element", () => {
@@ -478,31 +331,21 @@ describe("FocusManager", () => {
 				);
 			}
 
-			const { getByTestId, rerender } = render(<Test />);
+			mount(<Test />).then(({ rerender }) => {
+				cy.findByTestId("trigger").focus();
 
-			const trigger = getByTestId("trigger");
-			act(() => {
-				trigger.focus();
+				rerender(<Test show />);
+
+				cy.findByTestId("input1").should("have.focus");
+				cy.findByTestId("input3").focus().realPress("Tab");
+				cy.findByTestId("after").should("have.focus");
 			});
-
-			rerender(<Test show />);
-
-			const input1 = getByTestId("input1");
-			expect(document.activeElement).toBe(input1);
-
-			const input3 = getByTestId("input3");
-			act(() => {
-				input3.focus();
-			});
-
-			fireEvent.keyDown(input3, { key: "Tab" });
-			expect(getByTestId("after")).toHaveFocus();
 		});
 	});
 
 	describe("auto focus", () => {
 		it("should auto focus the first tabbable element in the scope on mount", () => {
-			const { getByTestId } = render(
+			mount(
 				<FocusManager autoFocus>
 					<div />
 					<input data-testid="input1" />
@@ -511,12 +354,11 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input1 = getByTestId("input1");
-			expect(document.activeElement).toBe(input1);
+			cy.findByTestId("input1").should("have.focus");
 		});
 
 		it("should do nothing if something is already focused in the scope", () => {
-			const { getByTestId } = render(
+			mount(
 				<FocusManager autoFocus>
 					<div />
 					<input data-testid="input1" />
@@ -525,8 +367,7 @@ describe("FocusManager", () => {
 				</FocusManager>,
 			);
 
-			const input2 = getByTestId("input2");
-			expect(document.activeElement).toBe(input2);
+			cy.findByTestId("input2").should("have.focus");
 		});
 	});
 });
