@@ -7,5 +7,15 @@
 		"json": true
 	},
 	"baseUrl": "http://localhost:6006",
-	"projectId": "zjxn8d"
+	"viewportWidth": 1280,
+	"viewportHeight": 800,
+	"component": {
+		"testFiles": "**/*.spec.{js,jsx,ts,tsx}",
+		"componentFolder": "cypress/test"
+	},
+	"retries": {
+		"runMode": 2
+	},
+	"fixtures": false,
+	"video": false
 }

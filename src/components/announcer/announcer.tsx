@@ -34,7 +34,7 @@ const styles: React.CSSProperties = {
 };
 
 const defaultProps: Partial<IAnnouncerProps> = {
-	id: "rat-route-announcer",
+	id: "fdz-rat-route-announcer",
 	styles,
 	ariaLive: "assertive",
 	ariaAtomic: "true",
@@ -86,7 +86,7 @@ export const Announcer: NamedExoticComponent<IAnnouncerProps> = memo(
 				aria-live={ariaLive}
 				aria-atomic={ariaAtomic}
 				className="rat__announcer"
-				data-testid="rat-announcer"
+				data-testid="fdz-rat-announcer"
 				style={styles}
 			>
 				{renderText()}

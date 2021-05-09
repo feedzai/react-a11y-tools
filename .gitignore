@@ -146,3 +146,4 @@ cypress/screenshots
 reports
 results
 .env
+snapshots.js

@@ -115,7 +115,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({
 	const setAnnouncerText = useCallback(() => {
 		const hasTitle = hasDocumentTitle();
 		/* istanbul ignore next */
-		const firstHeading = getHeadingText(id ?? DEFAULT_WRAPPER_ID);
+		const firstHeading = getHeadingText(id || DEFAULT_WRAPPER_ID);
 
 		let pageName = `${(action as IRouteAnnouncerActions).fallback} ${pathname}`;
 

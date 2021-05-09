@@ -8,8 +8,7 @@
  * (c) 2021 joaodias.me
  */
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import { render, RenderResult, queries } from "@testing-library/react";
+import { mount as render } from "@cypress/react";
 import {
 	Router,
 	createHistory,
@@ -28,7 +27,7 @@ export interface IRenderWithRouter {
 	options?: RenderWithRouterOptions;
 }
 
-export interface IRenderWithRouterReturns extends RenderResult<typeof queries> {
+export interface IRenderWithRouter {
 	history: History;
 }
 
@@ -37,17 +36,13 @@ export interface IRenderWithRouterReturns extends RenderResult<typeof queries> {
  * Adds `history` to the returned utilities to allow us to reference it in our tests
  *
  * @param {React.ReactElement} ui
- * @param {RenderWithRouterOptions} [options]
- * @returns {IRenderWithRouterReturns}
+ * @param {IRenderWithRouter} [options]
  */
 export function renderWithRouter(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
-): IRenderWithRouterReturns {
-	return {
-		...render(<LocationProvider history={history}>{ui}</LocationProvider>),
-		history,
-	};
+) {
+	render(<LocationProvider history={history}>{ui}</LocationProvider>);
 }
 
 /**
@@ -55,18 +50,14 @@ export function renderWithRouter(
  *
  * @param {React.ReactElement} ui
  * @param {RenderWithRouterOptions} [options]
- * @returns {IRenderWithRouterReturns}
  */
 export function renderWithRouterWrapper(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
-): IRenderWithRouterReturns {
-	return {
-		...render(
-			<LocationProvider history={history}>
-				<Router>{ui}</Router>
-			</LocationProvider>,
-		),
-		history,
-	};
+) {
+	render(
+		<LocationProvider history={history}>
+			<Router>{ui}</Router>
+		</LocationProvider>,
+	);
 }

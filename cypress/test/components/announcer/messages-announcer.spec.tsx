@@ -4,22 +4,21 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 /**
- * messages-announcer.test.tsx
+ * messages-announcer.spec.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { mount as render } from "@cypress/react";
 import React, { FunctionComponent } from "react";
-import { ISetMessage } from "../../../src/components/announcer/messages";
+import { ISetMessage } from "../../../../src/components/announcer/messages";
 import {
 	MessagesAnnouncer,
 	useMessagesAnnouncer,
-} from "../../../src/components/announcer/messages/index";
+} from "../../../../src/components/announcer/messages/index";
 
 /**
  * Renders a component inside a `MessagesAnnouncer` context provider.
@@ -41,7 +40,7 @@ const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JS
 		});
 	}
 	return (
-		<div>
+		<div data-testid="messages-announcer">
 			<button type="button" onClick={onClick}>
 				Send Message
 			</button>
@@ -61,25 +60,22 @@ describe("<MessagesAnnouncer />", () => {
 	});
 
 	it("should render without errors", () => {
-		const component = renderWithContext(
+		renderWithContext(
 			<App {...props}>
 				<p>children content</p>
 			</App>,
 		);
 
-		expect(component).toMatchSnapshot();
+		cy.findByTestId("messages-announcer").snapshot("should render without errors");
 	});
 
 	it("should update the announcer with a new message", () => {
 		renderWithContext(<App {...props} />);
 
-		const button = screen.getByText("Send Message");
-
-		userEvent.click(button);
-
-		const announcer = screen.getByTestId("rat-announcer");
-		expect(announcer).toHaveTextContent(props.text);
-		expect(announcer).toHaveAttribute("aria-live", props.politeness);
+		cy.findByText("Send Message").click();
+		cy.findByTestId("fdz-rat-announcer")
+			.should("have.text", props.text)
+			.and("have.attr", "aria-live", props.politeness);
 	});
 
 	it("should update the announcer with a new message", () => {
@@ -89,12 +85,9 @@ describe("<MessagesAnnouncer />", () => {
 		};
 		renderWithContext(<App {...customProps} />);
 
-		const button = screen.getByText("Send Message");
-
-		userEvent.click(button);
-
-		const announcer = screen.getByTestId("rat-announcer");
-		expect(announcer).toHaveTextContent(customProps.text);
-		expect(announcer).toHaveAttribute("aria-live", customProps.politeness);
+		cy.findByText("Send Message").click();
+		cy.findByTestId("fdz-rat-announcer")
+			.should("have.text", customProps.text)
+			.and("have.attr", "aria-live", customProps.politeness);
 	});
 });
