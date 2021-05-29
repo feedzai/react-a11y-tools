@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { Heading, Level } from "../src/components/semantic-headings";
 
 describe("in production mode", () => {
-	let oldEnv;
+	let oldEnv: NodeJS.ProcessEnv;
 
 	beforeEach(() => {
 		oldEnv = process.env;

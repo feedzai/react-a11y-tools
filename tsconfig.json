@@ -24,16 +24,8 @@
 			"helpers/*": ["./src/helpers/*"],
 			"hooks/*": ["./src/hooks/*"]
 		},
-		"types": ["jest", "cypress", "cypress-real-events", "@testing-library/cypress"]
+		"types": ["node", "jest"]
 	},
-	"exclude": [
-		"node_modules",
-		"dist",
-		"coverage",
-		"jest-coverage",
-		"cypress-coverage",
-		"cypress-coverage/dist",
-		"**/stories/*"
-	],
-	"include": ["src", "cypress", "test"]
+	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"],
+	"include": ["src", "test"]
 }

@@ -15,7 +15,13 @@
  * @since ```feedzai.next.release```
  */
 
-import React, { useContext, PropsWithChildren, DetailedHTMLProps, HTMLAttributes } from "react";
+import React, {
+	createElement,
+	useContext,
+	PropsWithChildren,
+	DetailedHTMLProps,
+	HTMLAttributes,
+} from "react";
 import { getHeadingLevel, isProduction, auditHeadingsOnPage } from "./helpers";
 import { CHECK_AFTER_MS } from "./constants";
 import { HeadingsContext } from "./context";
@@ -84,15 +90,11 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 	const contextLevel = useContext(HeadingsContext);
 	const proposedLevel = contextLevel + (offset !== undefined ? offset : 0);
 	const level = getHeadingLevel(proposedLevel);
-	const H: any = `h${level}`;
+	const HeadingLevel = `h${level}`;
 
 	if (!isProduction()) {
 		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
 	}
 
-	return (
-		<H {...props} data-testid="fdz-rat-heading">
-			{children}
-		</H>
-	);
+	return createElement(HeadingLevel, { ...props, "data-testid": "fdz-rat-heading" }, children);
 }
