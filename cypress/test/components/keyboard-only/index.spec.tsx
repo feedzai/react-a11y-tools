@@ -14,7 +14,7 @@
  */
 import React from "react";
 import { mount } from "@cypress/react";
-import AuditInPage from "./mocks/AuditInPage";
+import { AuditInPage } from "./mocks/AuditInPage";
 
 describe("<Audit>", () => {
 	it("should render the KeyboardOnly component", () => {

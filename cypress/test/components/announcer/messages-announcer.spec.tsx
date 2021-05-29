@@ -24,7 +24,6 @@ import {
  * Renders a component inside a `MessagesAnnouncer` context provider.
  *
  * @param {React.ReactElement} ui
- * @returns {IRenderWithRouterReturns}
  */
 function renderWithContext(ui: React.ReactElement) {
 	return render(<MessagesAnnouncer>{ui}</MessagesAnnouncer>);

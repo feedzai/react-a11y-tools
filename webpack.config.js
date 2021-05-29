@@ -5,9 +5,8 @@ const webpack = require("webpack");
  */
 module.exports = {
 	mode: "development",
-	// make sure the source maps work
 	devtool: "eval-source-map",
-	// webpack will transpile TS and JS files
+	entry: "./src/index.tsx",
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
 	},

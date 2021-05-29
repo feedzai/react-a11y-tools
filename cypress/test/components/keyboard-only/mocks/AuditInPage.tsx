@@ -91,7 +91,7 @@ export const images = [
 	},
 ];
 
-const AuditInPage: FunctionComponent = () => {
+export const AuditInPage: FunctionComponent = () => {
 	function renderImages() {
 		const list = images.map((image) => {
 			const alt = image.author ? `Photo by ${image.author}` : undefined;
