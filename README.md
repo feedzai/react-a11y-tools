@@ -3,13 +3,11 @@
 A small React component library that aims to ease the process of creating accessible design systems, web apps or websites
 <br />
 <p>
-  <img alt="Latest Release" src="https://badgen.net/npm/v/react-a11y-tools"/>
-  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/react-a11y-tools"/>
-  <img alt="Tree Shaking Support" src="https://badgen.net/bundlephobia/tree-shaking/react-a11y-tools"/>
-  <img alt="Dependency Count" src="https://badgen.net/bundlephobia/dependency-count/react-a11y-tools"/>
-  <img alt="Code Coverage" src="https://badgen.net/codecov/c/github/joaotmdias/react-a11y-tools"/>
-  <img alt="MIT License" src="https://badgen.net/npm/license/react-a11y-tools"/>
-  <img alt="NPM Downloads" src="https://badgen.net/npm/dt/react-a11y-tools"/>
+  <img alt="Latest Release" src="https://badgen.net/npm/v/@feedzai/react-a11y-tools"/>
+  <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@feedzai/react-a11y-tools"/>
+  <img alt="Tree Shaking Support" src="https://badgen.net/bundlephobia/tree-shaking/@feedzai/react-a11y-tools"/>
+  <img alt="Dependency Count" src="https://badgen.net/bundlephobia/dependency-count/@feedzai/react-a11y-tools"/>
+  <img alt="MIT License" src="https://badgen.net/npm/license/@feedzai/react-a11y-tools"/>
 </p>
 <br />
 <br/>
@@ -37,11 +35,11 @@ All documentation and examples are available at [react-a11y-tools.wiki](https://
 Inside your React project directory, install React A11y Tools by running either of the following:
 
 ```sh
-$ npm install react-a11y-tools
+$ npm install @feedzai/react-a11y-tools
 
 # or if you use Yarn
 
-$ yarn add react-a11y-tools
+$ yarn add @feedzai/react-a11y-tools
 ```
 <br/>
 
