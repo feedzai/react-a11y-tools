@@ -35,9 +35,9 @@
 		"test:cypress-components": "cypress run-ct",
 		"test:components": "npm run test:jest && npm run test:cypress-components",
 		"test:cypress": "cypress open",
-		"test:integration": "start-server-and-test storybook:ci 6006 'cypress run'",
-		"test:cypress-record": "cypress run --record --key process.env.CYPRESS_RECORD_KEY",
-		"test": "npm run test:components && npm run test:integration && npm run report:combined"
+		"test:e2e": "start-server-and-test storybook:ci 6006 'cypress run'",
+		"test": "npm run test:components && npm run test:e2e && npm run report:combined",
+		"test:coverage": "npm run test && npm run report:combined"
 	},
 	"peerDependencies": {
 		"react": ">=16"
