@@ -19,7 +19,7 @@
 	<meta name="twitter:description"
 		content="A small React component library that aims to ease the process of creating accessible design systems, web apps or websites." />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="theme-color" content="#663399" />
+	<meta name="theme-color" content="#1a227d" />
 	<style>
 		@font-face {
 			font-family: "IBMPlexMono";
@@ -109,6 +109,7 @@
 		}
 
 		.header__title {
+			font-size: 1.5rem;
 			font-size: min(max(1.5rem, calc(12px + 1.3vw)), 1.8rem);
 			text-align: left;
 		}
@@ -303,6 +304,11 @@
 
 			.header__container {
 				--logo-size: 3rem;
+			}
+
+			.header__title {
+				font-size: 1.8rem;
+				font-size: min(max(1.5rem, calc(12px + 1.3vw)), 1.8rem);
 			}
 
 			.page__title {
