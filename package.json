@@ -26,8 +26,8 @@
 		"build:index": "cp -a ./documentation/. public/",
 		"build:storybook": "build-storybook -c .storybook -o public/docs",
 		"build:documentation": "npm run build:storybook && npm run build:index",
-		"reinstall": "rm -rf node_modules && clear && npm install",
-		"pretest": "rm -rf .nyc_output jest-coverage cypress-coverage reports || true",
+		"reinstall": "shx rm -rf node_modules && npm install",
+		"pretest": "shx rm -rf .nyc_output jest-coverage cypress-coverage reports coverage || true",
 		"report:combined": "node ./scripts/merge-coverage.js",
 		"test:jest": "tsdx test --coverage --passWithNoTests",
 		"test:jest-ci": "npm run test:jest --ci --coverage --maxWorkers=2",
@@ -104,14 +104,17 @@
 		"@typescript-eslint/eslint-plugin": "4.25.0",
 		"@typescript-eslint/parser": "4.25.0",
 		"autoprefixer": "10.2.6",
+		"babel-jest": "27.0.2",
 		"babel-loader": "8.2.2",
 		"babel-plugin-istanbul": "6.0.0",
 		"babel-plugin-styled-components": "1.12.0",
+		"chalk": "4.1.1",
 		"check-code-coverage": "1.10.0",
 		"css-loader": "5.2.6",
 		"cypress": "7.4.0",
 		"cypress-multi-reporters": "1.5.0",
 		"cypress-plugin-tab": "1.0.5",
+		"cypress-real-events": "1.4.0",
 		"eslint": "7.27.0",
 		"eslint-config-prettier": "8.3.0",
 		"eslint-import-resolver-typescript": "2.4.0",
@@ -147,6 +150,7 @@
 		"rollup-plugin-postcss": "4.0.0",
 		"sass": "1.34.0",
 		"sass-loader": "11.1.1",
+		"shx": "0.3.3",
 		"size-limit": "4.10.2",
 		"start-server-and-test": "1.12.3",
 		"ts-jest": "26.5.5",
@@ -175,8 +179,10 @@
 	"nyc": {
 		"report-dir": "cypress-coverage",
 		"reporter": [
-			"json",
-			"lcov"
+			"json"
+		],
+		"include": [
+			"src/**/*"
 		],
 		"exclude": [
 			".storybook/**",
@@ -187,8 +193,5 @@
 	"np": {
 		"testScript": "test:jest",
 		"contents": "dist"
-	},
-	"dependencies": {
-		"cypress-real-events": "1.4.0"
 	}
 }

@@ -20,6 +20,7 @@ const injectDevServer = require("@cypress/react/plugins/load-webpack");
 module.exports = (on, config) => {
 	injectDevServer(on, config, { webpackFilename: "./webpack.config.js" });
 	require("@cypress/code-coverage/task")(on, config);
+	on("file:preprocessor", require("@cypress/code-coverage/use-babelrc"));
 
 	return config;
 };
