@@ -11,23 +11,20 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { RefObject } from "react";
-import { useSafeLayoutEffect } from "../../hooks/index";
+import { useEffect, RefObject } from "react";
 
 /**
- * Invokes focus() on ref as a layout effect whenever focusesd
- * changes from false to true.
+ * Invokes focus() on ref as a layout effect whenever focus changes from false to true.
  *
- * @template GenericType
  * @param {boolean | null} [focused]
- * @param {RefObject<GenericType | any>} ref
+ * @param {RefObject<SVGElement | HTMLElement>} ref
  * @returns {void}
  */
-export function useFocus<GenericType>(
-	ref: RefObject<GenericType | any>,
+export function useFocus(
+	ref: RefObject<SVGElement | HTMLElement>,
 	focused?: boolean | null,
 ): void {
-	useSafeLayoutEffect(() => {
+	useEffect(() => {
 		if (focused && ref.current) {
 			ref.current.focus();
 		}
