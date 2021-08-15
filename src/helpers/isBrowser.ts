@@ -6,7 +6,7 @@
  */
 
 /**
- * isBrowser.ts
+ * Checkes wether the user is running the app on a browser or under another type of environment.
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0

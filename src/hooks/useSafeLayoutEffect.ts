@@ -12,7 +12,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { isBrowser } from "../helpers/isBrowser";
 
 /**
@@ -22,4 +22,4 @@ import { isBrowser } from "../helpers/isBrowser";
  */
 export const useSafeLayoutEffect = isBrowser
 	? useLayoutEffect
-	: /* istanbul ignore next */ () => { };
+	: useEffect;
