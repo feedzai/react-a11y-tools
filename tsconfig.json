@@ -27,5 +27,5 @@
 		"types": ["node", "jest"]
 	},
 	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"],
-	"include": ["src", "test"]
+	"include": ["src"]
 }
