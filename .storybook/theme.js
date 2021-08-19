@@ -31,5 +31,5 @@ export default create({
 
 	// Brand
 	brandTitle: "react-a11y-tools",
-	brandUrl: "https://www.npmjs.com/package/react-a11y-tools",
+	brandUrl: "https://www.npmjs.com/package/@feedzai/react-a11y-tools",
 });
