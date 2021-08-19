@@ -27,14 +27,12 @@ export function isProduction() {
  * @returns
  */
 function getAllInvalidHeadingsOnAPage(headings: number[]): number[] {
-	const hasMultipleH1s = headings.filter(
-		(heading): boolean => heading === 1
-	).length >= 2;
+	const hasMultipleH1s = headings.filter((heading): boolean => heading === 1).length >= 2;
 	const hasSkippedHeadings = headings.some((heading, index, arr): boolean => {
 		const precedingHeading = arr[index - 1];
 
 		if (!precedingHeading) {
-			return false
+			return false;
 		}
 
 		return heading > precedingHeading + 1;
@@ -95,10 +93,10 @@ export function checkHeadingLevels(levels: number[]): number[] {
 }
 
 export function auditHeadingsOnPage() {
-	const allHeadings: HTMLHeadingElement[] = Array.from(document.querySelectorAll(HEADINGS_SELECTOR));
-	const allLevels = allHeadings.map((elm) =>
-		parseFloat(elm.tagName.substring(1))
+	const allHeadings: HTMLHeadingElement[] = Array.from(
+		document.querySelectorAll(HEADINGS_SELECTOR),
 	);
+	const allLevels = allHeadings.map((elm) => parseFloat(elm.tagName.substring(1)));
 
 	checkHeadingLevels(allLevels);
 }

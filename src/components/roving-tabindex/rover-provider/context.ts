@@ -27,5 +27,5 @@ export const RoverContext = createContext<RovingContext>({
 		...initialState,
 	},
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	dispatch: () => { },
+	dispatch: () => {},
 });

@@ -20,6 +20,4 @@ import { isBrowser } from "../helpers/isBrowser";
  *
  * See {@link https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a|Alex Reardon's article} for more info.
  */
-export const useSafeLayoutEffect = isBrowser
-	? useLayoutEffect
-	: useEffect;
+export const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect;

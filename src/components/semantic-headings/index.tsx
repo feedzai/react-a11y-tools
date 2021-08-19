@@ -96,5 +96,9 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
 	}
 
-	return createElement(HeadingLevel, { ...props, "data-testid": "fdz-rat-heading" }, children);
+	return createElement(
+		HeadingLevel,
+		{ "data-testid": "fdz-js-react-a11y-tools-heading", ...props },
+		children,
+	);
 }

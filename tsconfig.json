@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
+		"target": "esnext",
 		"module": "esnext",
-		"lib": ["dom", "esnext"],
+		"outDir": "dist",
+		"lib": ["dom", "dom.iterable", "esnext"],
 		"importHelpers": true,
 		"declaration": true,
 		"sourceMap": true,
@@ -11,6 +13,8 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
 		"downlevelIteration": true,
 		"jsx": "react",
 		"esModuleInterop": true,
@@ -26,6 +30,6 @@
 		},
 		"types": ["node", "jest"]
 	},
-	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"],
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"]
 }

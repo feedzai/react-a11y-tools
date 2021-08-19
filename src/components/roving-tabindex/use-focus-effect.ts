@@ -20,10 +20,7 @@ import { useEffect, RefObject } from "react";
  * @param {RefObject<SVGElement | HTMLElement>} ref
  * @returns {void}
  */
-export function useFocus(
-	ref: RefObject<SVGElement | HTMLElement>,
-	focused?: boolean | null,
-): void {
+export function useFocus(ref: RefObject<SVGElement | HTMLElement>, focused?: boolean | null): void {
 	useEffect(() => {
 		if (focused && ref.current) {
 			ref.current.focus();
