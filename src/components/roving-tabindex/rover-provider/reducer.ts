@@ -129,8 +129,8 @@ function goToPreviousOrNext(
 				? state.tabStops.length - 1
 				: index - 1
 			: index >= state.tabStops.length - 1
-				? 0
-				: index + 1;
+			? 0
+			: index + 1;
 
 	return {
 		...state,

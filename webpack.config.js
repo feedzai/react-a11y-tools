@@ -9,7 +9,18 @@ module.exports = {
 	entry: "./src/index.tsx",
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
+		fallback: {
+			path: require.resolve("path-browserify"),
+		},
 	},
+	plugins: [
+		new webpack.ProvidePlugin({
+			process: "process/browser",
+		}),
+		new webpack.DefinePlugin({
+			"process.env": JSON.stringify(process.env),
+		}),
+	],
 	module: {
 		rules: [
 			{

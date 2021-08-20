@@ -27,7 +27,7 @@ describe("Announcer", () => {
 			cy.get("[href='/article-1']").as("ArticleOneLink");
 			cy.get("[href='/article-2']").as("ArticleTwoLink");
 			cy.get("[href='/product']").as("ProductLink");
-			cy.findByTestId("fdz-rat-announcer").as("announcer");
+			cy.findByTestId("fdz-js-react-a11y-tools-announcer").as("announcer");
 		});
 
 		it("should be empty by default", () => {
@@ -93,7 +93,7 @@ describe("Announcer", () => {
 			cy.visit(MESSAGES_STORY_URL);
 
 			cy.findByRole("button", { name: "Pay 9.99€" }).as("Submit");
-			cy.findByTestId("fdz-rat-announcer").as("announcer");
+			cy.findByTestId("fdz-js-react-a11y-tools-announcer").as("announcer");
 		});
 
 		it("should be empty by default", () => {

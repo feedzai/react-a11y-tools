@@ -38,8 +38,8 @@ function useAutoId(customId?: string | null) {
 	const [id, setId] = useState(initialId);
 
 	/*
-	* Patch the ID after render to avoid any rendering flicker.
-	*/
+	 * Patch the ID after render to avoid any rendering flicker.
+	 */
 	useLayoutEffect(() => {
 		if (id === null) {
 			setId(generateIncrementalId());
@@ -48,10 +48,10 @@ function useAutoId(customId?: string | null) {
 	}, []);
 
 	/*
-	* Flag all future uses of `useAutoId` to skip the updating cycle.
-	* We use `useEffect` because it happens after `useLayoutEffect`.
-	* This way we make sure that we complete the patch process until the end.
-	*/
+	 * Flag all future uses of `useAutoId` to skip the updating cycle.
+	 * We use `useEffect` because it happens after `useLayoutEffect`.
+	 * This way we make sure that we complete the patch process until the end.
+	 */
 	useEffect(() => {
 		if (hasHydrated === false) {
 			hasHydrated = true;

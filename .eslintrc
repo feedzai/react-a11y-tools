@@ -1,12 +1,10 @@
 {
-	"extends": [
-		"plugin:@typescript-eslint/recommended",
-		"plugin:cypress/recommended",
-		"prettier",
-		"prettier/react"
-	],
+	"extends": ["plugin:@typescript-eslint/recommended", "plugin:cypress/recommended", "prettier"],
 	"env": {
-		"browser": true
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"jest": true
 	},
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
@@ -17,7 +15,6 @@
 		"complexity": "warn",
 		"jest/no-disabled-tests": "off",
 		"react/no-access-state-in-setstate": "warn",
-		"import/order": "warn",
 		"no-prototype-builtins": "warn",
 		"jsx-a11y/no-autofocus": 0,
 		"spaced-comment": ["error", "always", { "markers": ["/"] }],
@@ -38,6 +35,9 @@
 				"extensions": [".js", ".jsx", ".ts", ".tsx"],
 				"moduleDirectory": ["node_modules", "src/"]
 			}
+		},
+		"react": {
+			"version": "detect"
 		}
 	},
 	"overrides": [
@@ -46,7 +46,8 @@
 			"rules": {
 				"react/prop-types": "off",
 				"no-undef": "off",
-				"react/display-name": "off"
+				"react/display-name": "off",
+				"@typescript-eslint/explicit-module-boundary-types": "off"
 			}
 		}
 	]

@@ -165,7 +165,10 @@ describe("<RouteAnnouncer />", () => {
 		cy.findByText("You are on the initial page").should("be.visible");
 
 		// 3. The Announcer should not have any text
-		cy.findByTestId("fdz-rat-announcer").should("not.have.text", "Navigated to Home");
+		cy.findByTestId("fdz-js-react-a11y-tools-announcer").should(
+			"not.have.text",
+			"Navigated to Home",
+		);
 	});
 
 	describe("should update the announcer when the location changes", () => {

@@ -33,7 +33,6 @@
 	- [💡 Feature Requests](#-feature-requests)
 - [Tests](#tests)
 	- [Run all component tests](#run-all-component-tests)
-	- [Run all and merge coverage reports](#run-all-and-merge-coverage-reports)
 	- [Jest tests](#jest-tests)
 	- [Cypress component tests:](#cypress-component-tests)
 	- [End-to-end tests:](#end-to-end-tests)
@@ -117,12 +116,6 @@ To run the whole suite of tests, make sure you've done the steps in [installatio
 
 ```sh
 npm run test
-```
-
-### Run all and merge coverage reports
-
-```sh
-npm run test:coverage
 ```
 
 ### Jest tests

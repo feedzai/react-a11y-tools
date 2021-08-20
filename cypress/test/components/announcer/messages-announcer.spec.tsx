@@ -72,7 +72,7 @@ describe("<MessagesAnnouncer />", () => {
 		renderWithContext(<App {...props} />);
 
 		cy.findByText("Send Message").click();
-		cy.findByTestId("fdz-rat-announcer")
+		cy.findByTestId("fdz-js-react-a11y-tools-announcer")
 			.should("have.text", props.text)
 			.and("have.attr", "aria-live", props.politeness);
 	});
@@ -85,7 +85,7 @@ describe("<MessagesAnnouncer />", () => {
 		renderWithContext(<App {...customProps} />);
 
 		cy.findByText("Send Message").click();
-		cy.findByTestId("fdz-rat-announcer")
+		cy.findByTestId("fdz-js-react-a11y-tools-announcer")
 			.should("have.text", customProps.text)
 			.and("have.attr", "aria-live", customProps.politeness);
 	});
