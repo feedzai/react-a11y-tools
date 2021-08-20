@@ -93,17 +93,6 @@ it("Multiple h1s are detected (dev mode)", () => {
 });
 
 describe("in production mode", () => {
-	let oldEnv: NodeJS.ProcessEnv;
-
-	beforeEach(() => {
-		oldEnv = process.env;
-		process.env = { ...oldEnv, NODE_ENV: "production" };
-	});
-
-	afterEach(() => {
-		process.env = oldEnv;
-	});
-
 	it("useHeadingsLevel returns the correct heading level", () => {
 		function Test() {
 			const level = useHeadingsLevel();
