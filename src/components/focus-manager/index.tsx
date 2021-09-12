@@ -19,7 +19,6 @@ import { focusSafely } from "./helpers/focus-safely";
 import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
 import { FocusContext } from "./context";
 import { FOCUSABLE_ELEMENT_SELECTOR, TABBABLE_ELEMENT_SELECTOR } from "./constants";
-export * from "./useFocusManager";
 
 export interface IFocusManagerProps {
 	/**
@@ -503,3 +502,6 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 		</FocusContext.Provider>
 	);
 };
+
+export * from "./useFocusManager";
+export * from "./consumer";

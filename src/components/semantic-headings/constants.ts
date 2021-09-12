@@ -14,7 +14,7 @@
  * description
  *
  * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * @since 1.0.0
  */
 export const INITIAL_LEVEL = 1;
 export const CHECK_AFTER_MS = 1;

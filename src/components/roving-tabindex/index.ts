@@ -83,5 +83,7 @@ export type RovingContext = {
 };
 
 export { Provider as RoverProvider } from "./rover-provider/provider";
+export { RoverConsumer } from "./rover-provider/consumer"
+export { RoverContext } from "./rover-provider/context"
 export * from "./use-rover";
 export * from "./use-focus-effect";

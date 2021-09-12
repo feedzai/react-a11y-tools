@@ -12,7 +12,7 @@
  * helpers.ts
  *
  * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * @since 1.0.0
  */
 import { HEADINGS_SELECTOR, INITIAL_LEVEL, MAXIMUM_LEVEL } from "./constants";
 

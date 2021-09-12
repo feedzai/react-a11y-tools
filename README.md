@@ -127,7 +127,7 @@ npm run test:jest
 ### Cypress component tests:
 
 ```sh
-npm run test:cypress-components
+npm run test:ct
 ```
 
 ### End-to-end tests:

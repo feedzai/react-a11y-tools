@@ -12,7 +12,7 @@
  * useHeadingsLevel.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * @since 1.0.0
  */
 
 import { useContext } from "react";
