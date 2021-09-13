@@ -5,7 +5,7 @@
  * inside the "coverage" folder
  *
  * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * @since 1.0.0
  */
 const { execSync } = require("child_process");
 const fs = require("fs-extra");

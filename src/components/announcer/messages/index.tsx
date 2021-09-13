@@ -24,4 +24,5 @@ export interface IMessagesAnnouncerContext {
 export type TUseMessagesAnnouncerReturns = (message: ISetMessage) => void;
 
 export * from "./provider";
+export * from "./consumer";
 export * from "./useMessagesAnnouncer";

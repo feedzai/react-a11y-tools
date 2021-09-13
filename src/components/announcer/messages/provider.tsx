@@ -31,6 +31,7 @@ import { IMessagesAnnouncerContext, ISetMessage } from "./index";
  *
  * // And sending a message
  * setMessage({ text: "Form was submitted", politeness: "polite"});
+ *
  * @param {FunctionComponent} props
  * @returns {JSX.Element}
  */

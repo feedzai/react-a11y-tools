@@ -12,7 +12,7 @@
  * index.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * @since 1.0.0
  */
 
 import React, {
@@ -102,3 +102,5 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 		children,
 	);
 }
+
+export * from "./useHeadingsLevel";
