@@ -102,3 +102,5 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 		children,
 	);
 }
+
+export * from "./useHeadingsLevel";

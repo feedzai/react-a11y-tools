@@ -28,6 +28,7 @@ export {
 	FocusManagerConsumer,
 	useFocusManager,
 } from "./components/focus-manager/index";
+export { Heading, Level, useHeadingsLevel } from "./components/semantic-headings";
 export { SkipLinks } from "./components/skip-links";
 export {
 	RoverConsumer,
@@ -35,5 +36,5 @@ export {
 	useFocus,
 	useRover,
 } from "./components/roving-tabindex/index";
-export { focusWithoutScrolling, isBrowser, runAfterTransition } from "./helpers/index";
+export { focusWithoutScrolling } from "./helpers/index";
 export { useAutoId, useDisableEvent, useSafeLayoutEffect, useTabbable } from "./hooks";
