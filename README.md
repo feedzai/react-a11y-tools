@@ -6,6 +6,7 @@
 <br />
 
 [**Read The Docs**](https://react-a11y-tools.wiki)
+
 </div>
 
 <p align="center">
@@ -40,6 +41,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## The Problem
+
 We are in the era of design systems. Every company - from the smallest to the largest - has one or has thought about making one. These are great, and they provide the tools for building quick, fast and consistent user interfaces.
 
 However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our owns from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
@@ -47,6 +49,7 @@ However, accessibility is still far from an easy task, especially when using lib
 <br/>
 
 ## The Solution
+
 Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects that we think we can provide a helping hand.
 
 This library provides accessibility and behaviour following the WAI-ARIA Authoring Practices, including screen-reader and keyboard navigation support.
@@ -58,6 +61,7 @@ We also provide a simple testing tool so that you can emulate a no-mouse environ
 <br/>
 
 ## Installation
+
 Inside your React project directory, install React A11y Tools by running either of the following:
 
 ```sh
@@ -67,6 +71,7 @@ $ npm install @feedzai/react-a11y-tools
 
 $ yarn add @feedzai/react-a11y-tools
 ```
+
 <br />
 <br/>
 
@@ -77,15 +82,17 @@ Here is a table of the components, custom hooks and their status.
 ✅ - Released<br/>
 🛠 - Building<br/>
 
-| Status | Name           |
-| ------ | -------------- |
-| ✅     | Route Announcer      |
-| ✅     | Messages Announcer          |
-| ✅     | Focus Manager   |
-| ✅     | Roving Tabindex       |
+| Status | Name               |
+| ------ | ------------------ |
+| ✅     | Route Announcer    |
+| ✅     | Messages Announcer |
+| ✅     | Focus Manager      |
+| ✅     | Roving Tabindex    |
 | ✅     | Keyboard Only      |
-| ✅     | Skip Links |
-| ✅     | Semantic Headings |
+| ✅     | Skip Links         |
+| ✅     | Semantic Headings  |
+| ✅     | useTabbable        |
+
 <br/>
 
 ## Issues
@@ -96,6 +103,7 @@ Please file an issue for bugs, missing documentation, or unexpected behavior.
 
 [**See Bugs**][bugs]
 <br />
+
 ### 💡 Feature Requests
 
 Please file an issue to suggest new features. Vote on feature requests by adding
@@ -106,7 +114,9 @@ a 👍. This helps maintainers prioritize what to work on.
 <br/>
 
 ## Tests
+
 There are two layers of tests written for this library:
+
 - We use Jest and Cypress to do component testing.
 - The end-to-end tests are also made using the Cypress runner.
 
@@ -131,6 +141,7 @@ npm run test:ct
 ```
 
 ### End-to-end tests:
+
 ```sh
 # 1.1 Open Storybook
 npm run storybook
