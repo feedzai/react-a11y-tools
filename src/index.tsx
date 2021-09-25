@@ -33,5 +33,4 @@ export {
 	useFocus,
 	useRover,
 } from "./components/roving-tabindex/index";
-export { Tabs, TabList, TabPanels, TabPanel, Tab, useTabsContext } from "./components/tabs";
 export { useAutoId, useDisableEvent, useSafeLayoutEffect, useTabbable } from "./hooks";

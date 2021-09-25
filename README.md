@@ -30,13 +30,13 @@
 - [Installation](#installation)
 - [Roadmap](#roadmap)
 - [Issues](#issues)
-  - [🐛 Bugs](#-bugs)
-  - [💡 Feature Requests](#-feature-requests)
+	- [🐛 Bugs](#-bugs)
+	- [💡 Feature Requests](#-feature-requests)
 - [Tests](#tests)
-  - [Run all component tests](#run-all-component-tests)
-  - [Jest tests](#jest-tests)
-  - [Cypress component tests:](#cypress-component-tests)
-  - [End-to-end tests:](#end-to-end-tests)
+	- [Run all component tests](#run-all-component-tests)
+	- [Jest tests](#jest-tests)
+	- [Cypress component tests:](#cypress-component-tests)
+	- [End-to-end tests:](#end-to-end-tests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -91,7 +91,6 @@ Here is a table of the components, custom hooks and their status.
 | ✅     | Keyboard Only      |
 | ✅     | Skip Links         |
 | ✅     | Semantic Headings  |
-| ✅     | Tabs               |
 | ✅     | useTabbable        |
 
 <br/>
