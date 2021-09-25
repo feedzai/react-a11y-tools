@@ -129,8 +129,8 @@ function goToPreviousOrNext(
 				? state.tabStops.length - 1
 				: index - 1
 			: index >= state.tabStops.length - 1
-			? 0
-			: index + 1;
+				? 0
+				: index + 1;
 
 	return {
 		...state,
@@ -202,6 +202,13 @@ export function reducer(state: RovingState, action: RovingAction): RovingState {
 			return {
 				...state,
 				lastActionOrigin: "mouse",
+				selectedId: action.payload.id,
+			};
+
+		case "UPDATE_SELECTED":
+			return {
+				...state,
+				lastActionOrigin: "keyboard",
 				selectedId: action.payload.id,
 			};
 

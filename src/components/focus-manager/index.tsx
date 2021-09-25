@@ -496,9 +496,9 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 
 	return (
 		<FocusContext.Provider value={value}>
-			<span hidden ref={initial} data-testid="focus-manager-guard-initial" />
+			<span hidden ref={initial} data-testid="fdz-js-focus-manager-guard-initial" />
 			{children}
-			<span hidden ref={final} data-testid="focus-manager-guard-final" />
+			<span hidden ref={final} data-testid="fdz-js-focus-manager-guard-final" />
 		</FocusContext.Provider>
 	);
 };

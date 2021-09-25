@@ -1,7 +1,7 @@
 {
 	"name": "@feedzai/react-a11y-tools",
 	"author": "Feedzai",
-	"version": "1.0.3",
+	"version": "1.0.4-rc.0",
 	"license": "MIT",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
@@ -83,6 +83,7 @@
 		"@typescript-eslint/eslint-plugin": "4.29.2",
 		"@typescript-eslint/parser": "4.29.2",
 		"autoprefixer": "10.3.1",
+		"axe-core": "^4.3.3",
 		"babel-jest": "27.0.2",
 		"babel-loader": "8.2.2",
 		"babel-plugin-istanbul": "6.0.0",
@@ -91,6 +92,7 @@
 		"check-code-coverage": "1.10.0",
 		"css-loader": "6.2.0",
 		"cypress": "8.3.0",
+		"cypress-axe": "^0.13.0",
 		"cypress-multi-reporters": "1.5.0",
 		"cypress-plugin-tab": "1.0.5",
 		"cypress-real-events": "1.5.1",
@@ -162,14 +164,14 @@
 	"size-limit": [
 		{
 			"path": "dist/index.js",
-			"limit": "8 kB",
+			"limit": "10 kB",
 			"ignore": [
 				"fs"
 			]
 		},
 		{
 			"path": "dist/index.esm.js",
-			"limit": "8 kB",
+			"limit": "10 kB",
 			"ignore": [
 				"fs"
 			]

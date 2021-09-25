@@ -51,7 +51,7 @@ export const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
 			);
 
 		return (
-			<div className="skip-links" data-testid="skip-links">
+			<div className="fdz-css-skip-links" data-testid="fdz-js-skip-links">
 				{list}
 			</div>
 		);

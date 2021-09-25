@@ -17,7 +17,7 @@ import React from "react";
 import { mount as render } from "@cypress/react";
 import { Heading, Level } from "../../../../src/components/semantic-headings";
 import { checkHeadingLevels } from "../../../../src/components/semantic-headings/helpers";
-import { useHeadingsLevel } from "../../../../src/components/semantic-headings/useHeadingsLevel";
+import { useHeadings } from "../../../../src/components/semantic-headings/useHeadings";
 
 it("Heading renders an H1 be default", () => {
 	render(<Heading>A test title</Heading>);
@@ -93,9 +93,9 @@ it("Multiple h1s are detected (dev mode)", () => {
 });
 
 describe("in production mode", () => {
-	it("useHeadingsLevel returns the correct heading level", () => {
+	it("useHeadings returns the correct heading level", () => {
 		function Test() {
-			const level = useHeadingsLevel();
+			const level = useHeadings();
 
 			expect(level).to.equal(3);
 

@@ -26,12 +26,12 @@ const removeClass = (className: string) => document.documentElement.classList.re
  */
 export const KeyboardOnly: FunctionComponent = () => {
 	useSafeLayoutEffect(() => {
-		addClass("no-mouse");
+		addClass("fdz-css-no-mouse");
 
 		return () => {
-			removeClass("no-mouse");
+			removeClass("fdz-css-no-mouse");
 		};
 	}, []);
 
-	return <div data-testid="audit" />;
+	return <div data-testid="fdz-js-audit" />;
 };
