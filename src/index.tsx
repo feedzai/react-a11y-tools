@@ -17,24 +17,21 @@ export {
 	MessagesAnnouncerConsumer,
 	useMessagesAnnouncer,
 } from "./components/announcer/messages/index";
-export {
-	getHeadingText,
-	hasDocumentTitle,
-	RouteAnnouncer,
-} from "./components/announcer/route-announcer";
+export { RouteAnnouncer } from "./components/announcer/route-announcer";
 export { KeyboardOnly } from "./components/keyboard-only";
 export {
 	FocusManager,
 	FocusManagerConsumer,
 	useFocusManager,
 } from "./components/focus-manager/index";
-export { Heading, Level, useHeadingsLevel } from "./components/semantic-headings";
+export { Heading, Level, useHeadings } from "./components/semantic-headings";
 export { SkipLinks } from "./components/skip-links";
 export {
 	RoverConsumer,
 	RoverProvider,
+	RoverContext,
 	useFocus,
 	useRover,
 } from "./components/roving-tabindex/index";
-export { focusWithoutScrolling } from "./helpers/index";
+export { Tabs, TabList, TabPanels, TabPanel, Tab, useTabsContext } from "./components/tabs";
 export { useAutoId, useDisableEvent, useSafeLayoutEffect, useTabbable } from "./hooks";

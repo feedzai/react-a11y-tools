@@ -39,7 +39,7 @@ const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JS
 		});
 	}
 	return (
-		<div data-testid="messages-announcer">
+		<div data-testid="fdz-js-messages-announcer">
 			<button type="button" onClick={onClick}>
 				Send Message
 			</button>
@@ -65,14 +65,14 @@ describe("<MessagesAnnouncer />", () => {
 			</App>,
 		);
 
-		cy.findByTestId("messages-announcer").snapshot("should render without errors");
+		cy.findByTestId("fdz-js-messages-announcer").snapshot("should render without errors");
 	});
 
 	it("should update the announcer with a new message", () => {
 		renderWithContext(<App {...props} />);
 
 		cy.findByText("Send Message").click();
-		cy.findByTestId("fdz-js-react-a11y-tools-announcer")
+		cy.findByTestId("fdz-js-announcer")
 			.should("have.text", props.text)
 			.and("have.attr", "aria-live", props.politeness);
 	});
@@ -85,7 +85,7 @@ describe("<MessagesAnnouncer />", () => {
 		renderWithContext(<App {...customProps} />);
 
 		cy.findByText("Send Message").click();
-		cy.findByTestId("fdz-js-react-a11y-tools-announcer")
+		cy.findByTestId("fdz-js-announcer")
 			.should("have.text", customProps.text)
 			.and("have.attr", "aria-live", customProps.politeness);
 	});

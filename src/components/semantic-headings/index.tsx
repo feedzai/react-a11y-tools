@@ -1,9 +1,5 @@
 /*
- * The copyright of this file belongs to Feedzai. The file cannot be
- * reproduced in whole or in part, stored in a retrieval system, transmitted
- * in any form, or by any means electronic, mechanical, or otherwise, without
- * the prior permission of the owner. Please refer to the terms of the license
- * agreement.
+ * Please refer to the terms of the license agreement.
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
@@ -80,7 +76,7 @@ export function Level({ dangerouslyOverrideValue, children }: PropsWithChildren<
  * <Heading offset={1}>a title</Heading>
  *
  * // Passing HTML element props to the component
- * <Heading id="a-title" className="a-classname">a title</Heading>
+ * <Heading id="a-title" className="fdz-css-a-classname">a title</Heading>
  *
  *
  * @param {HeadingProps} props
@@ -96,11 +92,7 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
 	}
 
-	return createElement(
-		HeadingLevel,
-		{ "data-testid": "fdz-js-react-a11y-tools-heading", ...props },
-		children,
-	);
+	return createElement(HeadingLevel, { "data-testid": "fdz-js-heading", ...props }, children);
 }
 
-export * from "./useHeadingsLevel";
+export * from "./useHeadings";

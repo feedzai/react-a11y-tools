@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /* istanbul ignore file */
 /*
  * Please refer to the terms of the license
@@ -14,12 +13,13 @@
  * @since 1.0.0
  */
 import { createContext } from "react";
+import { emptyfunction } from "../../../helpers";
 import { IMessagesAnnouncerContext } from "./index";
 
 export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
 	message: "",
 	politeness: "polite",
-	setMessage: () => {},
+	setMessage: emptyfunction,
 };
 
 export const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(

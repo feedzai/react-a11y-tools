@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /*
  * Please refer to the terms of the license
  * agreement.
@@ -18,6 +17,7 @@ import { isBrowser } from "../helpers/isBrowser";
 /**
  * `useLayoutEffect` that does not show warning when server-side rendering.
  *
- * See {@link https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a|Alex Reardon's article} for more info.
+ * See Alex Reardon's article for more info.
+ * {@see https://medium.com/@alexandereardon/uselayouteffect-and-ssr-192986cdcf7a}
  */
 export const useSafeLayoutEffect = isBrowser ? useLayoutEffect : useEffect;

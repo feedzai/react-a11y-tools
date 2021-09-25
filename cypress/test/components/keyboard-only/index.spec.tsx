@@ -20,7 +20,7 @@ describe("<Audit>", () => {
 	it("should render the KeyboardOnly component", () => {
 		mount(<AuditInPage />);
 
-		cy.findByTestId("audit").should("have.class", "");
-		cy.root().should("have.class", "no-mouse");
+		cy.findByTestId("fdz-js-audit").should("have.class", "");
+		cy.root().should("have.class", "fdz-css-no-mouse");
 	});
 });

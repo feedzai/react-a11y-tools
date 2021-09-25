@@ -11,7 +11,8 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.1.0
  */
-import { useLayoutEffect, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSafeLayoutEffect } from "./useSafeLayoutEffect";
 
 let hasHydrated = false;
 let id = 0;
@@ -40,7 +41,7 @@ function useAutoId(customId?: string | null) {
 	/*
 	 * Patch the ID after render to avoid any rendering flicker.
 	 */
-	useLayoutEffect(() => {
+	useSafeLayoutEffect(() => {
 		if (id === null) {
 			setId(generateIncrementalId());
 		}

@@ -23,131 +23,134 @@ describe("FocusManager", () => {
 		it("should contain focus within the scope", () => {
 			mount(
 				<FocusManager contain>
-					<input data-testid="input1" />
-					<input data-testid="input2" />
-					<input data-testid="input3" />
+					<input data-testid="fdz-js-input-1" />
+					<input data-testid="fdz-js-input-2" />
+					<input data-testid="fdz-js-input-3" />
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
-			cy.findByTestId("input2").should("have.focus").realPress("Tab");
-			cy.findByTestId("input3").should("have.focus").realPress("Tab");
-			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input1").focus().should("have.focus");
+			cy.findByTestId("fdz-js-input-1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-1").focus().should("have.focus");
 		});
 
 		it("should work with nested elements", () => {
 			mount(
 				<FocusManager contain>
-					<input data-testid="input1" />
+					<input data-testid="fdz-js-input-1" />
 					<div>
-						<input data-testid="input2" />
+						<input data-testid="fdz-js-input-2" />
 						<div>
-							<input data-testid="input3" />
+							<input data-testid="fdz-js-input-3" />
 						</div>
 					</div>
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
-			cy.findByTestId("input2").should("have.focus").realPress("Tab");
-			cy.findByTestId("input3").should("have.focus").realPress("Tab");
-			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input1").should("have.focus");
+			cy.findByTestId("fdz-js-input-1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-1").should("have.focus");
 		});
 
 		it("should skip non-tabbable elements", () => {
 			mount(
 				<FocusManager contain>
-					<input data-testid="input1" />
+					<input data-testid="fdz-js-input-1" />
 					<div />
-					<input data-testid="input2" />
+					<input data-testid="fdz-js-input-2" />
 					<div tabIndex={-1} />
-					<input data-testid="input3" />
+					<input data-testid="fdz-js-input-3" />
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
-			cy.findByTestId("input2").should("have.focus").realPress("Tab");
-			cy.findByTestId("input3").should("have.focus").realPress("Tab");
-			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input1").should("have.focus");
+			cy.findByTestId("fdz-js-input-1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-1").should("have.focus");
 		});
 
 		it("should do nothing if a modifier key is pressed", () => {
 			mount(
 				<FocusManager contain>
-					<input data-testid="input1" />
-					<input data-testid="input2" />
-					<input data-testid="input3" />
+					<input data-testid="fdz-js-input-1" />
+					<input data-testid="fdz-js-input-2" />
+					<input data-testid="fdz-js-input-3" />
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input1").focus().should("have.focus").realPress(["Alt", "Meta", "P"]);
-			cy.findByTestId("input1").should("have.focus");
+			cy.findByTestId("fdz-js-input-1")
+				.focus()
+				.should("have.focus")
+				.realPress(["Alt", "Meta", "P"]);
+			cy.findByTestId("fdz-js-input-1").should("have.focus");
 		});
 
 		it("should work with multiple focus scopes", () => {
 			mount(
 				<div>
 					<FocusManager contain>
-						<input data-testid="input1" />
-						<input data-testid="input2" />
-						<input data-testid="input3" />
+						<input data-testid="fdz-js-input-1" />
+						<input data-testid="fdz-js-input-2" />
+						<input data-testid="fdz-js-input-3" />
 					</FocusManager>
 					<FocusManager contain>
-						<input data-testid="input4" />
-						<input data-testid="input5" />
-						<input data-testid="input6" />
+						<input data-testid="fdz-js-input-4" />
+						<input data-testid="fdz-js-input-5" />
+						<input data-testid="fdz-js-input-6" />
 					</FocusManager>
 				</div>,
 			);
 
-			cy.findByTestId("input1").focus().should("have.focus").realPress("Tab");
-			cy.findByTestId("input2").should("have.focus").realPress("Tab");
-			cy.findByTestId("input3").should("have.focus").realPress("Tab");
-			cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input3").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input2").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input1").should("have.focus");
+			cy.findByTestId("fdz-js-input-1").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-1").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-3").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-2").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-1").should("have.focus");
 
-			cy.findByTestId("input4").focus().should("have.focus").realPress("Tab");
-			cy.findByTestId("input5").should("have.focus").realPress("Tab");
-			cy.findByTestId("input6").should("have.focus").realPress("Tab");
-			cy.findByTestId("input4").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input6").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input5").should("have.focus").realPress(["Shift", "Tab"]);
-			cy.findByTestId("input4").should("have.focus");
+			cy.findByTestId("fdz-js-input-4").focus().should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-5").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-6").should("have.focus").realPress("Tab");
+			cy.findByTestId("fdz-js-input-4").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-6").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-5").should("have.focus").realPress(["Shift", "Tab"]);
+			cy.findByTestId("fdz-js-input-4").should("have.focus");
 		});
 
 		it("uses document.activeElement instead of e.relatedTarget on blur to determine if focus is still in scope", () => {
 			mount(
 				<div>
 					<FocusManager contain>
-						<input data-testid="input1" />
-						<input data-testid="input2" />
+						<input data-testid="fdz-js-input-1" />
+						<input data-testid="fdz-js-input-2" />
 					</FocusManager>
 				</div>,
 			);
 
-			cy.findByTestId("input1")
+			cy.findByTestId("fdz-js-input-1")
 				.focus()
 				.should("have.focus")
 				.then(() => {
-					expect(document.activeElement).to.have.attr("data-testid", "input1");
+					expect(document.activeElement).to.have.attr("data-testid", "fdz-js-input-1");
 				});
 
-			cy.findByTestId("input2")
+			cy.findByTestId("fdz-js-input-2")
 				.focus()
 				.should("have.focus")
 				.then(() => {
-					expect(document.activeElement).to.have.attr("data-testid", "input2");
+					expect(document.activeElement).to.have.attr("data-testid", "fdz-js-input-2");
 				});
 		});
 	});
@@ -158,7 +161,11 @@ describe("FocusManager", () => {
 				const [isVisible, setIsVisible] = React.useState(false);
 				return (
 					<div>
-						<button type="button" data-testid="show-button" onClick={() => setIsVisible(true)}>
+						<button
+							type="button"
+							data-testid="fdz-js-show-button"
+							onClick={() => setIsVisible(true)}
+						>
 							Show Menu
 						</button>
 						{isVisible && (
@@ -172,7 +179,7 @@ describe("FocusManager", () => {
 												</h4>
 												<button
 													type="button"
-													data-testid="close-button"
+													data-testid="fdz-js-close-button"
 													className="popover__header__button"
 													onClick={() => setIsVisible(false)}
 												>
@@ -250,10 +257,10 @@ describe("FocusManager", () => {
 			mount(<Test contain={false} restoreFocus autoFocus />);
 
 			cy.realPress("Tab");
-			cy.findByTestId("show-button").click();
+			cy.findByTestId("fdz-js-show-button").click();
 
-			cy.findByTestId("close-button").should("have.focus").click();
-			cy.findByTestId("show-button").should("have.focus");
+			cy.findByTestId("fdz-js-close-button").should("have.focus").click();
+			cy.findByTestId("fdz-js-show-button").should("have.focus");
 		});
 
 		it("should move focus to the next element after the previously focused node on Tab", () => {
@@ -265,9 +272,9 @@ describe("FocusManager", () => {
 						<input data-testid="after" />
 						{show && (
 							<FocusManager contain={false} restoreFocus autoFocus>
-								<input data-testid="input1" />
-								<input data-testid="input2" />
-								<input data-testid="input3" />
+								<input data-testid="fdz-js-input-1" />
+								<input data-testid="fdz-js-input-2" />
+								<input data-testid="fdz-js-input-3" />
 							</FocusManager>
 						)}
 					</div>
@@ -279,8 +286,8 @@ describe("FocusManager", () => {
 
 				rerender(<Test show />);
 
-				cy.findByTestId("input1").should("have.focus");
-				cy.findByTestId("input3").focus().realPress("Tab");
+				cy.findByTestId("fdz-js-input-1").should("have.focus");
+				cy.findByTestId("fdz-js-input-3").focus().realPress("Tab");
 				cy.findByTestId("after").should("have.focus");
 			});
 		});
@@ -294,9 +301,9 @@ describe("FocusManager", () => {
 						<input data-testid="after" />
 						{show && (
 							<FocusManager contain={false} restoreFocus autoFocus>
-								<input data-testid="input1" />
-								<input data-testid="input2" />
-								<input data-testid="input3" />
+								<input data-testid="fdz-js-input-1" />
+								<input data-testid="fdz-js-input-2" />
+								<input data-testid="fdz-js-input-3" />
 							</FocusManager>
 						)}
 					</div>
@@ -308,7 +315,7 @@ describe("FocusManager", () => {
 
 				rerender(<Test show />);
 
-				cy.findByTestId("input1").should("have.focus").realPress(["Shift", "Tab"]);
+				cy.findByTestId("fdz-js-input-1").should("have.focus").realPress(["Shift", "Tab"]);
 				cy.findByTestId("before").should("have.focus");
 			});
 		});
@@ -321,9 +328,9 @@ describe("FocusManager", () => {
 						<button data-testid="trigger" />
 						{show && (
 							<FocusManager contain={false} restoreFocus autoFocus>
-								<input data-testid="input1" />
-								<input data-testid="input2" />
-								<input data-testid="input3" />
+								<input data-testid="fdz-js-input-1" />
+								<input data-testid="fdz-js-input-2" />
+								<input data-testid="fdz-js-input-3" />
 							</FocusManager>
 						)}
 						<input data-testid="after" />
@@ -336,8 +343,8 @@ describe("FocusManager", () => {
 
 				rerender(<Test show />);
 
-				cy.findByTestId("input1").should("have.focus");
-				cy.findByTestId("input3").focus().realPress("Tab");
+				cy.findByTestId("fdz-js-input-1").should("have.focus");
+				cy.findByTestId("fdz-js-input-3").focus().realPress("Tab");
 				cy.findByTestId("after").should("have.focus");
 			});
 		});
@@ -348,26 +355,26 @@ describe("FocusManager", () => {
 			mount(
 				<FocusManager autoFocus>
 					<div />
-					<input data-testid="input1" />
-					<input data-testid="input2" />
-					<input data-testid="input3" />
+					<input data-testid="fdz-js-input-1" />
+					<input data-testid="fdz-js-input-2" />
+					<input data-testid="fdz-js-input-3" />
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input1").should("have.focus");
+			cy.findByTestId("fdz-js-input-1").should("have.focus");
 		});
 
 		it("should do nothing if something is already focused in the scope", () => {
 			mount(
 				<FocusManager autoFocus>
 					<div />
-					<input data-testid="input1" />
-					<input data-testid="input2" autoFocus />
-					<input data-testid="input3" />
+					<input data-testid="fdz-js-input-1" />
+					<input data-testid="fdz-js-input-2" autoFocus />
+					<input data-testid="fdz-js-input-3" />
 				</FocusManager>,
 			);
 
-			cy.findByTestId("input2").should("have.focus");
+			cy.findByTestId("fdz-js-input-2").should("have.focus");
 		});
 	});
 });

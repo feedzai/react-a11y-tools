@@ -13,10 +13,11 @@
  * @since 1.0.0
  */
 import { createContext } from "react";
+import { emptyfunction } from "../../../helpers";
 import { RovingContext, RovingState } from "../index";
 
 export const initialState: RovingState = {
-	direction: "vertical",
+	direction: "horizontal",
 	selectedId: null,
 	lastActionOrigin: null,
 	tabStops: [],
@@ -26,6 +27,5 @@ export const RoverContext = createContext<RovingContext>({
 	state: {
 		...initialState,
 	},
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	dispatch: () => {},
+	dispatch: emptyfunction,
 });

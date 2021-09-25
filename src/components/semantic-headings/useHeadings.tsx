@@ -1,15 +1,10 @@
 /*
- * The copyright of this file belongs to Feedzai. The file cannot be
- * reproduced in whole or in part, stored in a retrieval system, transmitted
- * in any form, or by any means electronic, mechanical, or otherwise, without
- * the prior permission of the owner. Please refer to the terms of the license
- * agreement.
+ * Please refer to the terms of the license agreement.
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-
 /**
- * useHeadingsLevel.tsx
+ * useHeadings.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
@@ -21,11 +16,11 @@ import { CHECK_AFTER_MS } from "./constants";
 import { isProduction, getHeadingLevel, auditHeadingsOnPage } from "./helpers";
 
 /**
- * Queries the DOM to check the heading level
+ * Custom Hook that returns the appropriate heading level to render onto the DOM
  *
  * @example
  * // Get the current heading level
- * const level = useHeadingsLevel();
+ * const level = useHeadings();
  *
  * // Render a custom heading element
  * const CustomHeading = `h${level}`;
@@ -36,7 +31,7 @@ import { isProduction, getHeadingLevel, auditHeadingsOnPage } from "./helpers";
  *
  * @returns {number}
  */
-export function useHeadingsLevel(): number {
+export function useHeadings(): number {
 	const contextLevel = useContext(HeadingsContext);
 
 	if (!isProduction()) {

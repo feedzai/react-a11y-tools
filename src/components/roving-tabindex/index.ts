@@ -75,6 +75,7 @@ export type RovingAction =
 	| IRovingActionWithPayload<"TAB_TO_PREVIOUS", IRovingActionPayloadID>
 	| IRovingActionWithPayload<"TAB_TO_NEXT", IRovingActionPayloadID>
 	| IRovingActionWithPayload<"CLICKED", IRovingActionPayloadID>
+	| IRovingActionWithPayload<"UPDATE_SELECTED", IRovingActionPayloadID>
 	| IRovingActionWithPayload<"CHANGE_DIRECTION", IRovingActionPayloadDirection>;
 
 export type RovingContext = {
