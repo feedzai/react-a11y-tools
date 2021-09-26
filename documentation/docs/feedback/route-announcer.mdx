@@ -1,0 +1,230 @@
+---
+sidebar_position: 2
+subtitle: test
+---
+
+import { Subtitle } from "../../src/components";
+
+# Route Announcer
+
+<Subtitle>Announces page changes for assistive technologies.</Subtitle>
+
+### Instructions
+
+- Click on "Blog" to show the first page. _(This is a constraint of using a router inside Storybook)._
+- Start your screen-reader (like `VoiceOver` or `Narrator`)
+- Try navigating to any page visible on the demo.
+- The screen reader will announce any page changes, like "Navigated to The Best Excuses To Spend A Cozy Valentine’s Day In".
+
+### Props
+
+The `RouteAnnouncer` adds an ARIA live region that announces route changes.
+
+This component stands at the top of the React tree, and it should preferably be the first or second rendered component below your Router. It actively listens for a change on the location's `pathname` (e.g. Navigating from the `/events` page to the `/contacts` page).
+
+So, this component will wrap your content, and an ARIA live region HTML element will render alongside it. Whenever the location changes, it pushes a message onto that HTML element, thus triggering the screen-reader by making it read the content out loud (e.g.: `Navigated to Events`).
+
+To avoid the user having to insert the message every time the location changes manually, it queries the DOM for common elements and patterns that might signal something that can identify the new page.
+
+These are:
+
+- `h1` headings (there should be only one per page);
+- Text content inside the `title` tag in the `head` element;
+- Or, as a fallback, the pathname itself.
+
+### Component instructions
+
+To take advantage of this component, place it as above as you can inside your React tree so that it can wrap your entire content. Since it will need to watch your router's location updates, try to put it right underneath your Router component.
+
+```jsx
+<Router>
+	<RouteAnnouncer pathname={location.pathname}>
+		<Home path="/" />
+		<Company path="/company" />
+		<Contacts path="/contacts" />
+		<Shop path="/product" />
+	</RouteAnnouncer>
+</Router>
+```
+
+There are Codesandbox examples below for the most common use cases, like with Next.js own routing system, or with the super-popular React Router.
+
+#### Using Next.js
+
+Zeit's Next.js uses its routing mechanism, which users might find that as one of its greatest strengths. However, there are precise ways to handle tasks, such as adding functionality available on all pages by being an opinionated framework. Our component is one of them.
+
+##### 1. Edit the `_app.js` file
+
+To add the `RouteAnnouncer` component on Next, let's first go to the `pages/_app.js` file.
+At the top, import the `useRouter` hook, which accesses the router object inside your app's function component. Since you're at it, also import our component.
+
+```jsx
+import { useRouter } from "next/router";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
+```
+
+##### 2. Get the `pathname` from the `useRouter` hook
+
+Then, inside the App function, reference the hook and destructure the object to obtain the `pathname` property. We need it to make the component listen for any significant location changes.
+
+```jsx
+export default function App({ Component, pageProps }) {
+	const { pathname } = useRouter();
+```
+
+##### 3. Pass the `pathame` to the `RouteAnnouncer`
+
+Finally, in the return statement, wrap the `Component` with the `RouteAnnouncer` and pass the `pathname` as a prop.
+
+```jsx
+return (
+	<RouteAnnouncer pathname={pathname}>
+		<Component {...pageProps} />
+	</RouteAnnouncer>
+);
+```
+
+Since users can frequently customize this file to override and control the page initialization, make sure that you place the component as high as you can.
+
+That's it!
+
+🔗 Checkout the example [on this Codesandbox](https://codesandbox.io/s/react-a11y-tools-nextjs-0jxkg?file=/pages/_app.js)
+
+#### Using `@reach/router`
+
+`React Router`'s accessible brother, `Reach Router` is already built with accessibility in mind.
+
+##### 1. Create a basic wrapper
+
+First, let's create a component wrapper to listen for the router changes.
+This will sit on top of the rest of the content (or wherever possible).
+
+```jsx
+import React from "react";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
+import { createHistory, LocationProvider } from "@reach/router";
+
+export const history = createHistory(window);
+
+export default function PageAnnouncer({ children }) {
+	return (
+		<LocationProvider history={history}>
+			{({ location }) => {
+				return <RouteAnnouncer pathname={location.pathname}>{children}</RouteAnnouncer>;
+			}}
+		</LocationProvider>
+	);
+}
+```
+
+This component basically listens for any location changes and updates the `RouteAnnouncer` with a new pathname.
+
+##### 2. Find your main component
+
+Second, let's find the file on your project that is the initial component or the one highest on the tree.
+You know, something like `App.js` or `index.js`.
+The one you pass into:
+
+```jsx
+import App from "../components/App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	rootElement,
+);
+```
+
+##### 3. Wrap your content
+
+Got it? Great!
+Once there, wrap everything with our newly created component.
+
+```jsx
+export default function App() {
+	return (
+		<PageAnnouncer>
+			<div className="your-app">
+				<ThisIsAHeader />
+				<YourRouterComponentIsHere />
+			</div>
+		</PageAnnouncer>
+	);
+}
+```
+
+That's it?
+Yep, that's everything you need to do.
+
+🔗 Checkout the live example [on this Codesandbox](https://codesandbox.io/s/react-a11y-tools-reachrouter-d7csq?file=/components/App.js)
+
+#### Using `react-router`
+
+The process of using the `RouteAnnouncer` with React Router is very similar to the one with `@reach/router`.
+Nonetheless, here's what you need to do.
+
+##### 1. Create a basic wrapper
+
+First, let's create a component wrapper to listen for the router changes.
+This will sit on top of the rest of the content (or wherever possible).
+
+```jsx
+import React from "react";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
+import { useLocation } from "react-router-dom";
+
+export default function PageAnnouncer({ children }) {
+	const { pathname } = useLocation();
+	return <RouteAnnouncer pathname={pathname}>{children}</RouteAnnouncer>;
+}
+```
+
+##### 2. Find your main component
+
+Second, let's find the file on your project that is the initial component or the one highest on the tree.
+You know, something like `App.js` or `index.js`.
+The one you pass into:
+
+```jsx
+import App from "../components/App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
+	rootElement,
+);
+```
+
+##### 3. Wrap your content
+
+Got it? Great!
+Once there, wrap everything below the `Router` with our newly created component.
+
+```jsx
+import React from "react";
+import { Header } from "./header";
+import { BrowserRouter as Router } from "react-router-dom";
+import AllThePageRoutesHere from "./page-router";
+import PageAnnouncer from "./page-announcer";
+
+export default function App() {
+	return (
+		<Router>
+			<PageAnnouncer>
+				<div className="your-app">
+					<Header />
+					<AllThePageRoutesHere />
+				</div>
+			</PageAnnouncer>
+		</Router>
+	);
+}
+```
+
+This one was even simpler than `@reach/router`!
+
+🔗 Checkout the live example [on this Codesandbox](https://codesandbox.io/s/react-a11y-tools-react-router-03196?file=/components/App.js:0-529)

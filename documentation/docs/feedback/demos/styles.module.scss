@@ -1,0 +1,145 @@
+.page-wrapper {
+	background: #ddeefc;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 16px;
+
+	:global(*) {
+		box-sizing: border-box;
+	}
+}
+
+.card {
+	max-width: 620px;
+	min-width: 490px;
+	margin: 0 auto;
+	padding-top: 50px;
+	padding-bottom: 70px;
+	width: 100%;
+}
+
+.card__inputs {
+	background: #fff;
+	box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+	border-radius: 10px;
+}
+
+.card__form {
+	margin: 0 auto;
+	padding: 40px;
+
+	:global(fieldset) {
+		border: none;
+		display: grid;
+		grid-gap: 1rem;
+		grid-template-columns: 1fr 2fr 1fr;
+		width: 100%;
+		margin: 0 auto;
+	}
+	:global(legend) {
+		font-size: 24px;
+		font-weight: bold;
+		width: 100%;
+		grid-column: 1/4;
+		color: black;
+	}
+	:global(.lg-input) {
+		grid-column: 1 / 4;
+	}
+	:global(.med-input) {
+		grid-column: 1 / 3;
+	}
+	:global(.sm-input) {
+		grid-column: 3 / 4;
+	}
+	:global(label) {
+		display: block;
+		font-size: 14px;
+		margin-bottom: 5px;
+		font-weight: 500;
+		color: #1a3b5d;
+		width: 100%;
+		display: block;
+		user-select: none;
+		position: relative;
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0.5rem;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%2333691E' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+			background-size: 1rem 1rem;
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+	:global(.name-input),
+	:global(.number-input),
+	:global(.cvv-input) {
+		width: 100%;
+	}
+	:global(.month-input),
+	:global(.year-input) {
+		width: 44%;
+	}
+	:global(.month-input) {
+		margin-right: 1rem;
+	}
+	:global(.year-input) {
+		margin-left: 1rem;
+	}
+	:global(input),
+	:global(select) {
+		height: 50px;
+		border-radius: 5px;
+		border: 1px solid #ced6e0;
+		box-shadow: none;
+		font-size: 18px;
+		padding: 5px 16px;
+		background: none;
+		color: #1a3b5d;
+		font-family: inherit;
+		transition: all 0.3s ease-in-out;
+		letter-spacing: 1px;
+		&:hover,
+		&:focus {
+			border-color: #3d9cff;
+		}
+		&:focus {
+			box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
+		}
+	}
+	:global(select) {
+		appearance: none;
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
+		background-size: 12px;
+		background-position: 90% center;
+		background-repeat: no-repeat;
+		padding-right: 30px;
+	}
+	:global(button) {
+		height: 55px;
+		background: #2364d2;
+		border: none;
+		border-radius: 5px;
+		font-size: 22px;
+		font-weight: 500;
+		font-family: inherit;
+		box-shadow: 3px 10px 20px 0px rgba(35, 100, 210, 0.3);
+		color: #fff;
+		margin-top: 20px;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+	}
+}
+
+.error-message {
+	width: 100%;
+	background-color: hsla(134deg 57% 45% / 28%);
+	border: 2px solid hsl(134deg 54% 34%);
+	color: #0a1818;
+	margin: 2rem auto 0 auto;
+	border-radius: 5px;
+	padding: 0.5rem 1.5rem;
+	text-align: center;
+}

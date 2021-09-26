@@ -5,7 +5,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (
 	module.exports = {
-		title: "React a11y tools",
+		title: "react-a11y-tools",
 		tagline: "Dinosaurs are cool",
 		url: "https://your-docusaurus-test-site.com",
 		baseUrl: "/",
@@ -31,6 +31,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 				}),
 			],
 		],
+
+		plugins: ["docusaurus-plugin-sass"],
 
 		themeConfig:
 			/** @type {import('@docusaurus/preset-classic').ThemeConfig} */

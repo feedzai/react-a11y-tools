@@ -1,31 +1,48 @@
 ---
 sidebar_position: 1
+title: Messages Announcer
 ---
 
-# Messages Announcer
+import { MessagesAnnouncer } from "../../../src/index";
+import { Subtitle, BrowserWindow } from "../../src/components";
+import { DemoMessagesAnnouncer } from "./demos";
+
+<Subtitle>Announce content changes.</Subtitle>
 
 It is common on single-page web apps that assistive technologies completely ignore significant changes happening inside a page, mainly because we manipulate the DOM with JavasScript.
 
 Like the `RouteAnnouncer`, with the `MessagesAnnoucer`, we create an ARIA live region that the assistive technologies will monitor. So, any changes that you push to this component, a screen-reader will announce them.
 
-## How to operate this demo
+<BrowserWindow>
+	<DemoMessagesAnnouncer />
+</BrowserWindow>
+<br/>
 
+:::note How to
 - Start your screen-reader (like `VoiceOver` or `Narrator`)
 - Focus on the "Pay" button.
 - Notice that a message will be displayed.
 - However, the screen-reader will output a different and more meaningful message.
+:::
 
-Add **Markdown or React** files to `src/pages` to create a **standalone page**:
+### Usage
 
-- `src/pages/index.js` -> `localhost:3000/`
-- `src/pages/foo.md` -> `localhost:3000/foo`
-- `src/pages/foo/bar.js` -> `localhost:3000/foo/bar`
+You can use component to wrap the contents of a form, for instance.
+This renders the form and, alongside it, the ARIA live region.
 
-## State Management
+```jsx
+import { MessagesAnnouncer } from "@feedzai/react-a11y-tools";
+...
+return (
+	<MessagesAnnouncer>
+		<form onSubmit={handleOnSubmit}>
+			...
+		</form>
+	</MessagesAnnouncer>
+);
+```
 
-The component takes advantage of React's `Context` API to use the updater function anywhere inside the `MessagesAnnouncer` children.
-
-## With Functional Components
+### useMessageAnnouncer
 
 To dispatch messages inside a functional component, you can take advantage of the `useMessageAnnouncer` custom hook.
 
@@ -56,25 +73,9 @@ return (
 );
 ```
 
-## Forms
+### Global State
 
-You can use component to wrap the contents of a form, for instance.
-This renders the form and, alongside it, the ARIA live region.
-
-```jsx
-import { MessagesAnnouncer } from "@feedzai/react-a11y-tools";
-...
-return (
-	<MessagesAnnouncer>
-		<form onSubmit={handleOnSubmit}>
-			...
-		</form>
-	</MessagesAnnouncer>
-);
-```
-
-## Global usage
-
+The component takes advantage of React's `Context` API to use the updater function anywhere inside the `MessagesAnnouncer` children.
 To have the announcer available for the whole app, consider wrapping the content with it. This way, you can access the `setMessage` function from any component inside.
 
 ```jsx
@@ -87,7 +88,7 @@ return (
 );
 ```
 
-## With Route Announcer
+### Working alongside Route Announcer
 
 You can use the `MessageAnnouncer` along with the `RouteAnnouncer`.
 However, we recommend that you still place the `RouteAnnouncer` at the top and then inside it, the `MessagesAnnouncer`.

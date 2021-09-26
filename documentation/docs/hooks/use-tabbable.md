@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+title: useTabbable
 ---
 
 # Translate your site
@@ -12,10 +13,10 @@ Modify `docusaurus.config.js` to add support for the `fr` locale:
 
 ```js title="docusaurus.config.js"
 module.exports = {
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'fr'],
-  },
+	i18n: {
+		defaultLocale: "en",
+		locales: ["en", "fr"],
+	},
 };
 ```
 
@@ -55,17 +56,17 @@ Modify the `docusaurus.config.js` file:
 
 ```js title="docusaurus.config.js"
 module.exports = {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: 'localeDropdown',
-        },
-        // highlight-end
-      ],
-    },
-  },
+	themeConfig: {
+		navbar: {
+			items: [
+				// highlight-start
+				{
+					type: "localeDropdown",
+				},
+				// highlight-end
+			],
+		},
+	},
 };
 ```
 
