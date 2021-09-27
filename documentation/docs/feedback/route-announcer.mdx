@@ -1,22 +1,13 @@
 ---
 sidebar_position: 2
-subtitle: test
 ---
 
-import { Subtitle } from "../../src/components";
+import { Subtitle, BrowserWindow, PropsTable } from "../../src/components/index";
+import { DemoWithRouter } from "./demos";
 
 # Route Announcer
 
 <Subtitle>Announces page changes for assistive technologies.</Subtitle>
-
-### Instructions
-
-- Click on "Blog" to show the first page. _(This is a constraint of using a router inside Storybook)._
-- Start your screen-reader (like `VoiceOver` or `Narrator`)
-- Try navigating to any page visible on the demo.
-- The screen reader will announce any page changes, like "Navigated to The Best Excuses To Spend A Cozy Valentine’s Day In".
-
-### Props
 
 The `RouteAnnouncer` adds an ARIA live region that announces route changes.
 
@@ -32,7 +23,19 @@ These are:
 - Text content inside the `title` tag in the `head` element;
 - Or, as a fallback, the pathname itself.
 
-### Component instructions
+<BrowserWindow>
+	<DemoWithRouter />
+</BrowserWindow>
+<br />
+
+:::note How to
+
+- Start your screen-reader (like `VoiceOver` or `Narrator`)
+- Try navigating to any page visible on the demo.
+- The screen reader will announce any page changes, like "Navigated to The Best Excuses To Spend A Cozy Valentine’s Day In".
+:::
+
+### Usage
 
 To take advantage of this component, place it as above as you can inside your React tree so that it can wrap your entire content. Since it will need to watch your router's location updates, try to put it right underneath your Router component.
 
@@ -228,3 +231,7 @@ export default function App() {
 This one was even simpler than `@reach/router`!
 
 🔗 Checkout the live example [on this Codesandbox](https://codesandbox.io/s/react-a11y-tools-react-router-03196?file=/components/App.js:0-529)
+
+
+### Props
+<PropsTable name="RouteAnnouncer" />

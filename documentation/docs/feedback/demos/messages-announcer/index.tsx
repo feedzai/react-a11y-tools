@@ -13,7 +13,7 @@
  */
 import React from "react";
 import classNames from "clsx";
-import { MessagesAnnouncer, useMessagesAnnouncer } from "../../../../src/index";
+import { MessagesAnnouncer, useMessagesAnnouncer } from "../../../../../src/index";
 import styles from "./styles.module.scss";
 
 export const DemoMessagesAnnouncer = () => {

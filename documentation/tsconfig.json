@@ -1,4 +1,29 @@
 {
 	"extends": "@tsconfig/docusaurus/tsconfig.json",
-	"include": ["src/", "docs/"]
+	"include": ["src/", "docs/"],
+	"compilerOptions": {
+		/* Strict Type-Checking Options */
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+
+		/* Additional Checks */
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+
+		/* Structure */
+		"baseUrl": "./",
+		"paths": {
+			"@src/*": ["../src/*"]
+		}
+	}
 }

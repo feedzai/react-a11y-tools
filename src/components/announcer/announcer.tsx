@@ -14,6 +14,12 @@
 import React, { NamedExoticComponent, memo } from "react";
 
 export interface IAnnouncerProps {
+	/**
+	 *
+	 *
+	 * @type {string}
+	 * @memberof IAnnouncerProps
+	 */
 	id?: string;
 	ariaLive?: React.AriaAttributes["aria-live"];
 	ariaAtomic?: React.AriaAttributes["aria-atomic"];

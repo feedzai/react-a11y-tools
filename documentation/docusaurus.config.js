@@ -23,7 +23,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 					docs: {
 						sidebarPath: require.resolve("./sidebars.js"),
 						// Please change this to your repo.
-						editUrl: "https://github.com/facebook/docusaurus/edit/main/website/",
+						editUrl: "https://github.com/feedzai/react-a11y-tools/",
 					},
 					theme: {
 						customCss: require.resolve("./src/css/custom.css"),
@@ -32,7 +32,29 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 			],
 		],
 
-		plugins: ["docusaurus-plugin-sass"],
+		plugins: [
+			"docusaurus-plugin-sass",
+			[
+				"docusaurus-plugin-react-docgen-typescript",
+				{
+					// pass in a single string or an array of strings
+					src: ["../src/**/*.tsx"],
+					global: true,
+					parserOptions: {
+						// pass parserOptions to react-docgen-typescript
+						// here is a good starting point which filters out all
+						// types from react
+						propFilter: (prop, component) => {
+							if (prop.parent) {
+								return !prop.parent.fileName.includes("@types/react");
+							}
+
+							return true;
+						},
+					},
+				},
+			],
+		],
 
 		themeConfig:
 			/** @type {import('@docusaurus/preset-classic').ThemeConfig} */

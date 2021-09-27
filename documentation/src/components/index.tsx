@@ -1,2 +1,3 @@
 export * from "./preview";
-export * from "./Subtitle";
+export * from "./subtitle";
+export * from "./props-table";
