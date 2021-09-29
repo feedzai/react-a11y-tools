@@ -11,9 +11,9 @@
  * @since 1.0.0
  */
 import { createContext } from "react";
-import { INITIAL_LEVEL } from "./constants";
+import { FIRST_HEADING_LEVEL } from "./constants";
 
 /**
  * Headings Context, with the initial value of 1.
  */
-export const HeadingsContext = createContext(INITIAL_LEVEL);
+export const HeadingsContext = createContext(FIRST_HEADING_LEVEL);

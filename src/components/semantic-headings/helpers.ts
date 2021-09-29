@@ -10,11 +10,18 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { HEADINGS_SELECTOR, INITIAL_LEVEL, MAXIMUM_LEVEL } from "./constants";
+import { isProduction, inRange } from "../../helpers";
+import { HEADINGS_SELECTOR, FIRST_HEADING_LEVEL, LAST_HEADING_LEVEL } from "./constants";
 
-export function isProduction() {
-	return !process || !process.env || process.env.NODE_ENV === "production";
-}
+const CONSOLE_WARN_STYLE = `
+		color: #111111;
+		background-color: #eb9800;
+		font-weight: bold;
+		font-size: 9px;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+		font-family: 'Dank Mono', 'Fira Code', 'Lucida Console', monospace
+`;
 
 /**
  * Collects an array of heading violations on the page
@@ -44,25 +51,29 @@ function getAllInvalidHeadingsOnAPage(headings: number[]): number[] {
 /**
  * Checks if the heading level is within range and valid.
  * If not:
- * 1.1. Throws an error (during development)
- * 1.2. and returns a value between the range (ex: if 7, then returns 6)
+ * 1.1. Outputs a warning to the browser's console (during development)
+ * 1.2. and returns a value between the range (i.e: if invalid h7, then returns 6)
  *
  * @param {number} level
  * @returns {number}
  */
 export function getHeadingLevel(level: number): number {
-	const isWithinRange = level > 0 && level <= MAXIMUM_LEVEL;
+	const isWithinRange = inRange(level, FIRST_HEADING_LEVEL, LAST_HEADING_LEVEL);
+	const isDevelopment = !isProduction();
+	const isOutOfRangeAndInDevelopment = !isWithinRange && isDevelopment;
 
-	if (isWithinRange) {
-		return level;
+	if (isOutOfRangeAndInDevelopment) {
+		console.warn("%c ⚠ Warning ", CONSOLE_WARN_STYLE, `Heading level "${level}" is not valid. Supported levels from 1 to ${LAST_HEADING_LEVEL}. This message is development only. If possible, fix them before releasing to production.`);
 	}
 
-	const err = `Heading level "${level}" is not valid. Supported levels from 1 to ${MAXIMUM_LEVEL}`;
+	switch (true) {
+		case isWithinRange:
+		case isDevelopment:
+			return level;
 
-	if (!isProduction()) {
-		throw Error(err);
+		default:
+			return Math.min(Math.max(FIRST_HEADING_LEVEL, level), LAST_HEADING_LEVEL);
 	}
-	return Math.min(Math.max(INITIAL_LEVEL, level), MAXIMUM_LEVEL);
 }
 
 /**
@@ -76,18 +87,17 @@ export function checkHeadingLevels(levels: number[]): number[] {
 	const hasErrors = invalidHeadings.length > 0;
 
 	if (hasErrors) {
-		const err = `Invalid heading levels detected: ${invalidHeadings}`;
-
-		if (!isProduction()) {
-			throw Error(err);
-		}
-
-		console.warn(err);
+		console.warn("%c ⚠ Warning ", CONSOLE_WARN_STYLE, `Invalid heading levels detected: ${invalidHeadings}. This message is development only. If possible, fix them before releasing to production.`);
 	}
 
 	return invalidHeadings;
 }
 
+/**
+ * Audits all Headings on a page and check their semantic level.
+ *
+ * @export {void}
+ */
 export function auditHeadingsOnPage() {
 	const allHeadings: HTMLHeadingElement[] = Array.from(
 		document.querySelectorAll(HEADINGS_SELECTOR),

@@ -55,41 +55,80 @@ it("Level allows overriding the level", () => {
 	});
 });
 
-it("Level throws in non-production mode if level is > 6", () => {
-	try {
-	} catch (error) {
-		expect(() =>
+describe("Development-only warnings", () => {
+	beforeEach(() => {
+		Cypress.on("window:before:load", (win) => {
+			cy.spy(win.console, "warn");
+		});
+	});
+
+	it("Level throws in non-production mode if level is > 6", () => {
+		try {
+		} catch (error) {
 			render(
 				<Level dangerouslyOverrideValue={7}>
 					<p>A paragraph</p>
 				</Level>,
-			),
-		).to.throw();
-	}
-});
+			);
 
-it("Valid heading levels are ignored (dev mode)", () => {
-	const goodHeadings = [1, 2, 3, 2];
-	expect(() => checkHeadingLevels(goodHeadings)).not.to.throw();
-	const goodHeadings2 = [2, 3, 2, 1, 2, 3, 2];
-	expect(() => checkHeadingLevels(goodHeadings2)).not.to.throw();
-	const goodHeadings3 = [1, 2, 3, 2];
-	expect(() => checkHeadingLevels(goodHeadings3)).not.to.throw();
-});
+			cy.window().then((win) => {
+				expect(win.console.warn).to.have.been.called;
+			});
+		}
+	});
 
-it("Invalid skipped headings are detected (dev mode)", () => {
-	const skippedHeadings = [1, 2, 4, 2];
-	const err = new Error("Invalid heading levels detected: 1,2,4,2");
+	it("Valid heading levels are ignored (dev mode)", () => {
+		try {
+			const goodHeadings = [1, 2, 3, 2];
+			expect(() => checkHeadingLevels(goodHeadings)).not.to.throw();
+			const goodHeadings2 = [2, 3, 2, 1, 2, 3, 2];
+			expect(() => checkHeadingLevels(goodHeadings2)).not.to.throw();
+			const goodHeadings3 = [1, 2, 3, 2];
+			expect(() => checkHeadingLevels(goodHeadings3)).not.to.throw();
+		} catch (error) {
+			cy.window().then((win) => {
+				expect(win.console.warn).not.to.have.been.called;
+			});
+		}
+	});
 
-	try {
-	} catch (error) {
-		expect(() => checkHeadingLevels(skippedHeadings)).to.throw(err);
-	}
-});
+	it("Invalid skipped headings are detected (dev mode)", () => {
+		const skippedHeadings = [1, 2, 4, 2];
 
-it("Multiple h1s are detected (dev mode)", () => {
-	const multipleH1s = [1, 2, 3, 1];
-	expect(() => checkHeadingLevels(multipleH1s)).to.throw();
+		try {
+		} catch (error) {
+			expect(() => checkHeadingLevels(skippedHeadings)).not.to.throw();
+
+			cy.window().then((win) => {
+				expect(win.console.warn).to.have.been.called;
+			});
+		}
+	});
+
+	it("Multiple h1s are detected (dev mode)", () => {
+		try {
+			const multipleH1s = [1, 2, 3, 1];
+			expect(() => checkHeadingLevels(multipleH1s)).not.to.throw();
+		} catch (error) {
+			cy.window().then((win) => {
+				expect(win.console.warn).to.have.been.called;
+			});
+		}
+	});
+
+	it("Invalid skipped headings are detected (prod mode)", () => {
+		const skippedHeadings = [1, 2, 4, 2];
+
+		try {
+			expect(checkHeadingLevels(skippedHeadings).length).to.equal(skippedHeadings.length);
+		} catch (error) {
+			expect(() => checkHeadingLevels(skippedHeadings)).not.to.throw();
+
+			cy.window().then((win) => {
+				expect(win.console.warn).to.have.been.called;
+			});
+		}
+	});
 });
 
 describe("in production mode", () => {
@@ -118,27 +157,17 @@ describe("in production mode", () => {
 		expect(checkHeadingLevels(goodHeadings3).length).to.equal(0);
 	});
 
-	it("Invalid skipped headings are detected (prod mode)", () => {
-		const skippedHeadings = [1, 2, 4, 2];
-
-		try {
-			expect(checkHeadingLevels(skippedHeadings).length).to.equal(skippedHeadings.length);
-		} catch (error) {
-			expect(() => checkHeadingLevels(skippedHeadings)).to.throw(
-				"Invalid heading levels detected: 1,2,4,2",
-			);
-		}
-	});
-
 	it("Multiple h1s are detected (prod mode)", () => {
 		const multipleH1s = [1, 2, 3, 1];
 
 		try {
 			expect(checkHeadingLevels(multipleH1s).length).to.equal(multipleH1s.length);
 		} catch (error) {
-			expect(() => checkHeadingLevels(multipleH1s)).to.throw(
-				"Invalid heading levels detected: 1,2,3,1",
-			);
+			expect(() => checkHeadingLevels(multipleH1s)).not.to.throw();
+
+			cy.window().then((win) => {
+				expect(win.console.warn).not.to.have.been.called;
+			});
 		}
 	});
 });

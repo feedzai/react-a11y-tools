@@ -19,6 +19,8 @@ export * from "./isBrowser";
 export * from "./isFunction";
 export * from "./isNumber";
 export * from "./isString";
+export * from "./isProduction";
+export * from "./inRange";
 export * from "./run-after-transition";
 export * from "./keyCodes";
 export * from "./merge-event-handlers";

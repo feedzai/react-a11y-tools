@@ -18,7 +18,8 @@ import React, {
 	DetailedHTMLProps,
 	HTMLAttributes,
 } from "react";
-import { getHeadingLevel, isProduction, auditHeadingsOnPage } from "./helpers";
+import { isProduction } from "../../helpers/isProduction";
+import { getHeadingLevel, auditHeadingsOnPage } from "./helpers";
 import { CHECK_AFTER_MS } from "./constants";
 import { HeadingsContext } from "./context";
 
@@ -88,6 +89,7 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 	const level = getHeadingLevel(proposedLevel);
 	const HeadingLevel = `h${level}`;
 
+	// During development, it will perform a one-time audit on the page for valid and invalid headings
 	if (!isProduction()) {
 		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
 	}

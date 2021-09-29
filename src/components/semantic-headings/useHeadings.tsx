@@ -13,7 +13,8 @@
 import { useContext } from "react";
 import { HeadingsContext } from "./context";
 import { CHECK_AFTER_MS } from "./constants";
-import { isProduction, getHeadingLevel, auditHeadingsOnPage } from "./helpers";
+import { getHeadingLevel, auditHeadingsOnPage } from "./helpers";
+import { isProduction } from "../../helpers/isProduction";
 
 /**
  * Custom Hook that returns the appropriate heading level to render onto the DOM
