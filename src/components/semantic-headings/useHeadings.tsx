@@ -12,9 +12,7 @@
 
 import { useContext } from "react";
 import { HeadingsContext } from "./context";
-import { CHECK_AFTER_MS } from "./constants";
-import { getHeadingLevel, auditHeadingsOnPage } from "./helpers";
-import { isProduction } from "../../helpers/isProduction";
+import { getHeadingLevel } from "./helpers";
 
 /**
  * Custom Hook that returns the appropriate heading level to render onto the DOM
@@ -34,10 +32,6 @@ import { isProduction } from "../../helpers/isProduction";
  */
 export function useHeadings(): number {
 	const contextLevel = useContext(HeadingsContext);
-
-	if (!isProduction()) {
-		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
-	}
 
 	return getHeadingLevel(contextLevel);
 }

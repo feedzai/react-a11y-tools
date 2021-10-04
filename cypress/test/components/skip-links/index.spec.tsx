@@ -11,7 +11,6 @@
  * @since 1.0.0
  */
 import React from "react";
-import styled from "@emotion/styled";
 import { mount as render } from "@cypress/react";
 import {
 	SkipLinks,
@@ -20,31 +19,30 @@ import {
 import { ISkipLinksProps } from "../../../../src/components/skip-links";
 import { SkipLink } from "../../../../src/components/skip-links/link";
 
-const Wrapper = styled.div`
-	display: grid;
-	place-items: center;
-	height: 200px;
-	width: 100%;
-`;
-
-const Main = styled.main`
-	background-color: lightgray;
-	color: black;
-	padding: 2rem;
-
-	&:focus {
-		outline: 1px dashed blue;
-	}
-`;
-
 const DemoContent = (props: ISkipLinksProps) => {
 	return (
-		<Wrapper className="wrapper">
+		<div
+			style={{
+				display: "grid",
+				placeItems: "center",
+				height: "200px",
+				width: "100%",
+			}}
+		>
 			<SkipLinks {...props} />
-			<Main id="main-content" tabIndex={-1}>
+			<main
+				id="main-content"
+				tabIndex={-1}
+				style={{
+					backgroundColor: "lightgray",
+					color: "black",
+					padding: "2rem",
+					outlineColor: "blue",
+				}}
+			>
 				<p>Main Content Area</p>
-			</Main>
-		</Wrapper>
+			</main>
+		</div>
 	);
 };
 

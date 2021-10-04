@@ -13,6 +13,5 @@
  * @since 1.0.0
  */
 export const FIRST_HEADING_LEVEL = 1;
-export const CHECK_AFTER_MS = 1;
 export const LAST_HEADING_LEVEL = 6;
 export const HEADINGS_SELECTOR = "h1,h2,h3,h4,h5,h6";

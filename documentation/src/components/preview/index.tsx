@@ -10,7 +10,12 @@ interface Props {
 
 export function BrowserWindow({ children, minHeight }: Props) {
 	return (
-		<div className={styles.browser} style={{ minHeight }} data-testid="fdz-js-docs-browser-window">
+		<article
+			className={styles.browser}
+			style={{ minHeight }}
+			data-testid="fdz-js-docs-browser-window"
+			tabIndex={-1}
+		>
 			<div className={styles["browser__header"]}>
 				<div className={styles.buttons}>
 					<span className={styles.dot} style={{ background: "#f25f58" }} />
@@ -28,6 +33,6 @@ export function BrowserWindow({ children, minHeight }: Props) {
 			</div>
 
 			<div className={styles["browser__body"]}>{children}</div>
-		</div>
+		</article>
 	);
 }

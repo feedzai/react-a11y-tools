@@ -14,7 +14,7 @@
  */
 import { mount as render } from "@cypress/react";
 import React, { FunctionComponent } from "react";
-import { ISetMessage } from "../../../../src/components/announcer/messages";
+import { Announcement } from "../../../../src/components/announcer/messages";
 import {
 	MessagesAnnouncer,
 	useMessagesAnnouncer,
@@ -29,12 +29,12 @@ function renderWithContext(ui: React.ReactElement) {
 	return render(<MessagesAnnouncer>{ui}</MessagesAnnouncer>);
 }
 
-const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JSX.Element => {
-	const setMessage = useMessagesAnnouncer();
+const App: FunctionComponent<Announcement> = ({ message, politeness, children }): JSX.Element => {
+	const { setMessage } = useMessagesAnnouncer();
 
 	function onClick() {
 		setMessage({
-			text,
+			message,
 			politeness,
 		});
 	}
@@ -49,11 +49,11 @@ const App: FunctionComponent<ISetMessage> = ({ text, politeness, children }): JS
 };
 
 describe("<MessagesAnnouncer />", () => {
-	let props: ISetMessage;
+	let props: Announcement;
 
 	beforeEach(() => {
 		props = {
-			text: "this is a test message",
+			message: "this is a test message",
 			politeness: "polite",
 		};
 	});
@@ -73,20 +73,20 @@ describe("<MessagesAnnouncer />", () => {
 
 		cy.findByText("Send Message").click();
 		cy.findByTestId("fdz-js-announcer")
-			.should("have.text", props.text)
+			.should("have.text", props.message)
 			.and("have.attr", "aria-live", props.politeness);
 	});
 
 	it("should update the announcer with a new message", () => {
-		const customProps: ISetMessage = {
-			text: "this is a custom message",
+		const customProps: Announcement = {
+			message: "this is a custom message",
 			politeness: "assertive",
 		};
 		renderWithContext(<App {...customProps} />);
 
 		cy.findByText("Send Message").click();
 		cy.findByTestId("fdz-js-announcer")
-			.should("have.text", customProps.text)
+			.should("have.text", customProps.message)
 			.and("have.attr", "aria-live", customProps.politeness);
 	});
 });

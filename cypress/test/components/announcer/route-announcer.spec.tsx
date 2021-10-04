@@ -6,6 +6,7 @@
  */
 /// <reference types="cypress" />
 /// <reference types="@testing-library/cypress" />
+/// <reference types="../../../support" />
 /**
  * route-announcer.test.tsx
  *

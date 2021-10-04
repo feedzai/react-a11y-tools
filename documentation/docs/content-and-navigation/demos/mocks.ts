@@ -11,7 +11,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { ISkipLink } from "../../src/components/skip-links/link";
+import { ISkipLink } from "../../../../src/components/skip-links/link";
 
 /**
  * @type {ILinkOption[]} options

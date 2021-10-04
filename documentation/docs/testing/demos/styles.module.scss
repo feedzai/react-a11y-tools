@@ -1,0 +1,177 @@
+.layout {
+	background-color: white;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	color: black;
+}
+
+.menu {
+	height: 100%;
+	width: 200px;
+	background-color: #fff;
+	position: fixed;
+	z-index: 1;
+	overflow: auto;
+}
+
+.button {
+	background-color: #1a227d;
+	color: white;
+	padding: 8px 16px;
+	font-size: 14px;
+	display: grid;
+	place-items: center;
+	appearance: none;
+	border: none;
+	border-radius: 48px;
+	outline: none;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	float: right;
+}
+
+.header {
+	top: 0;
+
+	&__container {
+		font-size: 24px;
+		color: #000;
+		background-color: #fff;
+		max-width: 1200px;
+		margin: auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__menu {
+		display: inline-block;
+		padding: 8px 16px;
+		vertical-align: middle;
+		text-align: center;
+		cursor: pointer;
+		white-space: nowrap;
+		user-select: none;
+		padding-top: 16px;
+		padding-bottom: 16px;
+		float: left;
+	}
+
+	&__title {
+		padding-top: 16px;
+		padding-bottom: 16px;
+	}
+}
+
+.header {
+	position: sticky;
+	width: 100%;
+	z-index: 1;
+}
+
+.main {
+	font-size: 15px;
+	line-height: 1.5;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	box-sizing: inherit;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 8px 16px;
+	max-width: 1200px;
+	margin-top: 100px;
+
+	&__row {
+		-webkit-text-size-adjust: 100%;
+		font-size: 15px;
+		box-sizing: inherit;
+		padding: 0 8px;
+		text-align: center;
+		padding-top: 16px;
+		padding-bottom: 16px;
+
+		&::before,
+		&::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+
+	&__item {
+		text-align: center;
+		box-sizing: inherit;
+		float: left;
+		width: 24.99999%;
+		padding: 0 8px;
+
+		&__title {
+			font-size: 24px;
+			font-weight: 400;
+			margin: 10px 0;
+		}
+
+		&__description {
+			text-align: center;
+			box-sizing: inherit;
+		}
+	}
+}
+
+.divider {
+	border: 0;
+	border-top: 1px solid #eee;
+	margin: 20px 0;
+}
+
+.pagination {
+	text-align: center;
+	padding-top: 32px;
+	padding-bottom: 32px;
+
+	&__item {
+		text-align: center;
+		cursor: pointer;
+		user-select: none;
+		padding: 8px 16px;
+		float: left;
+		width: auto;
+		border: none;
+		display: block;
+		outline: 0;
+		white-space: normal;
+		color: black;
+
+		&[aria-current="true"] {
+			color: #fff;
+			background-color: #000;
+		}
+	}
+}
+
+.header,
+.main,
+.main__row,
+.pagination,
+.article,
+.footer__section {
+	&::before,
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.image {
+	aspect-ratio: auto 800 / 533;
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: auto;
+}
+
+.article {
+	padding: 32px;
+}

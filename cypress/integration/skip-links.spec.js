@@ -13,15 +13,20 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-const ROVER_STORY_URL = "/iframe.html?id=navigation-skip-links--skip-links&args=&viewMode=story";
+const ROVER_STORY_URL = "/docs/navigation/skip-links";
 
 describe("Skip Links", () => {
 	beforeEach(() => {
 		cy.visit(ROVER_STORY_URL);
-		cy.findByRole("link", { name: "Skip to main content" }).as("SkipMainContent");
-		cy.findByRole("link", { name: "Go to navigation menu" }).as("SkipNavigationMenu");
-		cy.findByRole("main").as("MainContent");
-		cy.findByRole("navigation").as("NavigationMenu");
+
+		cy.findByTestId("fdz-js-docs-browser-window").as("preview");
+
+		cy.get("@preview").within(() => {
+			cy.findByRole("link", { name: "Skip to main content" }).as("SkipMainContent");
+			cy.findByRole("link", { name: "Go to navigation menu" }).as("SkipNavigationMenu");
+			cy.findByTestId("fdz-js-skip-links-main").as("MainContent");
+			cy.findByTestId("fdz-js-skip-links-nav").as("NavigationMenu");
+		});
 	});
 
 	it("should not show any skip link by default", () => {
@@ -30,11 +35,13 @@ describe("Skip Links", () => {
 	});
 
 	it("should show skip links on pressing the Tab key", () => {
-		cy.get("body").tab();
-		cy.get("@SkipMainContent").should("have.focus");
+		cy.get("@preview").within(() => {
+			cy.findByTestId("fdz-js-skip-links-target-button").tab();
+			cy.get("@SkipMainContent").should("have.focus");
 
-		cy.focused().tab();
-		cy.get("@SkipMainContent").should("not.have.focus");
-		cy.get("@SkipNavigationMenu").should("have.focus");
+			cy.focused().tab();
+			cy.get("@SkipMainContent").should("not.have.focus");
+			cy.get("@SkipNavigationMenu").should("have.focus");
+		});
 	});
 });

@@ -63,7 +63,10 @@ Finally, use the function whenever you'd like to announce something.
 
 ```jsx
 function onClick() {
-	setMessage("The user has performed an action that it will be announced!");
+	setMessage({
+		message: "The user has performed an action that it will be announced!",
+		politeness: "assertive"
+	});
 }
 
 return (

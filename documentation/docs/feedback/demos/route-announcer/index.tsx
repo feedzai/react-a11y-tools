@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter as Router, Route, useLocation, Switch, Link } from "react-router-dom";
+import { HashRouter as Router, Route, useLocation, Switch, NavLink } from "react-router-dom";
 import { RouteAnnouncer } from "../../../../../src/components/announcer/route-announcer";
 import styles from "./styles.module.scss";
 
@@ -21,9 +21,13 @@ const Home = (): JSX.Element => (
 							<div className={styles["card__content"]}>
 								<p className={styles["card__tag"]}>Fashion</p>
 								<h3 className={styles["card__heading"]}>
-									<Link to="/article-1" className={styles["card__heading__link"]}>
+									<NavLink
+										to="/article-1"
+										className={styles["card__heading__link"]}
+										data-testid="fdz-js-route-announcer-card-link"
+									>
 										7 Steps to Get Professional Facial Results At Home
-									</Link>
+									</NavLink>
 								</h3>
 								<p className={styles["card__summary"]}>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -31,7 +35,7 @@ const Home = (): JSX.Element => (
 								</p>
 								<div className={styles["card__metadata"]}>
 									<p className={styles["card__author"]}>By Segun Adebayo</p>
-									<Link className={styles["card__duration"]} to="/article-1">
+									<NavLink className={styles["card__duration"]} to="/article-1">
 										<svg
 											stroke="currentColor"
 											fill="currentColor"
@@ -48,7 +52,7 @@ const Home = (): JSX.Element => (
 											/>
 										</svg>
 										3 min read
-									</Link>
+									</NavLink>
 								</div>
 							</div>
 						</div>
@@ -63,9 +67,9 @@ const Home = (): JSX.Element => (
 							<div className={styles["card__content"]}>
 								<p className={styles["card__tag"]}>Valentine</p>
 								<h3 className={styles["card__heading"]}>
-									<Link to="/article-2" className={styles["card__heading__link"]}>
+									<NavLink to="/article-2" className={styles["card__heading__link"]}>
 										The Best Excuses To Spend A Cozy Valentine’s Day In
-									</Link>
+									</NavLink>
 								</h3>
 								<p className={styles["card__summary"]}>
 									As much as I love an over-the-top, romantic Valentine’s date, part of me is
@@ -73,7 +77,7 @@ const Home = (): JSX.Element => (
 								</p>
 								<div className={styles["card__metadata"]}>
 									<p className={styles["card__author"]}>By Segun Adebayo</p>
-									<Link to="/article-2" className={styles["card__duration"]}>
+									<NavLink to="/article-2" className={styles["card__duration"]}>
 										<svg
 											stroke="currentColor"
 											fill="currentColor"
@@ -90,7 +94,7 @@ const Home = (): JSX.Element => (
 											/>
 										</svg>
 										3 min read
-									</Link>
+									</NavLink>
 								</div>
 							</div>
 						</div>
@@ -105,9 +109,9 @@ const Home = (): JSX.Element => (
 							<div className={styles["card__content"]}>
 								<p className={styles["card__tag"]}>My Style</p>
 								<h3 className={styles["card__heading"]}>
-									<Link to="/product" className={styles["card__heading__link"]}>
+									<NavLink to="/product" className={styles["card__heading__link"]}>
 										Top 5 Best-Sellers, Most-Loved &amp; Favorite Buys of 2020
-									</Link>
+									</NavLink>
 								</h3>
 								<p className={styles["card__summary"]}>
 									HAAAAPPY 2021! It’s the first Monday of the year and I have never been so ready
@@ -176,7 +180,11 @@ const ArticleOne = (): JSX.Element => {
 								fuga.
 							</p>
 							<p className={styles.intro}>
-								<Link className={styles["read-more"]} to="/">
+								<NavLink
+									className={styles["read-more"]}
+									to="/"
+									data-testid="fdz-js-route-announer-go-back"
+								>
 									<span>Go Back</span>
 									<svg className="icon" viewBox="0 0 32 32" aria-hidden="true">
 										<g
@@ -190,7 +198,7 @@ const ArticleOne = (): JSX.Element => {
 											<line x1={16} y1={12} x2={22} y2={18} />
 										</g>
 									</svg>
-								</Link>
+								</NavLink>
 							</p>
 						</div>
 					</div>
@@ -237,7 +245,11 @@ const ArticleTwo = (): JSX.Element => (
 							voluptate! Accusantium aperiam totam voluptatum at fugiat doloribus odit dolore fuga.
 						</p>
 						<p className={styles.intro}>
-							<Link className={styles["read-more"]} to="/">
+							<NavLink
+								className={styles["read-more"]}
+								to="/"
+								data-testid="fdz-js-route-announer-go-back"
+							>
 								<span>Go Back</span>
 								<svg className="icon" viewBox="0 0 32 32" aria-hidden="true">
 									<g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
@@ -246,7 +258,7 @@ const ArticleTwo = (): JSX.Element => (
 										<line x1={16} y1={12} x2={22} y2={18} />
 									</g>
 								</svg>
-							</Link>
+							</NavLink>
 						</p>
 					</div>
 				</div>
@@ -444,18 +456,18 @@ const Content = () => {
 			<div className={styles.page}>
 				<header>
 					<nav className={styles.nav}>
-						<Link className={styles.anchor} to="/">
+						<NavLink className={styles.anchor} to="/">
 							Blog
-						</Link>
-						<Link className={styles.anchor} to="/article-1">
+						</NavLink>
+						<NavLink className={styles.anchor} to="/article-1">
 							Article 1
-						</Link>
-						<Link className={styles.anchor} to="/article-2">
+						</NavLink>
+						<NavLink className={styles.anchor} to="/article-2">
 							Article 2
-						</Link>
-						<Link className={styles.anchor} to="/product">
+						</NavLink>
+						<NavLink className={styles.anchor} to="/product">
 							Product
-						</Link>
+						</NavLink>
 					</nav>
 				</header>
 				<main>

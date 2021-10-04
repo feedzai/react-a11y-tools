@@ -420,25 +420,20 @@ function useRestoreFocus({ items, restoreFocus, contain }: IUseRestoreFocus): vo
  */
 function getFocusableTreeWalker(root: HTMLElement, opts?: IFocusManagerOptions): TreeWalker {
 	const selector = opts?.tabbable ? TABBABLE_ELEMENT_SELECTOR : FOCUSABLE_ELEMENT_SELECTOR;
-	const walker = document.createTreeWalker(
-		root,
-		NodeFilter.SHOW_ELEMENT,
-		{
-			acceptNode(node) {
-				// Skip nodes inside the starting node.
-				if (opts?.from?.contains(node)) {
-					return NodeFilter.FILTER_REJECT;
-				}
+	const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT, {
+		acceptNode(node) {
+			// Skip nodes inside the starting node.
+			if (opts?.from?.contains(node)) {
+				return NodeFilter.FILTER_REJECT;
+			}
 
-				if ((node as HTMLElement).matches(selector)) {
-					return NodeFilter.FILTER_ACCEPT;
-				}
+			if ((node as HTMLElement).matches(selector)) {
+				return NodeFilter.FILTER_ACCEPT;
+			}
 
-				return NodeFilter.FILTER_SKIP;
-			},
+			return NodeFilter.FILTER_SKIP;
 		},
-		false,
-	);
+	});
 
 	if (opts?.from) {
 		walker.currentNode = opts.from;

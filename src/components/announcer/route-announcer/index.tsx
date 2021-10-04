@@ -147,7 +147,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({
 			tabIndex={-1}
 		>
 			{children}
-			<Announcer text={text} />
+			<Announcer message={text} />
 		</div>
 	);
 };

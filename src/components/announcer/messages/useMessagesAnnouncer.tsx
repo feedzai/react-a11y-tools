@@ -13,15 +13,14 @@
  */
 import { useContext } from "react";
 import { MessagesAnnouncerContext } from "./context";
-import { TUseMessagesAnnouncerReturns } from "./index";
+import { AnnouncementContext } from "./index";
 
 /**
  * Hook for sending messages to the `MessagesAnnouncer` context provider
  *
- * @returns {TUseMessagesAnnouncerReturns}
+ * @returns {IMessagesAnnouncerContext}
  */
-export function useMessagesAnnouncer(): TUseMessagesAnnouncerReturns {
-	const { setMessage } = useContext(MessagesAnnouncerContext);
-
-	return setMessage;
+export function useMessagesAnnouncer(): AnnouncementContext {
+	const context = useContext(MessagesAnnouncerContext);
+	return context;
 }

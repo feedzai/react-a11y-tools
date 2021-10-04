@@ -15,11 +15,12 @@
  */
 import { FOCUSABLE_ELEMENT_SELECTOR } from "../selectors/focusable";
 
-const STORY_URL = "/iframe.html?id=focus-focus-manager--focus-manager&args=&viewMode=story";
+const STORY_URL = "/docs/manage-focus/focus-manager";
 
 describe("Focus Manager", () => {
 	beforeEach(() => {
 		cy.visit(STORY_URL);
+		cy.findByTestId("fdz-js-docs-browser-window").as("preview");
 
 		cy.findByRole("button", { name: "Show Menu" }).as("MenuButton");
 	});

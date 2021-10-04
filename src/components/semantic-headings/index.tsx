@@ -18,16 +18,28 @@ import React, {
 	DetailedHTMLProps,
 	HTMLAttributes,
 } from "react";
-import { isProduction } from "../../helpers/isProduction";
-import { getHeadingLevel, auditHeadingsOnPage } from "./helpers";
-import { CHECK_AFTER_MS } from "./constants";
+import { getHeadingLevel } from "./helpers";
 import { HeadingsContext } from "./context";
 
 export interface ILevelProps {
 	/**
-	 * Overrides the default behaviour and increment by a different value (number) than one.
+	 * Overrides the default heading level.
+	 * Use this prop with caution.
+	 *
+	 * @example
+	 *
+	 * // Rendering a Heading as an h3 instead of an h2.
+	 * <Level dangerouslySetHeadingLevel={3}>
+	 *    <Heading>I'm a title!</Heading>
+	 * </Level>
+	 *
+	 * // Instead of rendering
+	 * <h2>I'm a title</h2>
+	 *
+	 * // Would render as:
+	 * <h3>I'm a title</h3>
 	 */
-	dangerouslyOverrideValue?: number;
+	dangerouslySetHeadingLevel?: number;
 }
 
 export type HeadingProps = {
@@ -40,14 +52,16 @@ export type HeadingProps = {
 	 * <Heading offset={1}>subtitle</Heading>
 	 *
 	 * // Which is similar to writing levels with the `Level`:
+	 * <h1>Main title</h1>
 	 * <Heading>title</Heading>
 	 * <Level>
 	 *   <Heading>subtitle</Heading>
 	 * </Level>
 	 *
 	 * // And this renders
-	 * <h1>title</h1>
-	 * <h2>subtitle</h2>
+	 * <h1>Main title</h1>
+	 * <h2>title</h2>
+	 * <h3>subtitle</h3>
 	 */
 	offset?: number;
 } & DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
@@ -58,10 +72,10 @@ export type HeadingProps = {
  * @param {PropsWithChildren<ILevelProps>} props
  * @returns
  */
-export function Level({ dangerouslyOverrideValue, children }: PropsWithChildren<ILevelProps>) {
+export function Level({ dangerouslySetHeadingLevel, children }: PropsWithChildren<ILevelProps>) {
 	const current = useContext(HeadingsContext);
 	const value = getHeadingLevel(
-		dangerouslyOverrideValue !== undefined ? dangerouslyOverrideValue : current + 1,
+		dangerouslySetHeadingLevel !== undefined ? dangerouslySetHeadingLevel : current + 1,
 	);
 	return <HeadingsContext.Provider value={value}>{children}</HeadingsContext.Provider>;
 }
@@ -88,11 +102,6 @@ export function Heading({ children, offset, ...props }: HeadingProps) {
 	const proposedLevel = contextLevel + (offset !== undefined ? offset : 0);
 	const level = getHeadingLevel(proposedLevel);
 	const HeadingLevel = `h${level}`;
-
-	// During development, it will perform a one-time audit on the page for valid and invalid headings
-	if (!isProduction()) {
-		setTimeout(auditHeadingsOnPage, CHECK_AFTER_MS);
-	}
 
 	return createElement(HeadingLevel, { "data-testid": "fdz-js-heading", ...props }, children);
 }

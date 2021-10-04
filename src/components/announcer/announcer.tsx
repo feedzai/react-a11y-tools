@@ -11,20 +11,15 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import React, { NamedExoticComponent, memo } from "react";
+import React from "react";
+import { isString } from "../../helpers/isString";
 
 export interface IAnnouncerProps {
-	/**
-	 *
-	 *
-	 * @type {string}
-	 * @memberof IAnnouncerProps
-	 */
 	id?: string;
-	ariaLive?: React.AriaAttributes["aria-live"];
-	ariaAtomic?: React.AriaAttributes["aria-atomic"];
+	"aria-live"?: React.AriaAttributes["aria-live"];
+	"aria-atomic"?: React.AriaAttributes["aria-atomic"];
 	styles?: React.CSSProperties;
-	text?: string;
+	message?: string;
 }
 
 const styles: React.CSSProperties = {
@@ -42,8 +37,8 @@ const styles: React.CSSProperties = {
 const defaultProps: Partial<IAnnouncerProps> = {
 	id: "fdz-js-route-announcer",
 	styles,
-	ariaLive: "assertive",
-	ariaAtomic: "true",
+	"aria-live": "assertive",
+	"aria-atomic": "true",
 };
 
 /**
@@ -65,38 +60,38 @@ const defaultProps: Partial<IAnnouncerProps> = {
  * @param {IAnnouncerProps} props
  * @returns {JSX.Element}
  */
-export const Announcer: NamedExoticComponent<IAnnouncerProps> = memo(
-	({
-		id = defaultProps.id,
-		styles = defaultProps.styles,
-		ariaLive = defaultProps.ariaLive,
-		ariaAtomic = defaultProps.ariaAtomic,
-		text = defaultProps.text,
-	}) => {
-		/**
-		 * Renders the contents inside the announcer div
-		 *
-		 * @returns {string | null}
-		 */
-		function renderText() {
-			if (!text || text.length === 0) {
-				return null;
-			}
-
-			return text;
+export const Announcer = ({
+	id = defaultProps.id,
+	styles = defaultProps.styles,
+	"aria-live": ariaLive = defaultProps["aria-live"],
+	"aria-atomic": ariaAtomic = defaultProps["aria-atomic"],
+	message = defaultProps.message,
+}: IAnnouncerProps): JSX.Element => {
+	/**
+	 * Renders the contents inside the announcer div
+	 *
+	 * @returns {string | null}
+	 */
+	function renderText() {
+		if (!isString(message) || message.length === 0) {
+			return null;
 		}
 
-		return (
-			<div
-				id={id}
-				aria-live={ariaLive}
-				aria-atomic={ariaAtomic}
-				className="fdz-css-announcer"
-				data-testid="fdz-js-announcer"
-				style={styles}
-			>
-				{renderText()}
-			</div>
-		);
-	},
-);
+		return <p>{message}</p>;
+	}
+
+	console.log;
+
+	return (
+		<div
+			id={id}
+			aria-live={ariaLive}
+			aria-atomic={ariaAtomic}
+			className="fdz-css-announcer"
+			data-testid="fdz-js-announcer"
+			style={styles}
+		>
+			{renderText()}
+		</div>
+	);
+};
