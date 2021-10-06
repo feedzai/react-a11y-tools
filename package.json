@@ -1,7 +1,7 @@
 {
 	"name": "@feedzai/react-a11y-tools",
 	"author": "Feedzai",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"license": "MIT",
 	"main": "dist/index.js",
 	"typings": "dist/index.d.ts",
@@ -27,7 +27,7 @@
 		"pretest": "shx rm -rf .nyc_output jest-coverage cypress-coverage reports coverage || true",
 		"report:combined": "node ./scripts/merge-coverage.js",
 		"test:jest": "jest --env=jsdom --coverage --passWithNoTests",
-		"test:jest-ci": "jest --ci --coverage --maxWorkers=2",
+		"test:jest-ci": "jest --env=jsdom --ci --coverage --maxWorkers=2",
 		"test:ct-open": "cypress open-ct",
 		"test:ct": "cypress run-ct",
 		"test:components": "npm run test:jest && npm run test:ct",
