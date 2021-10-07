@@ -16,9 +16,10 @@ Like the `RouteAnnouncer`, with the `MessagesAnnoucer`, we create an ARIA live r
 <BrowserWindow>
 	<DemoMessagesAnnouncer />
 </BrowserWindow>
-<br/>
+<br />
 
 :::note How to
+
 - Start your screen-reader (like `VoiceOver` or `Narrator`)
 - Focus on the "Pay" button.
 - Notice that a message will be displayed.
@@ -65,7 +66,7 @@ Finally, use the function whenever you'd like to announce something.
 function onClick() {
 	setMessage({
 		message: "The user has performed an action that it will be announced!",
-		politeness: "assertive"
+		politeness: "assertive",
 	});
 }
 
