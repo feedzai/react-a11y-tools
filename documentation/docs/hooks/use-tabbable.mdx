@@ -1,0 +1,64 @@
+---
+sidebar_position: 1
+title: useTabbable
+---
+
+import { Subtitle, BrowserWindow } from "../../src/components";
+import { DemoUseTabbable } from "./demos";
+
+<Subtitle>Turning HTML disabled elements perceivable for keyboard users.</Subtitle>
+
+This custom hook indicates that an element is perceivable but disabled, so it is not editable or otherwise operable.
+
+For example, irrelevant options in a radio group may be disabled. Disabled elements, like buttons, might also not receive focus from the tab order and, for some other disabled elements, applications might choose not to support navigation to descendants.
+
+So, in order to make an element able to receive focus and be announced by a screen reader, we need to make it "tabbable".
+
+<BrowserWindow>
+	<DemoUseTabbable />
+</BrowserWindow>
+<br />
+
+:::note How to
+
+1. Press `tab` to focus on the first button ("Enabled").
+2. Press `tab` again and check that the second button ("Disabled") won't receive focus, but the third ("Disabled, but Tabbable") will.
+	- VoiceOver output: `"Disabled, but Tabbable, dimmed, button"`.
+3. Press `tab`again and the focus will move to the first input.
+4. Press `tab` again and the disabled input will receive focus
+	- VoiceOver output: `"36 characters content selected, password, dimmable clickable, secure text"`.
+:::
+
+### Usage
+
+```jsx
+import { useTabbable } from "@feedzai/react-a11y-tools";
+
+...
+
+const htmlProps = useTabbable({
+	...props,
+	disabled,
+	focusable: true,
+});
+
+(or)
+
+const htmlProps = useTabbable({
+	...props,
+	disabled,
+	focusable,
+});
+
+...
+
+return (
+	<button {...htmlProps}>{htmlProps.children}</button>
+);
+```
+
+React will render the `aria-disabled` attribute instead of `disabled`, which means that it will be able to receive focus, but any click, keypress or change events will be supressed.
+
+### Extra resources
+
+- [Making disabled buttons more inclusive](https://css-tricks.com/making-disabled-buttons-more-inclusive/), by [Sandrina Pereira](https://www.sandrina-p.net/).

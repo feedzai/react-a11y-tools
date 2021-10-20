@@ -30,8 +30,13 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 a:hover,
 a:focus,
 .menu__link--active {
-	--ifm-link-decoration: underline;
 	--ifm-link-hover-decoration: underline;
+}
+
+.menu__list .menu__list-item .menu__list .menu__link.menu__link--active {
+	box-shadow: inset -4px 0 0 0 var(--ifm-heading-color, white);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 .sr-only,

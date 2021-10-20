@@ -50,7 +50,6 @@
 	font-family: "IBMPlexMono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
 		monospace;
 	font-weight: 400;
-	display: -ms-grid;
 	display: grid;
 	grid-template-rows: 4rem 1fr 2rem;
 	grid-gap: 2rem;
@@ -197,8 +196,6 @@
 	padding-left: 40px;
 	padding-right: 40px;
 	position: relative;
-	text-decoration-line: underline;
-	text-decoration-style: dotted;
 	transition: all 0.25s ease 0s;
 	user-select: none;
 	vertical-align: middle;

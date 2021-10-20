@@ -27,7 +27,7 @@ module.exports = {
 	baseUrl: "/",
 	onBrokenLinks: "throw",
 	onBrokenMarkdownLinks: "warn",
-	favicon: "img/favicon.ico",
+	favicon: "img/favicon.svg",
 	organizationName: "feedzai",
 	projectName: "react-a11y-tools",
 
@@ -74,7 +74,7 @@ module.exports = {
 				title: "React a11y tools",
 				logo: {
 					alt: "",
-					src: "img/logo.svg",
+					src: "img/favicon.svg",
 				},
 				items: [
 					{
