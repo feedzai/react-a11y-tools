@@ -3,6 +3,7 @@ sidebar_position: 2
 title: Route Announcer
 ---
 
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import { Subtitle, BrowserWindow, PropsTable } from "../../src/components/index";
 import { DemoWithRouter } from "./demos";
 
@@ -23,7 +24,7 @@ These are:
 - Or, as a fallback, the pathname itself.
 
 <BrowserWindow>
-	<DemoWithRouter />
+	<BrowserOnly>{() => <DemoWithRouter />}</BrowserOnly>
 </BrowserWindow>
 <br />
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter as Router, Route, useLocation, Switch, NavLink } from "react-router-dom";
+import { HashRouter, Route, useLocation, Switch, NavLink } from "react-router-dom";
 import { RouteAnnouncer } from "../../../../../src/components/announcer/route-announcer";
 import styles from "./styles.module.scss";
 
@@ -440,14 +440,6 @@ const Shop = (): JSX.Element => {
 	);
 };
 
-export const DemoWithRouter = (): JSX.Element => {
-	return (
-		<Router basename="/">
-			<Content />
-		</Router>
-	);
-};
-
 const Content = () => {
 	const { pathname } = useLocation();
 
@@ -480,5 +472,13 @@ const Content = () => {
 				</main>
 			</div>
 		</RouteAnnouncer>
+	);
+};
+
+export const DemoWithRouter = (): JSX.Element => {
+	return (
+		<HashRouter basename="/">
+			<Content />
+		</HashRouter>
 	);
 };
