@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import React from "react";
-import { ISetMessage } from ".";
+import { AnnouncementContext } from ".";
 import { MessagesAnnouncerContext } from "./context";
 
 /**
@@ -43,7 +43,7 @@ import { MessagesAnnouncerContext } from "./context";
 export function MessagesAnnouncerConsumer({
 	children,
 }: {
-	children: (setMessage: (message: ISetMessage) => void) => React.ReactElement;
+	children: (setMessage: AnnouncementContext["setMessage"]) => React.ReactElement;
 }) {
 	return (
 		<MessagesAnnouncerContext.Consumer>

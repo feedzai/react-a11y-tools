@@ -13,15 +13,13 @@
  * @since 1.0.0
  */
 import { createContext } from "react";
-import { emptyfunction } from "../../../helpers";
-import { IMessagesAnnouncerContext } from "./index";
+import { AnnouncementContext } from "./index";
 
-export const defaultMessagesAnnouncerContext: IMessagesAnnouncerContext = {
+export const defaultState: AnnouncementContext = {
 	message: "",
 	politeness: "polite",
-	setMessage: emptyfunction,
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	setMessage: () => {},
 };
 
-export const MessagesAnnouncerContext = createContext<IMessagesAnnouncerContext>(
-	defaultMessagesAnnouncerContext,
-);
+export const MessagesAnnouncerContext = createContext<AnnouncementContext>(defaultState);

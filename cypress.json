@@ -6,7 +6,7 @@
 		"html": false,
 		"json": true
 	},
-	"baseUrl": "http://localhost:6006",
+	"baseUrl": "http://localhost:3000",
 	"viewportWidth": 1280,
 	"viewportHeight": 800,
 	"component": {

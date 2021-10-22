@@ -44,17 +44,17 @@
 
 We are in the era of design systems. Every company - from the smallest to the largest - has one or has thought about making one. These are great, and they provide the tools for building quick, fast and consistent user interfaces.
 
-However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our owns from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
+However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our own from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
 <br />
 <br/>
 
 ## The Solution
 
-Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects that we think we can provide a helping hand.
+Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects we think can provide a helping hand.
 
 This library provides accessibility and behaviour following the WAI-ARIA Authoring Practices, including screen-reader and keyboard navigation support.
 
-We do not force any styling methodology or design-specific details. The little package provides the behaviour and interactions so that you can focus on your design.
+We do not force any styling methodology or design-specific details. Instead, the little package provides the behaviour and interactions so that you can focus on your design.
 
 We also provide a simple testing tool so that you can emulate a no-mouse environment.
 <br />

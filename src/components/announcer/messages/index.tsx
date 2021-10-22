@@ -11,17 +11,17 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-export interface ISetMessage {
-	text: string;
+import type { Dispatch } from "react";
+export interface Announcement {
+	message: string;
 	politeness?: "assertive" | "polite";
 }
-export interface IMessagesAnnouncerContext {
-	message: string;
-	politeness: "assertive" | "polite";
-	setMessage: (message: ISetMessage) => void;
-}
 
-export type TUseMessagesAnnouncerReturns = (message: ISetMessage) => void;
+export type AnnouncementContext = Announcement & {
+	setMessage: Dispatch<Announcement>;
+};
+
+export type AnnouncementReducerState = Announcement;
 
 export * from "./provider";
 export * from "./consumer";

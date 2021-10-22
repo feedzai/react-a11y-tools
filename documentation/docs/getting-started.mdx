@@ -1,0 +1,52 @@
+---
+sidebar_position: 1
+title: Getting Started
+---
+
+## About
+
+### The Problem
+
+We are in the era of design systems. Every company - from the smallest to the largest - has one or has thought about making one. These are great, and they provide the tools for building quick, fast and consistent user interfaces.
+
+However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our own from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
+
+### The Solution
+
+Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects we think can provide a helping hand.
+
+This library provides accessibility and behaviour following the WAI-ARIA Authoring Practices, including screen-reader and keyboard navigation support.
+
+We do not force any styling methodology or design-specific details. Instead, the little package provides the behaviour and interactions so that you can focus on your design.
+
+We also provide a simple testing tool so that you can emulate a no-mouse environment.
+
+## Install
+
+Inside your React project directory, install `@feedzai/react-a11y-tools` by running either of the following:
+
+```sh
+$ npm install @feedzai/react-a11y-tools
+
+# or if you use Yarn
+
+$ yarn add @feedzai/react-a11y-tools
+```
+
+## Roadmap
+
+Here is a table of the components, custom hooks and their status.
+
+✅ - Released<br/>
+🛠 - Building<br/>
+
+| Status              | Name                                                                | type                     |
+| ------------------- | ------------------------------------------------------------------- | ------------------------ |
+| <center>✅</center> | [Route Announcer ](/docs/feedback/route-announcer)                  | `feedback`               |
+| <center>✅</center> | [Messages Announcer](/docs/feedback/messages-announcer)             | `feedback`               |
+| <center>✅</center> | [Focus Manager](/docs/manage-focus/focus-manager)                   | `focus`                  |
+| <center>✅</center> | [The Rover](/docs/manage-focus/the-rover)                           | `focus`                  |
+| <center>✅</center> | [Keyboard Only](/docs/testing/keyboard-only)                        | `testing utilities`      |
+| <center>✅</center> | [Skip Links](/docs/content-and-navigation/skip-links)               | `content and navigation` |
+| <center>✅</center> | [Semantic Headings](/docs/content-and-navigation/semantic-headings) | `content and navigation` |
+| <center>✅</center> | [useTabbable](/docs/hooks/use-tabbable)                             | `hooks`                  |

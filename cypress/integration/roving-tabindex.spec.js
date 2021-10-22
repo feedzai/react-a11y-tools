@@ -15,15 +15,14 @@
  */
 import { FOCUSABLE_ELEMENT_SELECTOR } from "../selectors/focusable";
 
-const ROVER_STORY_URL =
-	"/iframe.html?id=focus-roving-tabindex--roving-tabindex&args=&viewMode=story";
+const ROVER_STORY_URL = "/docs/manage-focus/the-rover";
 
 describe("Roving Tab Index", () => {
 	beforeEach(() => {
 		cy.visit(ROVER_STORY_URL);
 		cy.findByRole("button", { name: "A Button" }).as("FirstButton");
 		cy.findByRole("button", { name: "Another Button" }).as("SecondButton");
-		cy.findByRole("navigation").as("Nav");
+		cy.findByTestId("fdz-js-roving-tabindex-sidenav").as("Nav");
 	});
 
 	it("should not use tab as a means to travel through the menu", () => {
@@ -33,7 +32,7 @@ describe("Roving Tab Index", () => {
 
 	it("should go through the menu using the down arrow button", () => {
 		cy.get("@FirstButton").focus().tab();
-		cy.findByRole("navigation").within(() => {
+		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");
 			cy.focused().type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}");

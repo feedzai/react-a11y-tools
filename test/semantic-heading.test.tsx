@@ -15,12 +15,12 @@ describe("in production mode", () => {
 	});
 
 	test("Level does not throw in production mode if level is > 6", () => {
-		render(<Level dangerouslyOverrideValue={7}>{""}</Level>);
+		render(<Level dangerouslySetHeadingLevel={7}>{""}</Level>);
 	});
 
 	test("Heading is clamped to a valid range", () => {
 		const { getByText } = render(
-			<Level dangerouslyOverrideValue={7}>
+			<Level dangerouslySetHeadingLevel={7}>
 				<Heading>A test title</Heading>
 			</Level>,
 		);
@@ -31,7 +31,7 @@ describe("in production mode", () => {
 
 	test("Heading is clamped to a valid range in another case", () => {
 		const { getByText } = render(
-			<Level dangerouslyOverrideValue={6}>
+			<Level dangerouslySetHeadingLevel={6}>
 				<Heading offset={1}>A test title</Heading>
 			</Level>,
 		);

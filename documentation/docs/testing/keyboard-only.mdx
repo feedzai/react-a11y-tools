@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+title: Keyboard Only
+---
+
+import { DemoKeyboardOnly } from "./demos";
+import { Subtitle, BrowserWindow, PropsTable } from "../../src/components/index";
+
+<Subtitle>Hide your mouse pointer and test your interfaces only with your keyboard</Subtitle>
+
+<BrowserWindow>
+	<DemoKeyboardOnly />
+</BrowserWindow>
+<br />
+
+:::note How to
+
+- Click on the `Disable Mouse` button
+- Check if this demo is accessible. (Spoiler alert: It's not 😀)
+- Can you press `tab` and navigate through the interface?
+- Can you navigate to landmark areas?
+:::
+
+### Rationale
+
+Suppose you - or a colleague of yours - is working on a component and with accessibility in mind (as you should).
+Then, hiding the mouse pointer might be an excellent way to test out possible regressions.
+
+By not showing any mouse pointer on the screen, this little helper will "force" you to leave your pointing devices aside and think about all the possible ways your component needs to work like:
+
+- "Does this component/page work the same with the keyboard and a mouse"?
+- "Can I do the same things or, at least, achieve the same outcome"?
+- "Is the focus is visible"?
+- "Is it perceivable and operable with the keyboard"?
+
+It might also point you towards learning how to operate an interface using a screen-reader, like VoiceOver, NVDA, Narrator or JAWS.
+
+Of course, a component being operable with the keyboard is not the same as being accessible, but it's a good starting point.
+
+:::info 💡 Tip
+
+For instance, while developing, you can wrap all your content with the `KeyboardOnly` component, or place it as hight as you can on your tree.
+This helps you test if your content works as expected.
+
+Of course, before committing or releasing to production, remove the component from the DOM.
+:::

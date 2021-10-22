@@ -11,10 +11,27 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import React, { FunctionComponent, useState, useCallback } from "react";
+import React, { FunctionComponent, useReducer } from "react";
 import { Announcer } from "../announcer";
-import { MessagesAnnouncerContext, defaultMessagesAnnouncerContext } from "./context";
-import { IMessagesAnnouncerContext, ISetMessage } from "./index";
+import { defaultState, MessagesAnnouncerContext } from "./context";
+import { AnnouncementReducerState } from "./index";
+
+function reducer(
+	state: AnnouncementReducerState,
+	action: AnnouncementReducerState,
+): AnnouncementReducerState {
+	switch (action.politeness) {
+		case "polite":
+		case "assertive":
+			return {
+				politeness: action.politeness,
+				message: action.message,
+			};
+
+		default:
+			return state;
+	}
+}
 
 /**
  * The `MessagesAnnouncer` is a context-based announcer for the generic types of messages.
@@ -30,43 +47,30 @@ import { IMessagesAnnouncerContext, ISetMessage } from "./index";
  * const setMessage = useMessagesAnnouncer();
  *
  * // And sending a message
- * setMessage({ text: "Form was submitted", politeness: "polite"});
+ * setMessage({ message: "Form was submitted", politeness: "polite"});
  *
  * @param {FunctionComponent} props
  * @returns {JSX.Element}
  */
 export const MessagesAnnouncer: FunctionComponent = ({ children }) => {
-	const [politeness, setPoliteness] = useState(defaultMessagesAnnouncerContext.politeness);
-	const [message, setNewMessage] = useState(defaultMessagesAnnouncerContext.message);
-
-	/**
-	 * Handles the message posting task.
-	 *
-	 * Politeness is optional, but affects the way the screen-reader ouputs a message
-	 *
-	 * @param {ISetMessage} message
-	 */
-	const setMessage = useCallback(
-		(message: ISetMessage) => {
-			setNewMessage(message.text);
-
-			if (message.politeness) {
-				setPoliteness(message.politeness);
-			}
-		},
-		[setNewMessage, setPoliteness],
-	);
-
-	const value: IMessagesAnnouncerContext = {
-		message,
-		politeness,
-		setMessage,
-	};
+	const [state, setMessage] = useReducer(reducer, {
+		message: defaultState.message,
+		politeness: defaultState.politeness,
+	});
 
 	return (
-		<MessagesAnnouncerContext.Provider value={value}>
+		<MessagesAnnouncerContext.Provider
+			value={{
+				...state,
+				setMessage,
+			}}
+		>
 			{children}
-			<Announcer ariaLive={politeness} id="notifications-announcer" text={message} />
+			<Announcer
+				aria-live={state.politeness}
+				id="notifications-announcer"
+				message={state.message}
+			/>
 		</MessagesAnnouncerContext.Provider>
 	);
 };
