@@ -1,5 +1,5 @@
 <div align="center">
-<h1>@feedzai/a11y-tools</h1>
+<h1>@feedzai/react-a11y-tools</h1>
 
 <p>A small React component library that aims to ease the process of creating accessible design systems, web apps or websites</p>
 
