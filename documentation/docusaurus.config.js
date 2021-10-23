@@ -28,7 +28,7 @@ module.exports = {
 	onBrokenLinks: "throw",
 	onBrokenMarkdownLinks: "warn",
 	favicon: "img/favicon.svg",
-	organizationName: "feedzai",
+	organizationName: "@feedzai",
 	projectName: "react-a11y-tools",
 
 	presets: [
