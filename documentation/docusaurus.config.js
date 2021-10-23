@@ -23,8 +23,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
 	title: "react-a11y-tools",
 	tagline: "Focus on Accessible Web experiences",
-	url: "https://feedzai.github.io/react-a11y-tools",
-	baseUrl: "/",
+	url: "https://feedzai.github.io",
+	baseUrl: "/react-a11y-tools/",
 	onBrokenLinks: "throw",
 	onBrokenMarkdownLinks: "warn",
 	favicon: "img/favicon.svg",

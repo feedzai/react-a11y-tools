@@ -23,6 +23,7 @@
 		"postbuild": "npx size-limit",
 		"documentation:start": "cd ./documentation && npm run start",
 		"documentation:build": "cd ./documentation && npm run build",
+		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && npm run deploy",
 		"reinstall": "shx rm -rf node_modules && npm install",
 		"pretest": "shx rm -rf .nyc_output jest-coverage cypress-coverage reports coverage || true",
 		"report:combined": "node ./scripts/merge-coverage.js",
