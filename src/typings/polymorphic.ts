@@ -1,79 +1,45 @@
 /* eslint-disable @typescript-eslint/ban-types */
-/*
- * Please refer to the terms of the license agreement.
- *
- * (c) 2021 Feedzai, Rights Reserved.
- */
+import React from 'react'
 
-/**
- * polymorphic.ts
- *
- * description
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.1.0
- */
-import type * as React from "react";
+// Source: https://github.com/emotion-js/emotion/blob/master/packages/styled-base/types/helper.d.ts
+// A more precise version of just React.ComponentPropsWithoutRef on its own
+export type PropsOf<
+	C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
+	> = JSX.LibraryManagedAttributes<C, React.ComponentPropsWithoutRef<C>>
 
-export type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
-
-/**
- * Infers the OwnProps if E is a ForwardRefExoticComponentWithAs
- */
-export type OwnProps<E> = E extends ForwardRefComponent<any, infer P> ? P : {};
-
-/**
- * Infers the JSX.IntrinsicElement if E is a ForwardRefExoticComponentWithAs
- */
-export type IntrinsicElement<E> = E extends ForwardRefComponent<infer I, any>
-	? I
-	: never;
-
-export type ForwardRefExoticComponent<E, OwnProps> = React.ForwardRefExoticComponent<
-	Merge<
-		E extends React.ElementType ? React.ComponentPropsWithRef<E> : never,
-		OwnProps & { as?: E }
-	>
->;
-
-export interface ForwardRefComponent<
-	IntrinsicElementString,
-	OwnProps = {}
-	/*
-	 * Extends original type to ensure built in React types play nice with
-	 * polymorphic components still e.g. `React.ElementRef` etc.
+type AsProp<C extends React.ElementType> = {
+	/**
+	 * An override of the default HTML tag.
+	 * Can also be another React component.
 	 */
-	> extends ForwardRefExoticComponent<IntrinsicElementString, OwnProps> {
-	/*
-	 * When `as` prop is passed, use this overload. Merges original own props
-	 * (without DOM props) and the inferred props from `as` element with the own
-	 * props taking precendence.
-	 *
-	 * We explicitly avoid `React.ElementType` and manually narrow the prop types
-	 * so that events are typed when using JSX.IntrinsicElements.
-	 */
-	<As = IntrinsicElementString>(
-		props: As extends ""
-			? { as: keyof JSX.IntrinsicElements }
-			: As extends React.ComponentType<infer P>
-			? Merge<P, OwnProps & { as: As }>
-			: As extends keyof JSX.IntrinsicElements
-			? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
-			: never
-	): React.ReactElement | null;
+	as?: C
 }
 
-export interface MemoComponent<IntrinsicElementString, OwnProps = {}>
-	extends React.MemoExoticComponent<
-	ForwardRefComponent<IntrinsicElementString, OwnProps>
-	> {
-	<As = IntrinsicElementString>(
-		props: As extends ""
-			? { as: keyof JSX.IntrinsicElements }
-			: As extends React.ComponentType<infer P>
-			? Merge<P, OwnProps & { as: As }>
-			: As extends keyof JSX.IntrinsicElements
-			? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
-			: never
-	): React.ReactElement | null;
-}
+/**
+ * Allows for extending a set of props (`ExtendedProps`) by an overriding set of props
+ * (`OverrideProps`), ensuring that any duplicates are overridden by the overriding
+ * set of props.
+ */
+export type ExtendableProps<
+	ExtendedProps = {},
+	OverrideProps = {}
+	> = OverrideProps & Omit<ExtendedProps, keyof OverrideProps>
+
+/**
+ * Allows for inheriting the props from the specified element type so that
+ * props like children, className & style work, as well as element-specific
+ * attributes like aria roles. The component (`C`) must be passed in.
+ */
+export type InheritableElementProps<
+	C extends React.ElementType,
+	Props = {}
+	> = ExtendableProps<PropsOf<C>, Props>
+
+/**
+ * A more sophisticated version of `InheritableElementProps` where
+ * the passed in `as` prop will determine which props can be included
+ */
+export type PolymorphicComponentProps<
+	C extends React.ElementType,
+	Props = {}
+	> = InheritableElementProps<C, Props & AsProp<C>>

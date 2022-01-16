@@ -3,6 +3,14 @@ import { isFunction } from "../helpers";
 /**
  * Executes the given callback function, if present.
  *
+ * @example
+ *
+ * // Calling a function with several arguments
+ * callIfExists(functionName, arg1, arg2);
+ *
+ * // Calling a function without any argument
+ * callIfExists(functionName);
+ *
  * @param {Function|undefined} callback Holds the callback to be executed.
  * @param {any[]} args Holds a list of arguments to be passed to the callback.
  * @private
