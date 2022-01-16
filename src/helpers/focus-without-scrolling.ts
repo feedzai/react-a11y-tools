@@ -60,6 +60,16 @@ function restoreScrollPosition(IScrollableElements: IScrollableElement[]) {
 }
 
 /**
+ * Places focus on an `HTMLElement` without causing a page scroll.
+ *
+ * @example
+ *
+ * // Placing focus on a button
+ * const element = document.querySelector("button.some-css-class");
+ *
+ * if (element) {
+ *    focusWithoutScrolling(element);
+ * }
  * @export
  * @param {HTMLElement} element
  */

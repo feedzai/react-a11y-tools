@@ -33,4 +33,6 @@ export {
 	useFocus,
 	useRover,
 } from "./components/roving-tabindex/index";
+export { VisuallyHidden, visuallyHiddenStyle } from "./components/visually-hidden";
+export { callIfExists, focusWithoutScrolling, makeId } from "./helpers";
 export { useAutoId, useDisableEvent, useSafeLayoutEffect, useTabbable } from "./hooks";

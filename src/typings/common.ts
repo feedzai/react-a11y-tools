@@ -13,7 +13,20 @@
  * @since 1.1.0
  */
 
-export interface CommonElement {
+type AsProp<GenericComponent extends React.ElementType> = {
+	/**
+	 * An override of the default HTML tag.
+	 * Can also be another React component.
+	 */
+	as?: GenericComponent
+}
+
+/**
+ * Common HTML Element types.
+ *
+ * Accepts a type of element tag, like `"div"`, `"span"`, `"p"`
+ */
+export type CommonElement<GenericElement extends React.ElementType = "div"> = React.HTMLAttributes<HTMLElement> & {
 	/**
 	 * A `data-attribute` identifier for testing purposes
 	 *
@@ -21,12 +34,4 @@ export interface CommonElement {
 	 * @memberof CommonElement
 	 */
 	"data-testid"?: string;
-
-	/**
-	 * Custom CSS Styles
-	 *
-	 * @type {React.CSSProperties}
-	 * @memberof CommonElement
-	 */
-	styles?: React.CSSProperties;
-}
+} & AsProp<GenericElement>
