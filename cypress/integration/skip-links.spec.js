@@ -13,7 +13,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-const ROVER_STORY_URL = "/docs/navigation/skip-links";
+const ROVER_STORY_URL = "/docs/content-and-navigation/skip-links";
 
 describe("Skip Links", () => {
 	beforeEach(() => {

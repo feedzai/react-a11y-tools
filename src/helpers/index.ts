@@ -20,6 +20,7 @@ export * from "./isFunction";
 export * from "./isNumber";
 export * from "./isString";
 export * from "./inRange";
+export * from "./isNil";
 export * from "./run-after-transition";
 export * from "./keyCodes";
 export * from "./merge-event-handlers";

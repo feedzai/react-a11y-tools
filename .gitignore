@@ -16,10 +16,12 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
-cypress-coverage
-jest-coverage
-cypress/results/
+coverage/
+.sonar/
+coverage-reports
+.nyc_output
+cypress/results
+cypress/screenshots
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -138,10 +140,11 @@ bundlestats.json
 
 node_modules/
 jest-coverage
+coverage/
+.sonar/
+coverage-reports
 .nyc_output
-coverage
-cypress-coverage/
-cypress/videos
+cypress/results
 cypress/screenshots
 reports
 results

@@ -10,41 +10,83 @@
 const { execSync } = require("child_process");
 const fs = require("fs-extra");
 const chalk = require("chalk");
-const REPORTS_FOLDER = "reports";
+
+const COVERAGE_FOLDER = "coverage-reports";
+const REPORTS_FOLDER = `${COVERAGE_FOLDER}/reports`;
 const FINAL_OUTPUT_FOLDER = "coverage";
+
 const { log } = console;
+
 /**
  * Run "nyc merge" inside the reports folder, merging the two coverage files into one,
  * then generate the final report on the coverage folder
  *
  * @param {string[]} commands
+ * @returns {Promise<void>}
  */
-function run(commands) {
-	commands.forEach((command) => {
-		execSync(command, { stdio: "inherit" });
+function runCommand(commands) {
+	return new Promise((resolve, reject) => {
+		try {
+			commands.forEach((command) => {
+				execSync(command, { stdio: "inherit" });
+			});
+			resolve();
+		} catch (err) {
+			log(chalk.yellowBright(`⚠️ Error running commands: ${err}`));
+			reject(err);
+		}
 	});
 }
 
 /**
  * Create the reports folder and move the reports from cypress and jest inside it
  *
- * @returns {void}
+ * @returns {Promise<void>}
  */
 function bootstrapFolders() {
-	fs.emptyDirSync(REPORTS_FOLDER);
+	return new Promise((resolve, reject) => {
+		try {
+			// Cleans the reports folder
+			fs.emptyDirSync(REPORTS_FOLDER);
 
-	fs.copyFileSync("cypress-coverage/coverage-final.json", `${REPORTS_FOLDER}/from-cypress.json`);
-	fs.copyFileSync("jest-coverage/coverage-final.json", `${REPORTS_FOLDER}/from-jest.json`);
-	log(chalk.green("✓ Copied jest and cypress coverage folders!"));
-	fs.emptyDirSync(".nyc_output");
-	fs.emptyDirSync(FINAL_OUTPUT_FOLDER);
-	log(chalk.green("✓ Finished bootstraping folders!"));
+			// Copies each coverage file to the reports folder
+			runCommand([
+				`cp ${COVERAGE_FOLDER}/jest/coverage-final.json ${REPORTS_FOLDER}/from-jest.json`,
+				`cp ${COVERAGE_FOLDER}/cypress/coverage-final.json ${REPORTS_FOLDER}/from-cypress.json`,
+			]);
+			log(chalk.green("✓ Copied jest and cypress coverage folders!"));
+
+			// Cleans the nyc folder and the coverage folder
+			fs.emptyDirSync(".nyc_output");
+			fs.emptyDirSync(FINAL_OUTPUT_FOLDER);
+			log(chalk.green("✓ Finished bootstraping folders!"));
+
+			resolve();
+		} catch (err) {
+			log(chalk.yellowBright(`⚠️ Error bootstraping folders: ${err}`));
+
+			reject();
+		}
+	});
 }
 
-bootstrapFolders();
-run([
-	// "nyc merge" will create a "coverage.json" file on the root, we move it to .nyc_output
-	`nyc merge ${REPORTS_FOLDER} && shx mv coverage.json .nyc_output/out.json`,
-	`nyc report --reporter=text-summary`,
-	`nyc report --reporter=html --report-dir=${FINAL_OUTPUT_FOLDER}`,
-]);
+bootstrapFolders()
+	.then(() =>
+		runCommand([
+			// Merge the reports folder's json
+			`nyc merge ${REPORTS_FOLDER}`,
+
+			// Move merged coverage.json to .nyc_output
+			`mv coverage.json .nyc_output/out.json`,
+
+			// Create text-summary+html report and output to coverage directory
+			`npx nyc report --reporter=text-summary`,
+			`npx nyc report --reporter=html --report-dir=${FINAL_OUTPUT_FOLDER}`,
+		]),
+	)
+	.then(() => {
+		log(chalk.green("✓ Finished merging coverage!"));
+	})
+	.catch((err) => {
+		log(chalk.yellowBright(`⚠️ Error merging reports: ${err}`));
+	});

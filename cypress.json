@@ -1,12 +1,5 @@
 {
-	"reporter": "mochawesome",
-	"reporterOptions": {
-		"reportDir": "cypress/results",
-		"overwrite": false,
-		"html": false,
-		"json": true
-	},
-	"baseUrl": "http://localhost:3000",
+	"baseUrl": "http://localhost:3000/react-a11y-tools",
 	"viewportWidth": 1280,
 	"viewportHeight": 800,
 	"component": {
