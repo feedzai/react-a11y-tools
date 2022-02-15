@@ -11,7 +11,8 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-require("@cypress/snapshot").register();
-
 import "@cypress/code-coverage/support";
 import "./commands";
+import { register } from "@cypress/snapshot";
+
+register();

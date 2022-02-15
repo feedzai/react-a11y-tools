@@ -5,8 +5,8 @@ module.exports = {
 	},
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 	collectCoverage: true,
-	coverageDirectory: "<rootDir>/jest-coverage",
-	coverageReporters: ["json"],
+	coverageDirectory: "<rootDir>/coverage-reports/jest",
+	coverageReporters: ["lcov", "json"],
 	testURL: "http://localhost/",
 	setupFiles: ["raf/polyfill"],
 	moduleNameMapper: {

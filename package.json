@@ -24,9 +24,10 @@
 		"documentation:start": "cd ./documentation && npm run start",
 		"documentation:build": "cd ./documentation && npm run build",
 		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && npm run deploy",
-		"reinstall": "shx rm -rf node_modules && npm install",
-		"pretest": "shx rm -rf .nyc_output jest-coverage cypress-coverage reports coverage || true",
-		"report:combined": "node ./scripts/merge-coverage.js",
+		"reinstall": "rm -rf node_modules && npm install",
+		"coverage:clean": "rm -rf .nyc_output coverage-reports coverage || true",
+		"coverage:merge": "node ./scripts/merge-coverage.js",
+		"pretest": "npm run coverage:clean",
 		"test:jest": "jest --env=jsdom --coverage --passWithNoTests",
 		"test:jest-ci": "jest --env=jsdom --ci --coverage --maxWorkers=2",
 		"test:ct-open": "cypress open-ct",
@@ -34,7 +35,7 @@
 		"test:components": "npm run test:jest && npm run test:ct",
 		"test:cypress": "cypress open",
 		"test:e2e": "start-server-and-test documentation:start 3000 'cypress run'",
-		"test": "npm run test:components && npm run test:e2e && npm run report:combined"
+		"test": "npm run test:components && npm run test:e2e && npm run coverage:merge"
 	},
 	"peerDependencies": {
 		"react": ">=16.14.0",
@@ -46,6 +47,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "7.15.8",
+		"@babel/helper-environment-visitor": "^7.16.7",
 		"@babel/plugin-proposal-optional-chaining": "7.14.5",
 		"@babel/preset-env": "7.15.8",
 		"@babel/preset-react": "7.14.5",
@@ -63,7 +65,7 @@
 		"@testing-library/react-hooks": "7.0.2",
 		"@testing-library/user-event": "13.5.0",
 		"@types/classnames": "2.3.0",
-		"@types/jest": "27.0.2",
+		"@types/jest": "^27.4.0",
 		"@types/jsdom": "16.2.13",
 		"@types/node": "16.11.3",
 		"@types/react": "17.0.31",
@@ -105,9 +107,6 @@
 		"jest": "27.3.1",
 		"jsdom": "16.6.0",
 		"lint-staged": "11.2.3",
-		"mochawesome": "6.3.1",
-		"mochawesome-merge": "4.2.0",
-		"mochawesome-report-generator": "5.2.0",
 		"nyc": "15.1.0",
 		"path-browserify": "^1.0.1",
 		"postcss": "8.3.11",
@@ -125,7 +124,6 @@
 		"rollup-plugin-postcss": "4.0.1",
 		"sass": "1.43.3",
 		"sass-loader": "12.2.0",
-		"shx": "0.3.3",
 		"size-limit": "6.0.3",
 		"start-server-and-test": "1.14.0",
 		"style-loader": "^3.3.1",
@@ -167,19 +165,22 @@
 		}
 	],
 	"nyc": {
-		"report-dir": "cypress-coverage",
+		"all": true,
+		"report-dir": "coverage-reports/cypress",
 		"reporter": [
+			"lcov",
 			"json"
 		],
+		"check-coverage": true,
+		"watermarks": {
+			"statements": 95,
+			"branches": 95,
+			"functions": 95,
+			"lines": 95
+		},
 		"include": [
 			"src/**/*"
-		],
-		"exclude": [
-			"test/**"
 		]
 	},
-	"np": {
-		"testScript": "test:jest",
-		"contents": "dist"
-	}
+	"dependencies": {}
 }
