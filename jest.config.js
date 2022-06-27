@@ -12,6 +12,7 @@ module.exports = {
 	moduleNameMapper: {
 		"\\.(css|scss)$": "identity-obj-proxy",
 		"\\.(png|gif)$": "identity-obj-proxy",
+		"^src(.*)$": "<rootDir>/src$1",
 	},
 	modulePathIgnorePatterns: ["npm-cache", ".npm", ".cache", "cypress", "stories"],
 };
