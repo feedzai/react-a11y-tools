@@ -29,8 +29,8 @@
 			"hooks/*": ["./src/hooks/*"],
 			"typings/*": ["./src/typings/*"]
 		},
-		"types": ["node", "jest"]
+		"types": ["node", "jest", "@testing-library/jest-dom"]
 	},
-	"include": ["src"],
+	"include": ["src", "global.d.ts"],
 	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"]
 }
