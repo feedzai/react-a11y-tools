@@ -6,7 +6,7 @@ module.exports = {
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 	collectCoverage: true,
 	coverageDirectory: "<rootDir>/coverage-reports/jest",
-	coverageReporters: ["lcov", "json"],
+	coverageReporters: ["json", "lcov", "text-summary"],
 	testURL: "http://localhost/",
 	setupFiles: ["raf/polyfill"],
 	moduleNameMapper: {
@@ -14,5 +14,11 @@ module.exports = {
 		"\\.(png|gif)$": "identity-obj-proxy",
 		"^src(.*)$": "<rootDir>/src$1",
 	},
-	modulePathIgnorePatterns: ["npm-cache", ".npm", ".cache", "cypress", "stories"],
+	modulePathIgnorePatterns: [
+		"npm-cache",
+		".npm",
+		".cache",
+		"<rootDir>/cypress",
+		"<rootDir>/stories",
+	],
 };

@@ -24,7 +24,6 @@ export * from "./isNumber";
 export * from "./isString";
 export * from "./keyCodes";
 export * from "./make-id";
-export * from "./merge-event-handlers";
 export * from "./run-after-transition";
 export { default as classNames } from "./classNames";
 export { focusWithoutScrolling } from "./focus-without-scrolling";

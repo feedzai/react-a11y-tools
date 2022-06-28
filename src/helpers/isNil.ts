@@ -15,9 +15,6 @@
  * @since ```feedzai.next.release```
  */
 
-const isUndefined = <GenericValue>(value: GenericValue): boolean => typeof value === 'undefined';
-const isNull = <GenericValue>(value: GenericValue): boolean => typeof value === null;
-
 /**
  * Checks if a certain value is `null` or `undefined`.
  *
@@ -32,5 +29,7 @@ const isNull = <GenericValue>(value: GenericValue): boolean => typeof value === 
  * @param {GenericValue} value
  * @returns {boolean} result
  */
-export const isNil = <GenericValue>(value: GenericValue): boolean => isUndefined(value) || isNull(value);
+export function isNil<GenericValue>(value: GenericValue): boolean {
+	return typeof value === 'undefined' || value === null;
+};
 

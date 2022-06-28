@@ -18,8 +18,8 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { act, render, waitFor } from "@testing-library/react";
-import { useFocusWithin } from "../../src/hooks";
-import { UseFocusWithinProps } from "../../src/hooks/useFocusWithin/types";
+import { useFocusWithin } from "../../../src/hooks";
+import { UseFocusWithinProps } from "../../../src/hooks/useFocusWithin/types";
 
 const Example: React.FC<UseFocusWithinProps> = (props) => {
 	const { focusWithinProps } = useFocusWithin(props);

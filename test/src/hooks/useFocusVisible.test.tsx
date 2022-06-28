@@ -18,7 +18,7 @@ import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
-import { useFocusVisible, useFocusVisibleListener } from "../../src/hooks";
+import { useFocusVisible, useFocusVisibleListener } from "../../../src/hooks";
 
 function Example({ id }: { id?: string }) {
 	const { isFocusVisible } = useFocusVisible();

@@ -14,8 +14,12 @@
 import React from "react";
 import { JSDOM } from "jsdom";
 import { expect } from "@jest/globals";
-import { RovingAction, RovingState, TabStop } from "../../src/components/roving-tabindex";
-import { reducer } from "../../src/components/roving-tabindex/rover-provider/reducer";
+import {
+	RovingAction,
+	RovingState,
+	TabStop,
+} from "../../../../src/components/roving-tabindex/index";
+import { reducer } from "../../../../src/components/roving-tabindex/rover-provider/reducer";
 
 const testDOM = new JSDOM(`
   <body>

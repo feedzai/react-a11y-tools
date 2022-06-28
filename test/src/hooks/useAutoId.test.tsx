@@ -14,7 +14,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
-import { useAutoId } from "../../src/hooks/useAutoId";
+import { useAutoId } from "../../../src/hooks/useAutoId";
 
 function DemoComponent({ value = null, prefix }: { value?: string | null; prefix?: string }) {
 	const firstId = useAutoId(value, prefix);

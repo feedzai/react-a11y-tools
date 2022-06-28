@@ -28,6 +28,7 @@
 		"coverage:merge": "node ./scripts/merge-coverage.js",
 		"pretest": "npm run coverage:clean",
 		"test:jest": "jest --env=jsdom --coverage --passWithNoTests",
+		"test:jest-watch": "jest --env=jsdom --watch --coverage --passWithNoTests",
 		"test:jest-ci": "jest --env=jsdom --ci --coverage --maxWorkers=2",
 		"test:component-open": "NODE_ENV=cypress cypress open --component --browser chrome",
 		"test:component-run": "NODE_ENV=cypress cypress run --component --browser chrome",
@@ -35,7 +36,7 @@
 		"test:integration-run": "NODE_ENV=cypress cypress run --e2e --browser chrome",
 		"test:integration": "start-server-and-test documentation:start 3000 'npm run test:integration-run'",
 		"test": "npm run test:jest && npm run test:component-run && npm run test:integration && npm run coverage:merge",
-		"test-ci": "npm run test:jest-ci && npm run test:component-run && npm run test:integration && npm run coverage:merge"
+		"test:ci": "npm run test:jest-ci && npm run test:component-run && npm run test:integration"
 	},
 	"peerDependencies": {
 		"react": ">=16.14.0",
@@ -165,10 +166,10 @@
 		],
 		"check-coverage": true,
 		"watermarks": {
-			"statements": 95,
-			"branches": 95,
-			"functions": 95,
-			"lines": 95
+			"statements": 80,
+			"branches": 70,
+			"functions": 80,
+			"lines": 80
 		},
 		"include": [
 			"src/**/*"

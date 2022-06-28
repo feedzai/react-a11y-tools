@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Heading, Level } from "../src/components/semantic-headings";
+import { Heading, Level } from "../../../../src/components/semantic-headings";
 
 describe("in production mode", () => {
 	let oldEnv: NodeJS.ProcessEnv;
