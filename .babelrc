@@ -1,4 +1,11 @@
 {
 	"presets": [["@babel/preset-env"], "@babel/preset-react", "@babel/preset-typescript"],
-	"plugins": ["istanbul", "@babel/plugin-proposal-optional-chaining"]
+	"env": {
+		"test": {
+			"plugins": ["istanbul", "@babel/plugin-proposal-optional-chaining"]
+		},
+		"cypress": {
+			"plugins": ["istanbul"]
+		}
+	}
 }

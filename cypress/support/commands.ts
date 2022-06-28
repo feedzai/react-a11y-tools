@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 /*
  * Please refer to the terms of the license
  * agreement.
@@ -6,23 +7,43 @@
  */
 
 /**
- * commands.js
+ * commands.ts
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import "cypress-plugin-tab";
 import "@testing-library/cypress/add-commands";
 import "cypress-real-events/support";
-import "cypress-axe";
+import "./a11y";
+import { isAriaDisabled } from "./a11y/assertions/isAriaDisabled";
 import { recurse } from "cypress-recurse";
+import { mount, unmount, mountHook } from "cypress/react";
+
+chai.use(isAriaDisabled);
+
+
+declare global {
+	namespace Cypress {
+		interface Chainable {
+			tab(options?: Partial<{ shift: boolean }>): Chainable;
+			tabUntil<GenericCallback extends Cypress.Chainable<JQuery<HTMLElement>>>(
+				element: () => GenericCallback,
+				shift?: boolean,
+			): Cypress.Chainable<JQuery<HTMLElement>>;
+
+			mount: typeof mount;
+			unmount: typeof unmount;
+			mountHook: typeof mountHook;
+		}
+	}
+}
 
 /**
  * Presses the tab key until a predicate element is true.
  * It accepts a callback for finding the target element, and an optional shift element to tab backwards.
- * This commmand is specially useful to avoid chaining `.tab()` multiple times before reaching an element.
+ * This commmand is specially useful to avoid chaining `.realPress("Tab")` multiple times before reaching an element.
  *
- * @requires `cypress-plugin-tab` needs to be installed
+ * @requires `cypress-real-events` needs to be installed
  *
  * @example
  *
@@ -36,12 +57,11 @@ import { recurse } from "cypress-recurse";
 Cypress.Commands.add(
 	"tabUntil",
 	/**
-	 * @param {IGetElement} getElement the target element that will stop the tab press
-	 * @param {boolean} [shift] use the shift key along to tab backwards instead
-	 * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
-	 * @memberof Chainable
+	 * @param getElement
+	 * @param shift
+	 * @returns
 	 */
-	(getElement, shift = false) => {
+	<GenericCallback extends Cypress.Chainable<JQuery<HTMLElement>>>(getElement: () => GenericCallback, shift = false) => {
 		return recurse(
 			() => getElement(),
 			/**
@@ -50,11 +70,11 @@ Cypress.Commands.add(
 			 * @param {JQuery<HTMLElement>} $el
 			 * @returns {boolean}
 			 */
-			($el) => $el.is(":focus"),
+			($el: JQuery<HTMLElement>): boolean => $el.is(":focus"),
 			{
 				log: "Found the element!",
 				post() {
-					cy.focused().tab({ shift });
+					cy.focused().realPress(shift ? ["Shift", "Tab"] : "Tab");
 				},
 			},
 		).should("have.focus");

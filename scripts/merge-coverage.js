@@ -80,7 +80,6 @@ bootstrapFolders()
 			`mv coverage.json .nyc_output/out.json`,
 
 			// Create text-summary+html report and output to coverage directory
-			`npx nyc report --reporter=text-summary`,
 			`npx nyc report --reporter=html --report-dir=${FINAL_OUTPUT_FOLDER}`,
 		]),
 	)

@@ -9,27 +9,16 @@
  */
 
 /**
- * isNil.ts
+ * index.ts
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since ```feedzai.next.release```
  */
 
-/**
- * Checks if a certain value is `null` or `undefined`.
- *
- * @example
- *
- * isNil(3) // false
- * isNil(null) // true
- * isNil(undefined) // true
- *
- * @export
- * @template GenericValue
- * @param {GenericValue} value
- * @returns {boolean} result
- */
-export function isNil<GenericValue>(value: GenericValue): boolean {
-	return typeof value === 'undefined' || value === null;
-};
+import checkA11y from "./checkA11y";
+import configureAxe from "./configureAxe";
+import injectAxe from "./injectAxe";
 
+Cypress.Commands.add("injectAxe", injectAxe);
+Cypress.Commands.add("configureAxe", configureAxe);
+Cypress.Commands.add("checkA11y", checkA11y);

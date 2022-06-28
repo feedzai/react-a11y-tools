@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 /// <reference types="@testing-library/cypress" />
+/// <reference types="cypress-real-events" />
 /*
  * Please refer to the terms of the license
  * agreement.
@@ -46,14 +47,15 @@ describe("Focus Manager", () => {
 				describe("should place focus", () => {
 					it("on the last menu item when the user presses shift+tab on the first element", () => {
 						cy.get("@Menu").within(() => {
-							cy.focused().tab({ shift: true });
+							cy.focused().realPress(["Shift", "Tab"]);
 							cy.get("@allFocusableElements").last().should("have.focus");
 						});
 					});
 
 					it("on the first menu item when the user goes over the last element", () => {
 						cy.get("@Menu").within(() => {
-							cy.focused().tab().tab().tab().tab().tab().tab().tab().tab();
+							cy.focused();
+							cy.tabUntil(() => cy.get("@allFocusableElements").first());
 							cy.get("@allFocusableElements").first().should("have.focus");
 						});
 					});
@@ -64,7 +66,9 @@ describe("Focus Manager", () => {
 		it("should restore focus when the focus-managerped menu closes", () => {
 			cy.get("@MenuButton").click();
 			cy.get("@Menu").within(() => {
-				cy.focused().tab().tab().tab().tab().tab().tab().tab().tab().click();
+				cy.focused()
+					.tabUntil(() => cy.findByRole("button", { name: "Close" }))
+					.click();
 			});
 			cy.get("@MenuButton").should("have.focus");
 		});

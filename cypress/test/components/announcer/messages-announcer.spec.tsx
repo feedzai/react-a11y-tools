@@ -4,15 +4,13 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-/// <reference types="cypress" />
-/// <reference types="@testing-library/cypress" />
+
 /**
  * messages-announcer.spec.tsx
  *
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { mount as render } from "@cypress/react";
 import React, { FunctionComponent } from "react";
 import { Announcement } from "../../../../src/components/announcer/messages";
 import {
@@ -26,7 +24,7 @@ import {
  * @param {React.ReactElement} ui
  */
 function renderWithContext(ui: React.ReactElement) {
-	return render(<MessagesAnnouncer>{ui}</MessagesAnnouncer>);
+	cy.mount(<MessagesAnnouncer>{ui}</MessagesAnnouncer>);
 }
 
 const App: FunctionComponent<Announcement> = ({ message, politeness, children }): JSX.Element => {
@@ -56,16 +54,6 @@ describe("<MessagesAnnouncer />", () => {
 			message: "this is a test message",
 			politeness: "polite",
 		};
-	});
-
-	it("should render without errors", () => {
-		renderWithContext(
-			<App {...props}>
-				<p>children content</p>
-			</App>,
-		);
-
-		cy.findByTestId("fdz-js-messages-announcer").snapshot("should render without errors");
 	});
 
 	it("should update the announcer with a new message", () => {

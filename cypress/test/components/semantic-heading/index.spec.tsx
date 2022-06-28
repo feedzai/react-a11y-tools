@@ -14,26 +14,25 @@
  */
 
 import React from "react";
-import { mount as render } from "@cypress/react";
 import { Heading, Level } from "../../../../src/components/semantic-headings";
 import { useHeadings } from "../../../../src/components/semantic-headings/useHeadings";
 
 it("Heading renders an H1 be default", () => {
-	render(<Heading>A test title</Heading>);
+	cy.mount(<Heading>A test title</Heading>);
 	cy.findByText("A test title").then(($element) => {
 		expect($element.prop("tagName")).to.equal("H1");
 	});
 });
 
 it("Heading respects the offset prop", () => {
-	render(<Heading offset={1}>A test title</Heading>);
+	cy.mount(<Heading offset={1}>A test title</Heading>);
 	cy.findByText("A test title").then(($element) => {
 		expect($element.prop("tagName")).to.equal("H2");
 	});
 });
 
 it("Level increments the level rendered by Heading", () => {
-	render(
+	cy.mount(
 		<Level>
 			<Heading>A test title</Heading>
 		</Level>,
@@ -44,7 +43,7 @@ it("Level increments the level rendered by Heading", () => {
 });
 
 it("Level allows overriding the level", () => {
-	render(
+	cy.mount(
 		<Level dangerouslySetHeadingLevel={3}>
 			<Heading>A test title</Heading>
 		</Level>,
@@ -64,7 +63,7 @@ describe("in production mode", () => {
 			return null;
 		}
 
-		render(
+		cy.mount(
 			<Level dangerouslySetHeadingLevel={3}>
 				<Test />
 			</Level>,

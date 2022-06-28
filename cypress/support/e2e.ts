@@ -13,6 +13,4 @@
  */
 import "@cypress/code-coverage/support";
 import "./commands";
-import { register } from "@cypress/snapshot";
-
-register();
+import "./hacks";

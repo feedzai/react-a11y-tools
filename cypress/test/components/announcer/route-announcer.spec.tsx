@@ -4,9 +4,7 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-/// <reference types="cypress" />
-/// <reference types="@testing-library/cypress" />
-/// <reference types="../../../support" />
+
 /**
  * route-announcer.test.tsx
  *
@@ -23,7 +21,6 @@ import {
 	LocationProvider,
 	History,
 } from "@reach/router";
-import { mount as render } from "@cypress/react";
 import React, { FunctionComponent, useEffect } from "react";
 import { defaultProps, RouteAnnouncer } from "../../../../src/components/announcer/route-announcer";
 import { IRouteAnnouncerProps } from "../../../../src/components/announcer/route-announcer";
@@ -53,7 +50,7 @@ export function renderWithRouter(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
 ) {
-	render(<LocationProvider history={history}>{ui}</LocationProvider>);
+	cy.mount(<LocationProvider history={history}>{ui}</LocationProvider>);
 }
 
 /**
@@ -66,7 +63,7 @@ export function renderWithRouterWrapper(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
 ) {
-	render(
+	cy.mount(
 		<LocationProvider history={history}>
 			<Router>{ui}</Router>
 		</LocationProvider>,
@@ -144,12 +141,6 @@ describe("<RouteAnnouncer />", () => {
 			...defaultProps,
 			pathname: "/",
 		};
-	});
-
-	it("should render without errors", () => {
-		render(<RouteAnnouncer {...props} />);
-
-		cy.get(`#${defaultProps.id}`).snapshot();
 	});
 
 	it("should find the heading on the document", () => {

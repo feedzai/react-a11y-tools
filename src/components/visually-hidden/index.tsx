@@ -71,7 +71,7 @@ export const VisuallyHidden = <GenericElement extends React.ElementType = "span"
 }: VisuallyHiddenProps<GenericElement>) => {
 	const autoId = useAutoId(id);
 	const { current: generatedId } = useRef(makeId(dataTestId, autoId));
-	const componentStyles = {
+	const componentStyles: React.CSSProperties = {
 		...visuallyHiddenStyle,
 		...style,
 	};

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /*
  * Please refer to the terms of the license agreement.
  *

@@ -46,13 +46,19 @@ export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => 
 
 	if (as === "button") {
 		return (
-			<button role="link" type="button" onKeyUp={onKeyUp} className="fdz-css-skip-links__item">
+			<button
+				role="link"
+				type="button"
+				onKeyUp={onKeyUp}
+				className="fdz-css-skip-links__item"
+				data-testid="fdz-js-skip-link"
+			>
 				{text}
 			</button>
 		);
 	}
 	return (
-		<a href={target} className="fdz-css-skip-links__item">
+		<a href={target} className="fdz-css-skip-links__item" data-testid="fdz-js-skip-link">
 			{text}
 		</a>
 	);

@@ -1,6 +1,3 @@
-/// <reference types="cypress" />
-/// <reference types="@testing-library/cypress" />
-/// <reference types="../support" />
 /*
  * Please refer to the terms of the license
  * agreement.
