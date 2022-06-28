@@ -12,7 +12,6 @@
  * @since 1.0.0
  */
 import React from "react";
-import { mount as render } from "@cypress/react";
 import {
 	VisuallyHidden,
 	VisuallyHiddenProps,
@@ -42,7 +41,7 @@ describe("<VisuallyHidden>", () => {
 	let props = DEFAULT_PROPS;
 
 	it("should render the text visually hidden", () => {
-		render(<DemoContent {...props} />);
+		cy.mount(<DemoContent {...props} />);
 
 		cy.findByRole("button").should("have.text", "Press Enter to Return to Navigation");
 		cy.findByTestId("fdz-js-visually-hidden")
@@ -58,7 +57,7 @@ describe("<VisuallyHidden>", () => {
 			as: "div",
 		};
 
-		render(<DemoContent {...props} />);
+		cy.mount(<DemoContent {...props} />);
 
 		cy.findByTestId("fdz-js-visually-hidden").should("have.prop", "tagName").should("eq", "DIV");
 	});
@@ -75,7 +74,7 @@ describe("<VisuallyHidden>", () => {
 			},
 		};
 
-		render(<DemoContent {...props} />);
+		cy.mount(<DemoContent {...props} />);
 
 		cy.findByTestId("fdz-js-visually-hidden")
 			.and("have.class", "a-custom-classname")

@@ -13,12 +13,11 @@
  * @since 1.0.0
  */
 import React from "react";
-import { mount } from "@cypress/react";
 import { AuditInPage } from "./mocks/AuditInPage";
 
 describe("<Audit>", () => {
 	it("should render the KeyboardOnly component", () => {
-		mount(<AuditInPage />);
+		cy.mount(<AuditInPage />);
 
 		cy.findByTestId("fdz-js-audit").should("have.class", "");
 		cy.root().should("have.class", "fdz-css-no-mouse");

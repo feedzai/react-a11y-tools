@@ -32,5 +32,6 @@
 		"types": ["node", "jest", "@testing-library/jest-dom"]
 	},
 	"include": ["src", "global.d.ts"],
-	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "**/*.spec.tsx", "**/*.spec.js"]
+	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "cypress.config.ts"],
+	"references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -5,8 +5,7 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-/// <reference types="cypress" />
-/// <reference types="@testing-library/cypress" />
+
 /**
  * index.test.tsx
  *
@@ -14,14 +13,13 @@
  * @since 1.0.0
  */
 import React from "react";
-import { mount } from "@cypress/react";
 import { IFocusManagerProps } from "../../../../src/components/focus-manager";
 import { FocusManager } from "../../../../src/components/focus-manager/index";
 
 describe("FocusManager", () => {
 	describe("focus containment", () => {
 		it("should contain focus within the scope", () => {
-			mount(
+			cy.mount(
 				<FocusManager contain>
 					<input data-testid="fdz-js-input-1" />
 					<input data-testid="fdz-js-input-2" />
@@ -39,7 +37,7 @@ describe("FocusManager", () => {
 		});
 
 		it("should work with nested elements", () => {
-			mount(
+			cy.mount(
 				<FocusManager contain>
 					<input data-testid="fdz-js-input-1" />
 					<div>
@@ -61,7 +59,7 @@ describe("FocusManager", () => {
 		});
 
 		it("should skip non-tabbable elements", () => {
-			mount(
+			cy.mount(
 				<FocusManager contain>
 					<input data-testid="fdz-js-input-1" />
 					<div />
@@ -81,7 +79,7 @@ describe("FocusManager", () => {
 		});
 
 		it("should do nothing if a modifier key is pressed", () => {
-			mount(
+			cy.mount(
 				<FocusManager contain>
 					<input data-testid="fdz-js-input-1" />
 					<input data-testid="fdz-js-input-2" />
@@ -97,7 +95,7 @@ describe("FocusManager", () => {
 		});
 
 		it("should work with multiple focus scopes", () => {
-			mount(
+			cy.mount(
 				<div>
 					<FocusManager contain>
 						<input data-testid="fdz-js-input-1" />
@@ -130,7 +128,7 @@ describe("FocusManager", () => {
 		});
 
 		it("uses document.activeElement instead of e.relatedTarget on blur to determine if focus is still in scope", () => {
-			mount(
+			cy.mount(
 				<div>
 					<FocusManager contain>
 						<input data-testid="fdz-js-input-1" />
@@ -254,7 +252,7 @@ describe("FocusManager", () => {
 				);
 			};
 
-			mount(<Test contain={false} restoreFocus autoFocus />);
+			cy.mount(<Test contain={false} restoreFocus autoFocus />);
 
 			cy.realPress("Tab");
 			cy.findByTestId("fdz-js-show-button").click();
@@ -281,7 +279,7 @@ describe("FocusManager", () => {
 				);
 			}
 
-			mount(<Test />).then(({ rerender }) => {
+			cy.mount(<Test />).then(({ rerender }) => {
 				cy.findByTestId("trigger").focus();
 
 				rerender(<Test show />);
@@ -310,7 +308,7 @@ describe("FocusManager", () => {
 				);
 			}
 
-			mount(<Test />).then(({ rerender }) => {
+			cy.mount(<Test />).then(({ rerender }) => {
 				cy.findByTestId("trigger").focus();
 
 				rerender(<Test show />);
@@ -338,7 +336,7 @@ describe("FocusManager", () => {
 				);
 			}
 
-			mount(<Test />).then(({ rerender }) => {
+			cy.mount(<Test />).then(({ rerender }) => {
 				cy.findByTestId("trigger").focus();
 
 				rerender(<Test show />);
@@ -352,7 +350,7 @@ describe("FocusManager", () => {
 
 	describe("auto focus", () => {
 		it("should auto focus the first tabbable element in the scope on mount", () => {
-			mount(
+			cy.mount(
 				<FocusManager autoFocus>
 					<div />
 					<input data-testid="fdz-js-input-1" />
@@ -365,7 +363,7 @@ describe("FocusManager", () => {
 		});
 
 		it("should do nothing if something is already focused in the scope", () => {
-			mount(
+			cy.mount(
 				<FocusManager autoFocus>
 					<div />
 					<input data-testid="fdz-js-input-1" />

@@ -6,7 +6,6 @@
  * (c) 2021 Feedzai, Rights Reserved.
  */
 import React from "react";
-import { mount as render } from "@cypress/react";
 import {
 	Router,
 	createHistory,
@@ -40,7 +39,7 @@ export function renderWithRouter(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
 ) {
-	render(<LocationProvider history={history}>{ui}</LocationProvider>);
+	cy.mount(<LocationProvider history={history}>{ui}</LocationProvider>);
 }
 
 /**
@@ -53,7 +52,7 @@ export function renderWithRouterWrapper(
 	ui: React.ReactElement,
 	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
 ) {
-	render(
+	cy.mount(
 		<LocationProvider history={history}>
 			<Router>{ui}</Router>
 		</LocationProvider>,

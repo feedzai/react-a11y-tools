@@ -36,10 +36,10 @@ describe("Skip Links", () => {
 
 	it("should show skip links on pressing the Tab key", () => {
 		cy.get("@preview").within(() => {
-			cy.findByTestId("fdz-js-skip-links-target-button").tab();
+			cy.findByTestId("fdz-js-skip-links-target-button").click().realPress("Tab");
 			cy.get("@SkipMainContent").should("have.focus");
 
-			cy.focused().tab();
+			cy.focused().realPress("Tab");
 			cy.get("@SkipMainContent").should("not.have.focus");
 			cy.get("@SkipNavigationMenu").should("have.focus");
 		});

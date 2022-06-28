@@ -26,24 +26,26 @@ describe("Roving Tab Index", () => {
 	});
 
 	it("should not use tab as a means to travel through the menu", () => {
-		cy.get("@FirstButton").focus().tab().tab();
+		cy.get("@FirstButton")
+			.focus()
+			.tabUntil(() => cy.get("@SecondButton"));
 		cy.get("@SecondButton").should("have.focus");
 	});
 
 	it("should go through the menu using the down arrow button", () => {
-		cy.get("@FirstButton").focus().tab();
+		cy.get("@FirstButton").focus().realPress("Tab");
 		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");
 			cy.focused().type("{downarrow}{downarrow}{downarrow}{downarrow}{downarrow}");
 			cy.get("@navButtons").last().should("have.focus");
 		});
-		cy.focused().tab();
+		cy.focused().realPress("Tab");
 		cy.get("@SecondButton").should("have.focus");
 	});
 
 	it("should travel to the top of the menu when pressing the Home button", () => {
-		cy.get("@FirstButton").focus().tab();
+		cy.get("@FirstButton").focus().realPress("Tab");
 		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");
@@ -53,7 +55,7 @@ describe("Roving Tab Index", () => {
 	});
 
 	it("should travel to the bottom of the menu when pressing the End button", () => {
-		cy.get("@FirstButton").focus().tab();
+		cy.get("@FirstButton").focus().realPress("Tab");
 		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");
@@ -63,7 +65,7 @@ describe("Roving Tab Index", () => {
 	});
 
 	it("should travel to the bottom of the menu when pressing the End button", () => {
-		cy.get("@FirstButton").focus().tab();
+		cy.get("@FirstButton").focus().realPress("Tab");
 		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");
@@ -73,7 +75,7 @@ describe("Roving Tab Index", () => {
 	});
 
 	it("should not do anything if pressed a non-mapped key", () => {
-		cy.get("@FirstButton").focus().tab();
+		cy.get("@FirstButton").focus().realPress("Tab");
 		cy.get("@Nav").within(() => {
 			cy.get(FOCUSABLE_ELEMENT_SELECTOR).as("navButtons");
 			cy.get("@navButtons").first().should("have.focus");

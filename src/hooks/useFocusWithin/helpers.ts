@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /*
  * The copyright of this file belongs to Feedzai. The file cannot be
  * reproduced in whole or in part, stored in a retrieval system, transmitted

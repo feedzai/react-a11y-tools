@@ -11,13 +11,11 @@
  * @since 1.0.0
  */
 import React from "react";
-import { mount as render } from "@cypress/react";
 import {
 	SkipLinks,
 	SKIP_LINK_ITEMS_DEFAULT_PROPS,
 } from "../../../../src/components/skip-links/index";
 import { ISkipLinksProps } from "../../../../src/components/skip-links";
-import { SkipLink } from "../../../../src/components/skip-links/link";
 
 const DemoContent = (props: ISkipLinksProps) => {
 	return (
@@ -49,22 +47,13 @@ const DemoContent = (props: ISkipLinksProps) => {
 describe("<SkipLinks>", () => {
 	let props = SKIP_LINK_ITEMS_DEFAULT_PROPS;
 
-	it("should render a link by default", () => {
-		render(<SkipLinks />);
-		cy.findAllByRole("link", { name: props.items[0].text })
-			.should("exist")
-			.within(($links) => {
-				cy.wrap($links).snapshot("default skip links");
-			});
-	});
-
 	it("should render a link even if items is undefined", () => {
-		render(<SkipLinks items={[]} />);
+		cy.mount(<SkipLinks items={[]} />);
 		cy.findByRole("link", { name: props.items[0].text }).should("exist");
 	});
 
 	it("should render a list of skip links", () => {
-		render(<SkipLinks {...props} />);
+		cy.mount(<SkipLinks {...props} />);
 		cy.findAllByRole("link", { name: props.items[0].text }).should("exist");
 	});
 
@@ -85,39 +74,38 @@ describe("<SkipLinks>", () => {
 			};
 		});
 
-		it("should render without error", () => {
-			render(<SkipLink text={props.items[0].text} target={props.items[0].target} />);
-			cy.findByRole("link", { name: props.items[0].text }).within(($link) => {
-				cy.wrap($link).snapshot();
-			});
-		});
-
 		describe("Placing focus on target", () => {
 			beforeEach(() => {
 				// Render the demo content
-				render(<DemoContent {...props} />);
+				cy.mount(<DemoContent {...props} />);
 			});
 
 			describe("Should place Focus", () => {
 				it("when using the ENTER key", () => {
 					// Press enter on the first skip link
-					cy.get("body").tab().type("{enter}");
+					cy.get("body").click().realPress("Tab");
+					cy.focused().realPress("{enter}");
 					cy.findByRole("main").should("have.focus");
 				});
 
 				it("when using the SPACE key", () => {
 					// Press space on the first skip link
-					cy.get("body").tab().type(" ");
+					cy.get("body").click().realPress("Tab");
+					cy.focused().realPress(" ");
 					cy.findByRole("main").should("have.focus");
 				});
 			});
 
 			it("should not place focus, when pressing any other key on a skip link", () => {
 				// Press a number of keys on the first skip link
-				cy.get("body").tab().type("a random sentence");
-				cy.get("body").tab().type("{backspace}");
-				cy.get("body").tab().type("{del}");
-				cy.get("body").tab().type("{downarrow}");
+				cy.get("body").click().realPress("Tab");
+				cy.focused().type("a random sentence");
+				cy.get("body").click().realPress("Tab");
+				cy.focused().realPress("{backspace}");
+				cy.get("body").click().realPress("Tab");
+				cy.focused().realPress("{del}");
+				cy.get("body").click().realPress("Tab");
+				cy.focused().type("{downarrow}");
 				cy.findByRole("main").should("not.have.focus");
 			});
 		});

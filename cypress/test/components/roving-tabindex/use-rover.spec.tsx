@@ -4,8 +4,7 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-/// <reference types="cypress" />
-/// <reference types="@testing-library/cypress" />
+
 /**
  * use-rover.test.tsx
  *
@@ -13,7 +12,6 @@
  * @since 1.0.0
  */
 import React from "react";
-import { mount as render } from "@cypress/react";
 import {
 	RoverProvider,
 	useRover,
@@ -76,7 +74,7 @@ const TestToolbarWithIDs: React.FC<{
 describe("useRover", () => {
 	it("displays correctly initially when no buttons are disabled", () => {
 		const flags = [false, false, false];
-		render(<TestToolbar flags={flags} />);
+		cy.mount(<TestToolbar flags={flags} />);
 
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "0");
 		cy.findByText("Button One").invoke("attr", "data-focused").should("equal", "false");
@@ -90,7 +88,7 @@ describe("useRover", () => {
 
 	it("displays correctly initially when custom IDs are used", () => {
 		const flags = [false, false, false];
-		render(<TestToolbarWithIDs flags={flags} />);
+		cy.mount(<TestToolbarWithIDs flags={flags} />);
 
 		cy.findByText("Button One").invoke("attr", "id").should("equal", "user-id-1");
 		cy.findByText("Button Two").invoke("attr", "id").should("equal", "user-id-2");
@@ -99,7 +97,7 @@ describe("useRover", () => {
 
 	it("displays correctly initially when first button is disabled", () => {
 		const flags = [true, false, false];
-		render(<TestToolbar flags={flags} />);
+		cy.mount(<TestToolbar flags={flags} />);
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
 		cy.findByText("Button Two").invoke("attr", "tabindex").should("equal", "0");
 		cy.findByText("Button Three").invoke("attr", "tabindex").should("equal", "-1");
@@ -107,7 +105,7 @@ describe("useRover", () => {
 
 	it("updates correctly when a button changes to being disabled", () => {
 		let flags = [false, false, false];
-		render(<TestToolbar flags={flags} />).then(({ rerender }) => {
+		cy.mount(<TestToolbar flags={flags} />).then(({ rerender }) => {
 			flags = [true, false, false];
 			rerender(<TestToolbar flags={flags} />);
 
@@ -119,7 +117,7 @@ describe("useRover", () => {
 
 	describe("direction is 'horizontal'", () => {
 		it("pressing arrow right key", () => {
-			render(<TestToolbar direction="horizontal" />);
+			cy.mount(<TestToolbar direction="horizontal" />);
 
 			cy.findByText("Button One").type("{rightarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -147,7 +145,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow left key", () => {
-			render(<TestToolbar direction="horizontal" />);
+			cy.mount(<TestToolbar direction="horizontal" />);
 
 			cy.findByText("Button One").type("{leftarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -175,7 +173,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow up key", () => {
-			render(<TestToolbar direction="horizontal" />);
+			cy.mount(<TestToolbar direction="horizontal" />);
 
 			cy.findByText("Button One")
 				.type("{uparrow}")
@@ -187,7 +185,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing down up key", () => {
-			render(<TestToolbar direction="horizontal" />);
+			cy.mount(<TestToolbar direction="horizontal" />);
 
 			cy.findByText("Button One")
 				.type("{downarrow}")
@@ -201,7 +199,7 @@ describe("useRover", () => {
 
 	describe("direction is 'vertical'", () => {
 		it("pressing arrow down key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One").type("{downarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -229,7 +227,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow up key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One").type("{uparrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -257,7 +255,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow right key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One")
 				.type("{rightarrow}")
@@ -269,7 +267,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow down key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One")
 				.type("{leftarrow}")
@@ -283,7 +281,7 @@ describe("useRover", () => {
 
 	describe("direction is 'both'", () => {
 		it("pressing arrow right key", () => {
-			render(<TestToolbar direction="both" />);
+			cy.mount(<TestToolbar direction="both" />);
 
 			cy.findByText("Button One").type("{rightarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -311,7 +309,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow left key", () => {
-			render(<TestToolbar direction="both" />);
+			cy.mount(<TestToolbar direction="both" />);
 
 			cy.findByText("Button One").type("{leftarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -339,7 +337,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow down key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One").type("{downarrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -367,7 +365,7 @@ describe("useRover", () => {
 		});
 
 		it("pressing arrow up key", () => {
-			render(<TestToolbar direction="vertical" />);
+			cy.mount(<TestToolbar direction="vertical" />);
 
 			cy.findByText("Button One").type("{uparrow}");
 			cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -396,7 +394,7 @@ describe("useRover", () => {
 	});
 
 	it("pressing home key", () => {
-		render(<TestToolbar />);
+		cy.mount(<TestToolbar />);
 
 		cy.findByText("Button One").type("{home}");
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "0");
@@ -424,7 +422,7 @@ describe("useRover", () => {
 	});
 
 	it("pressing end key", () => {
-		render(<TestToolbar />);
+		cy.mount(<TestToolbar />);
 
 		cy.findByText("Button One").type("{end}");
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -452,7 +450,7 @@ describe("useRover", () => {
 	});
 
 	it("pressing home key", () => {
-		render(<TestToolbar />);
+		cy.mount(<TestToolbar />);
 
 		cy.findByText("Button One").type("{home}");
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "0");
@@ -480,7 +478,7 @@ describe("useRover", () => {
 	});
 
 	it("pressing end key", () => {
-		render(<TestToolbar />);
+		cy.mount(<TestToolbar />);
 
 		cy.findByText("Button One").type("{end}");
 		cy.findByText("Button One").invoke("attr", "tabindex").should("equal", "-1");
@@ -509,7 +507,7 @@ describe("useRover", () => {
 
 	it("manages focus when switching between keyboard and mouse input", () => {
 		const flags = [false, false, false];
-		render(<TestToolbar flags={flags} direction="horizontal" />);
+		cy.mount(<TestToolbar flags={flags} direction="horizontal" />);
 
 		cy.findByText("Button One").click();
 		cy.findByText("Button One").invoke("attr", "data-focused").should("equal", "true");
