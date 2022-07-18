@@ -24,7 +24,7 @@ export {
 	FocusManagerConsumer,
 	useFocusManager,
 } from "./components/focus-manager/index";
-export { Heading, Level, useHeadings } from "./components/semantic-headings";
+export { Heading, Level, Level as HeadingLevel, useHeadings } from "./components/semantic-headings";
 export { SkipLinks } from "./components/skip-links";
 export {
 	RoverConsumer,

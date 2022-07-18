@@ -12,6 +12,8 @@
  */
 
 import React, {
+	Ref,
+	forwardRef,
 	createElement,
 	useContext,
 	PropsWithChildren,
@@ -93,17 +95,23 @@ export function Level({ dangerouslySetHeadingLevel, children }: PropsWithChildre
  * // Passing HTML element props to the component
  * <Heading id="a-title" className="fdz-css-a-classname">a title</Heading>
  *
- *
- * @param {HeadingProps} props
- * @returns {JSX.Element}
+ * // Passing a React ref to the component
+ * <Heading ref={elementRef}>a title</Heading>
  */
-export function Heading({ children, offset, ...props }: HeadingProps) {
-	const contextLevel = useContext(HeadingsContext);
-	const proposedLevel = contextLevel + (offset !== undefined ? offset : 0);
-	const level = getHeadingLevel(proposedLevel);
-	const HeadingLevel = `h${level}`;
+export const Heading = forwardRef(
+	({ children, offset, ...props }: HeadingProps, ref: Ref<HTMLHeadingElement> | undefined) => {
+		const contextLevel = useContext(HeadingsContext);
+		const proposedLevel = contextLevel + (offset !== undefined ? offset : 0);
+		const level = getHeadingLevel(proposedLevel);
+		const HeadingLevel = `h${level}`;
+		const elementProps = {
+			"data-testid": "fdz-js-heading",
+			...props,
+			ref,
+		};
 
-	return createElement(HeadingLevel, { "data-testid": "fdz-js-heading", ...props }, children);
-}
+		return createElement(HeadingLevel, elementProps, children);
+	},
+);
 
 export * from "./useHeadings";
