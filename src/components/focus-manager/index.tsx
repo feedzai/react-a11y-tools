@@ -396,7 +396,7 @@ function useRestoreFocus({ items, restoreFocus, contain }: IUseRestoreFocus): vo
 				document.removeEventListener("keydown", onKeyDown, true);
 			}
 
-			if (restoreFocus && nodeToRestore && isElementInScope(document.activeElement, scope)) {
+			if (restoreFocus && nodeToRestore) {
 				requestAnimationFrame(() => {
 					if (document.body.contains(nodeToRestore)) {
 						focusElement(nodeToRestore);
