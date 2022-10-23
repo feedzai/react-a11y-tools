@@ -21,18 +21,19 @@
 	},
 	"scripts": {
 		"build": "vite build",
-		"format:fix": "npm run prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
+		"format:fix": "yarn prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
 		"lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
 		"typecheck": "tsc --project ./tsconfig.json",
 		"prettier:base": "prettier --parser typescript",
 		"postbuild": "npx size-limit",
-		"documentation:start": "cd ./documentation && npm run start",
-		"documentation:build": "cd ./documentation && npm run build",
-		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && npm run deploy",
-		"reinstall": "rm -rf node_modules && npm install",
+		"documentation:start": "cd ./documentation && yarn start",
+		"documentation:start-ci": "cd ./documentation && yarn install && yarn start",
+		"documentation:build": "cd ./documentation && yarn build",
+		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && yarn deploy",
+		"reinstall": "rm -rf node_modules && yarn install",
 		"coverage:clean": "rm -rf .nyc_output coverage-reports coverage || true",
 		"coverage:merge": "node ./scripts/merge-coverage.js",
-		"pretest": "npm run coverage:clean",
+		"pretest": "yarn coverage:clean",
 		"test:jest": "jest --env=jsdom --coverage --passWithNoTests",
 		"test:jest-watch": "jest --env=jsdom --watch --coverage --passWithNoTests",
 		"test:jest-ci": "jest --env=jsdom --ci --coverage --maxWorkers=2",
@@ -40,9 +41,9 @@
 		"test:component-run": "NODE_ENV=cypress cypress run --component --browser chrome",
 		"test:integration-open": "NODE_ENV=cypress cypress open --e2e",
 		"test:integration-run": "NODE_ENV=cypress cypress run --e2e --browser chrome",
-		"test:integration": "start-server-and-test documentation:start 3000 'npm run test:integration-run'",
-		"test": "npm run test:jest && npm run test:component-run && npm run test:integration && npm run coverage:merge",
-		"test:ci": "npm run test:jest-ci && npm run test:component-run && npm run test:integration"
+		"test:integration": "start-server-and-test documentation:start-ci 3000 'yarn test:integration-run'",
+		"test": "yarn test:jest && yarn test:component-run && yarn test:integration && yarn coverage:merge",
+		"test:ci": "yarn test:jest-ci && yarn test:component-run && yarn test:integration"
 	},
 	"peerDependencies": {
 		"react": ">=16.14.0",
@@ -145,8 +146,8 @@
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,html}": [
-			"npm run format:fix",
-			"npm run lint"
+			"yarn format:fix",
+			"yarn lint"
 		]
 	},
 	"size-limit": [
