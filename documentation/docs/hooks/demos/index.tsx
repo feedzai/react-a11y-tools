@@ -15,3 +15,4 @@
  * @since ```feedzai.next.release```
  */
 export * from "./useTabbable";
+export * from "./useAutoId";
