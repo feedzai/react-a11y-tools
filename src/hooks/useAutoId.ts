@@ -11,7 +11,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.1.0
  */
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { makeId } from "../helpers";
 import { useSafeLayoutEffect } from "./useSafeLayoutEffect";
 
@@ -24,6 +24,12 @@ let id = 0;
  * @returns {number}
  */
 const generateIncrementalId = () => ++id;
+
+// Workaround for https://github.com/webpack/webpack/issues/14814
+// https://github.com/eps1lon/material-ui/blob/8d5f135b4d7a58253a99ab56dce4ac8de61f5dc1/packages/mui-utils/src/useId.ts#L21
+const getIdFromReactUseId: undefined | (() => string) = (React as any)[
+	"useId".toString()
+];
 
 /**
  * Generate automatic IDs to facilitate WAI-ARIA
@@ -52,6 +58,18 @@ const generateIncrementalId = () => ++id;
  * @returns {string | undefined} an auto/self-generated id with a possible prefix
  */
 function useAutoId(customId?: string | null, prefix?: string): string | undefined {
+	/**
+	 * Since React v18, `useId` is a hook exported by React which also does the job of generating id automatically
+	 * If the project is using version 18 or above, then we don't want to be doing the job that React already does,
+	 * so we take advantage of the hook and add, if necessary, a prefix.
+	 * */
+	if (getIdFromReactUseId !== undefined) {
+		const autoId = getIdFromReactUseId();
+		const generatedId = customId ?? autoId;
+
+		return prefix ? makeId(prefix, generatedId) : generatedId;
+	}
+
 	const { current: idPrefix } = useRef(prefix);
 	const initialId = customId || (hasHydrated ? generateIncrementalId() : null);
 	const [id, setId] = useState(initialId);
