@@ -1,12 +1,20 @@
 /*
- * The file cannot be reproduced in whole or in part, stored in a retrieval system, transmitted
+ * The copyright of this file belongs to Feedzai. The file cannot be
+ * reproduced in whole or in part, stored in a retrieval system, transmitted
  * in any form, or by any means electronic, mechanical, or otherwise, without
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2022 Feedzai, Rights Reserved.
  */
-import { callIfExists } from "@jtmdias/js-utilities";
+
+/**
+ * index.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since ```feedzai.next.release```
+ */
+import { callIfExists } from "../../helpers";
 import { FocusEvent, useCallback, useRef } from "react";
 import { useSyntheticBlurEvent } from "./helpers";
 import { UseFocusWithinProps, UseFocusWithinReturns } from "./types";

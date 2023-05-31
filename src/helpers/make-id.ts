@@ -2,7 +2,14 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * make-id.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.1.0
  */
 
 /**
@@ -13,7 +20,7 @@
  * // Custom generated id by using the `useAutoId` hook and the `makeId` function
  * // to join the auto-generated id with a custom string
  * const autoId = useAutoId(id);
- * const { current: generatedId } = useRef(makeId("js-tabbable-button-", autoId));
+ * const { current: generatedId } = useRef(makeId("fdz-js-tabbable-button-", autoId));
  *
  * @param args
  * @returns {string}

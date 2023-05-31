@@ -2,7 +2,14 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * skip-links.mocks.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import { ISkipLink } from "../../../../src/components/skip-links/link";
 

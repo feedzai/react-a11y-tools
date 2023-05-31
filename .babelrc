@@ -3,6 +3,9 @@
 	"env": {
 		"test": {
 			"plugins": ["istanbul", "@babel/plugin-proposal-optional-chaining"]
+		},
+		"cypress": {
+			"plugins": ["istanbul"]
 		}
 	}
 }

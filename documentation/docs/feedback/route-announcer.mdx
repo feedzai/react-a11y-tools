@@ -63,7 +63,7 @@ At the top, import the `useRouter` hook, which accesses the router object inside
 
 ```jsx
 import { useRouter } from "next/router";
-import { RouteAnnouncer } from "@jtmdias/react-a11y-tools/";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
 ```
 
 ##### 2. Get the `pathname` from the `useRouter` hook
@@ -104,7 +104,7 @@ This will sit on top of the rest of the content (or wherever possible).
 
 ```jsx
 import React from "react";
-import { RouteAnnouncer } from "@jtmdias/react-a11y-tools/";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
 import { createHistory, LocationProvider } from "@reach/router";
 
 export const history = createHistory(window);
@@ -175,7 +175,7 @@ This will sit on top of the rest of the content (or wherever possible).
 
 ```jsx
 import React from "react";
-import { RouteAnnouncer } from "@jtmdias/react-a11y-tools/";
+import { RouteAnnouncer } from "@feedzai/react-a11y-tools";
 import { useLocation } from "react-router-dom";
 
 export default function PageAnnouncer({ children }) {

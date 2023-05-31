@@ -2,7 +2,14 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * link.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import React, { FunctionComponent, useCallback, KeyboardEvent } from "react";
 import "./styles.css";
@@ -43,15 +50,15 @@ export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => 
 				role="link"
 				type="button"
 				onKeyUp={onKeyUp}
-				className="css-skip-links__item"
-				data-testid="js-skip-link"
+				className="fdz-css-skip-links__item"
+				data-testid="fdz-js-skip-link"
 			>
 				{text}
 			</button>
 		);
 	}
 	return (
-		<a href={target} className="css-skip-links__item" data-testid="js-skip-link">
+		<a href={target} className="fdz-css-skip-links__item" data-testid="fdz-js-skip-link">
 			{text}
 		</a>
 	);

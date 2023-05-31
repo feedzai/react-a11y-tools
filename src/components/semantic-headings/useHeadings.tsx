@@ -1,8 +1,15 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
  */
+/**
+ * useHeadings.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
+ */
+
 import { useContext } from "react";
 import { HeadingsContext } from "./context";
 import { getHeadingLevel } from "./helpers";

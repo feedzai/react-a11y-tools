@@ -2,10 +2,17 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * useSafeLayoutEffect.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import { useLayoutEffect, useEffect } from "react";
-import { isBrowser } from "@jtmdias/js-utilities";
+import { isBrowser } from "../helpers/isBrowser";
 
 /**
  * `useLayoutEffect` that does not show warning when server-side rendering.

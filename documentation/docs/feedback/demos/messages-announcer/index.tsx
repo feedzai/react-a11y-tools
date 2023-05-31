@@ -2,10 +2,17 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * index.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import React from "react";
-import { classNames } from "@jtmdias/js-utilities";
+import classNames from "clsx";
 import { MessagesAnnouncer, useMessagesAnnouncer } from "../../../../../src";
 import styles from "./styles.module.scss";
 

@@ -2,7 +2,14 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * use-rover.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import { useRef, useCallback, useContext, RefObject, KeyboardEvent } from "react";
 import { useSafeLayoutEffect } from "../../hooks/index";
@@ -72,7 +79,7 @@ function getDirection<GenericType>(
  */
 export function useRover<GenericType>(
 	domElementRef: RefObject<GenericType | any>,
-	disabled?: boolean,
+	disabled: boolean,
 	id?: string,
 ): [number, boolean, (event: KeyboardEvent<GenericType | any>) => void, () => void, RovingContext] {
 	const tabIndexId = useRef(id || uniqueId("react-a11y-tools-rover-index_"));

@@ -1,9 +1,16 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
  */
-import { inRange } from "@jtmdias/js-utilities";
+
+/**
+ * helpers.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
+ */
+import { inRange } from "../../helpers";
 import { FIRST_HEADING_LEVEL, LAST_HEADING_LEVEL } from "./constants";
 
 /**

@@ -3,10 +3,17 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * context.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
  */
 import { createContext } from "react";
-import { emptyFunction } from "@jtmdias/js-utilities";
+import { emptyfunction } from "../../../helpers";
 import { RovingContext, RovingState } from "../index";
 
 export const initialState: RovingState = {
@@ -20,5 +27,5 @@ export const RoverContext = createContext<RovingContext>({
 	state: {
 		...initialState,
 	},
-	dispatch: emptyFunction,
+	dispatch: emptyfunction,
 });

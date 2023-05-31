@@ -5,16 +5,13 @@ const RESIZE_OBSERVER_LOOP_ERROR = /^[^(ResizeObserver loop limit exceeded)]/;
  * that promise is provided as a third argument.
  * On those cases, we can turn the failing off.
  */
-function handleOnUncaughtException(error: Error, _: Mocha.Runnable, promise: Promise<any>): false | undefined  {
+function handleOnUncaughtException(error: Error, _: Mocha.Runnable, promise: Promise<any>) {
 	const isResizeObserverLoop = RESIZE_OBSERVER_LOOP_ERROR.test(error.message);
-	const isUnhandledPromiseRejection = !!(promise);
-	const shouldSupressError = Boolean(isResizeObserverLoop || isUnhandledPromiseRejection);
+	const isUnhandledPromiseRejection = promise;
 
-	if(!shouldSupressError) {
-		return;
+	if (isResizeObserverLoop || isUnhandledPromiseRejection) {
+		return false;
 	}
-
-	return false;
 }
 
 // eslint-disable-next-line consistent-return

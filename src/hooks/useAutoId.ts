@@ -2,7 +2,14 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
+
+/**
+ * useAutoId.ts
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.1.0
  */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { makeId } from "../helpers";
@@ -34,10 +41,10 @@ const generateIncrementalId = () => ++id;
  * const id2 = useAutoId("8e88aa2e-e6a8") // will return "8e88aa2e-e6a8"
  *
  * // Using a prefix with an auto-generated id (no pre-defined id)
- * const id3 = useAutoId(undefined, "jd-prefix") // will return, for example, "jd-prefix--10"
+ * const id3 = useAutoId(undefined, "fdz-prefix") // will return, for example, "fdz-prefix--10"
  *
  * // Using a prefix with a pre-defined id
- * const id4 = useAutoId("6949d175", "js-checkbox") // will return "js-checkbox--6949d175"
+ * const id4 = useAutoId("6949d175", "fdz-js-checkbox") // will return "fdz-js-checkbox--6949d175"
  *
  * @param {string | null | undefined} customId - You can pass an previously defined value
  * and that value will be used as the value of the returned id.

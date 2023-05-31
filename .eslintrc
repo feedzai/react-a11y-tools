@@ -4,6 +4,7 @@
 		"browser": true,
 		"es6": true,
 		"node": true,
+		"jest": true
 	},
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
@@ -12,6 +13,7 @@
 		"react/no-did-update-set-state": "warn",
 		"consistent-return": "warn",
 		"complexity": "warn",
+		"jest/no-disabled-tests": "off",
 		"react/no-access-state-in-setstate": "warn",
 		"no-prototype-builtins": "warn",
 		"jsx-a11y/no-autofocus": 0,

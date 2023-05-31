@@ -1,8 +1,16 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
  */
+
+/**
+ * index.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since 1.0.0
+ */
+
 import React, {
 	Ref,
 	forwardRef,
@@ -85,7 +93,7 @@ export function Level({ dangerouslySetHeadingLevel, children }: PropsWithChildre
  * <Heading offset={1}>a title</Heading>
  *
  * // Passing HTML element props to the component
- * <Heading id="a-title" className="css-a-classname">a title</Heading>
+ * <Heading id="a-title" className="fdz-css-a-classname">a title</Heading>
  *
  * // Passing a React ref to the component
  * <Heading ref={elementRef}>a title</Heading>
@@ -97,7 +105,7 @@ export const Heading = forwardRef(
 		const level = getHeadingLevel(proposedLevel);
 		const HeadingLevel = `h${level}`;
 		const elementProps = {
-			"data-testid": "js-heading",
+			"data-testid": "fdz-js-heading",
 			...props,
 			ref,
 		};

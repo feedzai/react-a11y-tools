@@ -1,116 +1,97 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+/*
+ * The copyright of this file belongs to Feedzai. The file cannot be
+ * reproduced in whole or in part, stored in a retrieval system, transmitted
+ * in any form, or by any means electronic, mechanical, or otherwise, without
+ * the prior permission of the owner. Please refer to the terms of the license
+ * agreement.
+ *
+ * (c) 2021 Feedzai, Rights Reserved.
+ */
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const path = require('path');
+/**
+ * docusaurus.config.js
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since ```feedzai.next.release```
+ */
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+/**
+ * @type {import('@docusaurus/types').DocusaurusConfig}
+ * */
+module.exports = {
 	title: "react-a11y-tools",
 	tagline: "Focus on Accessible Web experiences",
-  favicon: 'img/favicon.ico',
-
-  // Set the production url of your site here
-	url: "https://joaotmdias.github.io",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+	url: "https://feedzai.github.io",
 	baseUrl: "/react-a11y-tools/",
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-	organizationName: "@jtmdias",
+	onBrokenLinks: "throw",
+	onBrokenMarkdownLinks: "warn",
+	favicon: "img/favicon.svg",
+	organizationName: "@feedzai",
 	projectName: "react-a11y-tools",
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+	presets: [
+		[
+			"@docusaurus/preset-classic",
+			/** @type {import('@docusaurus/preset-classic').Options} */
+			({
+				docs: {
+					sidebarPath: require.resolve("./sidebars.js"),
+					editUrl: "https://github.com/feedzai/react-a11y-tools/",
+				},
+				theme: {
+					customCss: require.resolve("./src/css/custom.css"),
+				},
+			}),
+		],
+	],
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
-  plugins: [() => ({
-    name: 'resolve-react',
-    configureWebpack() {
-      return {
-        resolve: {
-          alias: {
-            // assuming root node_modules is up from "./packages/<your-docusaurus>
-            react: path.resolve('../node_modules/react'),
-          },
-        },
-      };
-    },
-  }),
-    "docusaurus-plugin-sass",
-    [
-      "docusaurus-plugin-react-docgen-typescript",
-      {
-        src: ["../src/**/*.tsx"],
-        global: true,
-        parserOptions: {
-          propFilter: (prop, component) => {
-            if (prop.parent) {
-              return !prop.parent.fileName.includes("@types/react");
-            }
+	plugins: [
+		"docusaurus-plugin-sass",
+		[
+			"docusaurus-plugin-react-docgen-typescript",
+			{
+				src: ["../src/**/*.tsx"],
+				global: true,
+				parserOptions: {
+					propFilter: (prop, component) => {
+						if (prop.parent) {
+							return !prop.parent.fileName.includes("@types/react");
+						}
 
-            return true;
-          },
-        },
-      },
-    ],
-  ],
+						return true;
+					},
+				},
+			},
+		],
+	],
 
-  presets: [
-    [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-        },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
-    ],
-  ],
-
-
-
-
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
-      navbar: {
+	themeConfig:
+		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+		({
+			navbar: {
 				title: "React a11y tools",
-        logo: {
-          alt: '',
+				logo: {
+					alt: "",
 					src: "img/favicon.svg",
-        },
+				},
 				items: [
 					{
-						href: "https://www.npmjs.com/package/@jtmdias/react-a11y-tools/",
+						href: "https://www.npmjs.com/package/@feedzai/react-a11y-tools",
 						label: "NPM",
 						position: "right",
 					},
 					{
-						href: "https://github.com/joaotmdias/react-a11y-tools/",
+						href: "https://github.com/feedzai/react-a11y-tools",
 						label: "GitHub",
 						position: "right",
 					},
 				],
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+			},
+			prism: {
+				theme: darkCodeTheme,
+				lightTheme: lightCodeTheme,
+			},
+		}),
 };
-
-module.exports = config;

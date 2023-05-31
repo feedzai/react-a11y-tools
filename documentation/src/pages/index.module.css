@@ -3,7 +3,7 @@
  * and scoped locally.
  */
 
- @font-face {
+@font-face {
 	font-family: "IBMPlexMono";
 	src: url("/fonts/bold/IBMPlexMono-Bold.woff2") format("woff2"),
 		url("/fonts/bold/IBMPlexMono-Bold.woff") format("woff");

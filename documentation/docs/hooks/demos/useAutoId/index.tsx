@@ -1,12 +1,20 @@
 /*
- * The file cannot be reproduced in whole or in part, stored in a retrieval system, transmitted
+ * The copyright of this file belongs to Feedzai. The file cannot be
+ * reproduced in whole or in part, stored in a retrieval system, transmitted
  * in any form, or by any means electronic, mechanical, or otherwise, without
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2021 Feedzai, Rights Reserved.
  */
-import React, { useRef, HTMLAttributes, InputHTMLAttributes } from "react";
+
+/**
+ * index.tsx
+ *
+ * @author João Dias <joao.dias@feedzai.com>
+ * @since ```feedzai.next.release```
+ */
+import React, { useRef, useState, HTMLAttributes, InputHTMLAttributes } from "react";
 import { useAutoId, useTabbable } from "../../../../../src/index";
 import { makeId } from "../../../../../src/helpers";
 import styles from "./index.modules.scss";
@@ -24,7 +32,7 @@ type Input = InputHTMLAttributes<HTMLInputElement> &
 
 const Button = ({ id, disabled, ...props }: Button) => {
 	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("js-tabbable-button-", autoId));
+	const { current: generatedId } = useRef(makeId("fdz-js-tabbable-button-", autoId));
 	const { focusable, ...htmlProps } = useTabbable<Button>({
 		...props,
 		disabled,
@@ -39,7 +47,7 @@ const Button = ({ id, disabled, ...props }: Button) => {
 
 const Input = ({ id, disabled, ...props }: Input) => {
 	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("js-tabbable-", autoId));
+	const { current: generatedId } = useRef(makeId("fdz-js-tabbable-", autoId));
 	const { label, focusable, ...htmlProps } = useTabbable<Input>({
 		...props,
 		disabled,
@@ -57,8 +65,8 @@ const Input = ({ id, disabled, ...props }: Input) => {
 
 export const DemoUseAutoId = () => {
 	const autoId = useAutoId();
-	const autoId2 = useAutoId(null, "js-component");
-	const autoId3 = useAutoId("f23104a4-ea6c-49bf-9156-5759037e388d", "js-component");
+	const autoId2 = useAutoId(null, "fdz-js-component");
+	const autoId3 = useAutoId("f23104a4-ea6c-49bf-9156-5759037e388d", "fdz-js-component");
 
 	return (
 		<div className={styles.wrapper}>

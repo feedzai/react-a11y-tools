@@ -29,7 +29,7 @@
 			"hooks/*": ["./src/hooks/*"],
 			"typings/*": ["./src/typings/*"]
 		},
-		"types": ["node"]
+		"types": ["node", "jest", "@testing-library/jest-dom"]
 	},
 	"include": ["src", "global.d.ts"],
 	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "cypress.config.ts"],
