@@ -1,19 +1,11 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * useTabbable.ts
- *
- * An abstract hook that makes elements perceivable for keyboard users.
- *
- * @author João Dias <contacto@joaodias.me>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import { useMemo, HTMLAttributes } from "react";
 import { useDisableEvent, UseDisableEventReturns } from "./useDisableEvent";
+import { toggleDataAttribute } from "@jtmdias/js-utilities";
 
 type HTMLElementsSupportDisable = HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 type TabbableComponent<Props> = Props & {
@@ -38,9 +30,11 @@ interface TabRelatedAttributes {
 	disabled?: boolean;
 	"aria-disabled"?: HTMLAttributes<HTMLElement>["aria-disabled"];
 }
-type UseTabbableHTMLProps<Props> = HTMLTabbableElement<Props> & TabRelatedAttributes & {
+type UseTabbableHTMLProps<Props> = Omit<HTMLTabbableElement<Props>, "focusable"> & TabRelatedAttributes & {
+
 	onClickCapture: UseDisableEventReturns;
 	onMouseDownCapture: UseDisableEventReturns;
+	onDragCapture: UseDisableEventReturns;
 	onKeyPressCapture: UseDisableEventReturns;
 }
 
@@ -91,21 +85,35 @@ function getDisabledState(disabled?: boolean, focusable?: boolean): TabRelatedAt
 * An abstract hook that makes elements perceivable for keyboard users.
 * If the element is disabled, then it also disables any mouse or keyboard events to bubble up.
 *
-* @export
-* @param {HTMLTabbableElement} htmlProps
-* @returns {UseTabbableHTMLProps}
+* @example
+* ```jsx
+*	function Component({ disabled, onClick, ...componentProps }) {
+*		const tabbableProps = useTabbable({
+*			...componentProps,
+*			disabled,
+*			onClick,
+* 	});
+*
+*		return (
+*			<button type="button" {...tabbableProps}>A Button</button>
+*		):
+* }
+* ```
 */
-export function useTabbable<GenericProps>(htmlProps: HTMLTabbableElement<GenericProps>): UseTabbableHTMLProps<GenericProps> {
-	const disabledState = useMemo(() => getDisabledState(htmlProps.disabled, htmlProps.focusable), [htmlProps.disabled, htmlProps.focusable]);
+export function useTabbable<GenericProps>({ focusable, ...htmlProps }: HTMLTabbableElement<GenericProps>): UseTabbableHTMLProps<GenericProps> {
+	const disabledState = useMemo(() => getDisabledState(htmlProps.disabled, focusable), [htmlProps.disabled, focusable]);
 	const onClickCapture = useDisableEvent(htmlProps.disabled);
 	const onMouseDownCapture = useDisableEvent(htmlProps.disabled);
 	const onKeyPressCapture = useDisableEvent(htmlProps.disabled);
+	const onDragCapture = useDisableEvent(htmlProps.disabled);
 
 	return {
 		...htmlProps,
 		...disabledState,
+		onDragCapture,
 		onClickCapture,
 		onMouseDownCapture,
 		onKeyPressCapture,
+		"data-focusable":  toggleDataAttribute(focusable),
 	};
 }

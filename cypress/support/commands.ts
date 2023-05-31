@@ -3,24 +3,16 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * commands.ts
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import "@testing-library/cypress/add-commands";
 import "cypress-real-events/support";
-import "./a11y";
+import "cypress-axe";
 import { isAriaDisabled } from "./a11y/assertions/isAriaDisabled";
 import { recurse } from "cypress-recurse";
-import { mount, unmount, mountHook } from "cypress/react";
+import { mount } from "cypress/react";
 
 chai.use(isAriaDisabled);
-
 
 declare global {
 	namespace Cypress {
@@ -32,8 +24,6 @@ declare global {
 			): Cypress.Chainable<JQuery<HTMLElement>>;
 
 			mount: typeof mount;
-			unmount: typeof unmount;
-			mountHook: typeof mountHook;
 		}
 	}
 }
@@ -80,3 +70,5 @@ Cypress.Commands.add(
 		).should("have.focus");
 	},
 );
+
+Cypress.Commands.add("mount", mount);

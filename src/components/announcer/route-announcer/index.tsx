@@ -2,17 +2,10 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
-import { usePrevious } from "../../../hooks";
+import { usePrevious } from "@jtmdias/js-utilities";
 import { Announcer } from "../announcer";
 
 export interface IRouteAnnouncerActions {

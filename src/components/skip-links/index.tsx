@@ -2,14 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { FunctionComponent } from "react";
 import { ISkipLink, SkipLink, SKIP_LINK_DEFAULT_PROPS } from "./link";
@@ -51,7 +44,7 @@ export const SkipLinks: FunctionComponent<ISkipLinksProps> = ({ items }) => {
 			);
 
 		return (
-			<div className="fdz-css-skip-links" data-testid="fdz-js-skip-links">
+			<div className="css-skip-links" data-testid="js-skip-links">
 				{list}
 			</div>
 		);

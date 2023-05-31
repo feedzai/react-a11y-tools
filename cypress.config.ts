@@ -10,6 +10,8 @@ export default defineConfig({
 	},
 	video: false,
 	e2e: {
+		supportFile: 'cypress/support/integration.ts',
+		specPattern: ['cypress/test/integration/**/*.{cy,spec,test}.{js,jsx,ts,tsx}'],
 		baseUrl: "http://localhost:3000/react-a11y-tools",
 		setupNodeEvents(on, config) {
 			codeCoverageTask(on, config);
@@ -18,7 +20,8 @@ export default defineConfig({
 		},
 	},
 	component: {
-		specPattern: "cypress/test/**/*.spec.{js,jsx,ts,tsx}",
+		supportFile: 'cypress/support/unit.ts',
+		specPattern: "cypress/test/unit/**/*.{cy,spec,test}.{js,jsx,ts,tsx}",
 		devServer: {
 			framework: "react",
 			bundler: "vite",

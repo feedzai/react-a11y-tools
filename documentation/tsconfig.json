@@ -13,12 +13,14 @@
 		"alwaysStrict": true,
 		"isolatedModules": true,
 		"resolveJsonModule": true,
+		"esModuleInterop": true,
 
 		/* Additional Checks */
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
+		"jsx": "react",
 
 		/* Structure */
 		"baseUrl": "./",

@@ -1,20 +1,13 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { useRef } from "react";
 import { makeId } from "../../helpers";
 import { useAutoId } from "../../hooks";
 import { CommonElement } from "../../typings/common";
-import { PolymorphicComponentProps } from "../../typings/polymorphic";
+import { PolymorphicComponentProps } from "@jtmdias/js-utilities";
 
 /**
  * Styles to visually hide an element
@@ -40,7 +33,7 @@ export type VisuallyHiddenProps<C extends React.ElementType> = PolymorphicCompon
 const DEFAULT_ELEMENT_TAG = "span";
 
 export const DEFAULT_PROPS: Partial<VisuallyHiddenProps<"span">> = {
-	"data-testid": "fdz-js-visually-hidden",
+	"data-testid": "js-visually-hidden",
 };
 
 /**

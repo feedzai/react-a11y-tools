@@ -1,21 +1,12 @@
 /// <reference types="cypress" />
 /*
- * The copyright of this file belongs to Feedzai. The file cannot be
- * reproduced in whole or in part, stored in a retrieval system, transmitted
+ * The file cannot be reproduced in whole or in part, stored in a retrieval system, transmitted
  * in any form, or by any means electronic, mechanical, or otherwise, without
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2022 Feedzai, Rights Reserved.
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
-
-/**
- * isAriaDisabled.ts
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
- */
-
 
 /**
  * Chai assert that verifies if an element has/hasn't got the `aria-disabled`

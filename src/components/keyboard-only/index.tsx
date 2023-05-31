@@ -2,14 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { FunctionComponent } from "react";
 import { useSafeLayoutEffect } from "../../hooks/index";
@@ -26,12 +19,12 @@ const removeClass = (className: string) => document.documentElement.classList.re
  */
 export const KeyboardOnly: FunctionComponent = () => {
 	useSafeLayoutEffect(() => {
-		addClass("fdz-css-no-mouse");
+		addClass("css-no-mouse");
 
 		return () => {
-			removeClass("fdz-css-no-mouse");
+			removeClass("css-no-mouse");
 		};
 	}, []);
 
-	return <div data-testid="fdz-js-audit" />;
+	return <div data-testid="js-audit" />;
 };

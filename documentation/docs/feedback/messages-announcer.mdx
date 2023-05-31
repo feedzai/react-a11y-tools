@@ -32,7 +32,7 @@ You can use component to wrap the contents of a form, for instance.
 This renders the form and, alongside it, the ARIA live region.
 
 ```jsx
-import { MessagesAnnouncer } from "@feedzai/react-a11y-tools";
+import { MessagesAnnouncer } from "@jtmdias/react-a11y-tools/";
 ...
 return (
 	<MessagesAnnouncer>
@@ -50,7 +50,7 @@ To dispatch messages inside a functional component, you can take advantage of th
 First, import the hook at the top of the file:
 
 ```jsx
-import { useMessageAnnouncer } from "@feedzai/react-a11y-tools";
+import { useMessageAnnouncer } from "@jtmdias/react-a11y-tools/";
 ```
 
 Then, after you've defined your component, save the hook to a constant:
@@ -83,7 +83,7 @@ The component takes advantage of React's `Context` API to use the updater functi
 To have the announcer available for the whole app, consider wrapping the content with it. This way, you can access the `setMessage` function from any component inside.
 
 ```jsx
-import { MessagesAnnouncer } from "@feedzai/react-a11y-tools";
+import { MessagesAnnouncer } from "@jtmdias/react-a11y-tools/";
 ...
 return (
 	<MessagesAnnouncer>
@@ -98,7 +98,7 @@ You can use the `MessageAnnouncer` along with the `RouteAnnouncer`.
 However, we recommend that you still place the `RouteAnnouncer` at the top and then inside it, the `MessagesAnnouncer`.
 
 ```jsx
-import { MessagesAnnouncer } from "@feedzai/react-a11y-tools";
+import { MessagesAnnouncer } from "@jtmdias/react-a11y-tools/";
 ...
 return (
 	<RouteAnnouncer pathname={pathname}>

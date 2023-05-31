@@ -2,17 +2,10 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * announcer.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React from "react";
-import { isString } from "../../helpers/isString";
+import { isString } from "@jtmdias/js-utilities";
 
 export interface IAnnouncerProps {
 	id?: string;
@@ -35,7 +28,7 @@ const styles: React.CSSProperties = {
 };
 
 const defaultProps: Partial<IAnnouncerProps> = {
-	id: "fdz-js-route-announcer",
+	id: "js-route-announcer",
 	styles,
 	"aria-live": "assertive",
 	"aria-atomic": "true",
@@ -87,8 +80,8 @@ export const Announcer = ({
 			id={id}
 			aria-live={ariaLive}
 			aria-atomic={ariaAtomic}
-			className="fdz-css-announcer"
-			data-testid="fdz-js-announcer"
+			className="css-announcer"
+			data-testid="js-announcer"
 			style={styles}
 		>
 			{renderText()}

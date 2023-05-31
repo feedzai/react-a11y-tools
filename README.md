@@ -1,5 +1,5 @@
 <div align="center">
-<h1>@feedzai/react-a11y-tools</h1>
+<h1>react-a11y-tools</h1>
 
 <p>A small React component library that aims to ease the process of creating accessible design systems, web apps or websites</p>
 
@@ -9,15 +9,16 @@
 
 </div>
 
-<p align="center">
-  <img height="20" loading="lazy" alt="Latest Release" src="https://badgen.net/npm/v/@feedzai/react-a11y-tools"/>
-  <img height="20" loading="lazy" alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@feedzai/react-a11y-tools"/>
-  <img height="20" loading="lazy" alt="Tree Shaking Support" src="https://badgen.net/bundlephobia/tree-shaking/@feedzai/react-a11y-tools"/>
-  <img height="20" loading="lazy" alt="Dependency Count" src="https://badgen.net/bundlephobia/dependency-count/@feedzai/react-a11y-tools"/>
-  <img height="20" loading="lazy" alt="MIT License" src="https://badgen.net/npm/license/@feedzai/react-a11y-tools"/>
-</p>
-<br />
-<br/>
+---
+
+<!-- prettier-ignore-start -->
+[![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
+[![version][version-badge]][package]
+[![downloads][downloads-badge]][npmtrends]
+[![MIT License][license-badge]][license]
+[![PRs Welcome][prs-badge]][prs]
+<!-- prettier-ignore-end -->
 
 ## Table of Contents
 
@@ -33,8 +34,7 @@
 	- [🐛 Bugs](#-bugs)
 	- [💡 Feature Requests](#-feature-requests)
 - [Tests](#tests)
-	- [Run all component tests](#run-all-component-tests)
-	- [Jest tests](#jest-tests)
+	- [Run all component tests](#run-all-component-tests)s
 	- [Cypress component tests:](#cypress-component-tests)
 	- [End-to-end tests:](#end-to-end-tests)
 
@@ -44,32 +44,34 @@
 
 We are in the era of design systems. Every company - from the smallest to the largest - has one or has thought about making one. These are great, and they provide the tools for building quick, fast and consistent user interfaces.
 
-However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our own from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
+However, accessibility is still far from an easy task, especially when using libraries like React.
+
+Whether we developers use others' design systems or build our own from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
 <br />
 <br/>
 
 ## The Solution
 
-Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects we think can provide a helping hand.
+My goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects we think can provide a helping hand.
 
 This library provides accessibility and behaviour following the WAI-ARIA Authoring Practices, including screen-reader and keyboard navigation support.
 
 We do not force any styling methodology or design-specific details. Instead, the little package provides the behaviour and interactions so that you can focus on your design.
 
-We also provide a simple testing tool so that you can emulate a no-mouse environment.
+There's also a simple testing tool so that you can emulate a no-mouse environment.
 <br />
 <br/>
 
 ## Installation
 
-Inside your React project directory, install React A11y Tools by running either of the following:
+Inside your React project directory, install the package by running either of the following:
 
 ```sh
-$ npm install @feedzai/react-a11y-tools
+$ npm install react-a11y-tools
 
 # or if you use Yarn
 
-$ yarn add @feedzai/react-a11y-tools
+$ yarn add react-a11y-tools
 ```
 
 <br />
@@ -117,38 +119,57 @@ a 👍. This helps maintainers prioritize what to work on.
 
 There are two layers of tests written for this library:
 
-- We use Jest and Cypress to do component testing.
-- The end-to-end tests are also made using the Cypress runner.
+- We use  Cypress to do component and integration testing.
 
 To run the whole suite of tests, make sure you've done the steps in [installation](#installation), then:
 
-### Run all component tests
+### Run all tests
 
 ```sh
 npm run test
 ```
 
-### Jest tests
-
-```sh
-npm run test:jest
-```
-
 ### Cypress component tests:
 
 ```sh
-npm run test:ct
+# In UI mode
+npm run test:component-open
+
+# in headless mode
+npm run test:component-run
 ```
 
-### End-to-end tests:
+### Integration tests:
 
 ```sh
-# 1.1 Open Storybook
-npm run storybook
+# 1.1 Open Documentation website
+npm run documentation:start
 
-# 1.2 Open Cypress
-npm run test:cypress
-
-# 2. Run them in Headless mode
-npm run test:e2e
+# 1.2 Open Cypress in UI mode
+npm run test:integration-open
 ```
+
+<!-- prettier-ignore-start -->
+[npm]: https://www.npmjs.com
+[node]: https://nodejs.org
+[build-badge]: https://github.com/JoaoTMDias/react-a11y-tools/actions/workflows/publish.yml/badge.svg?branch=main
+[build]: https://github.com/JoaoTMDias/react-a11y-tools/actions/workflows/publish.yml
+[coverage-badge]: https://img.shields.io/codecov/c/github/JoaoTMDias/react-a11y-tools.svg?style=flat-square
+[coverage]: https://codecov.io/github/JoaoTMDias/react-a11y-tools
+[version-badge]: https://img.shields.io/npm/v/@jtmdias/react-a11y-tools.svg?style=flat-square
+[package]: https://www.npmjs.com/package/react-a11y-tools
+[downloads-badge]: https://img.shields.io/npm/dm/@jtmdias/react-a11y-tools.svg?style=flat-square
+[npmtrends]: http://www.npmtrends.com/react-a11y-tools
+[license-badge]: https://img.shields.io/npm/l/@jtmdias/react-a11y-tools.svg?style=flat-square
+[license]: https://github.com/JoaoTMDias/react-a11y-tools/blob/main/LICENSE
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prs]: http://makeapullrequest.com
+[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coc]: https://github.com/JoaoTMDias/react-a11y-tools/blob/main/other/CODE_OF_CONDUCT.md
+[emojis]: https://github.com/all-contributors/all-contributors#emoji-key
+[all-contributors]: https://github.com/all-contributors/all-contributors
+[all-contributors-badge]: https://img.shields.io/github/all-contributors/JoaoTMDias/react-a11y-tools?color=orange&style=flat-square
+[bugs]: https://github.com/JoaoTMDias/react-a11y-tools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+sort%3Acreated-desc+label%3Abug
+[requests]: https://github.com/JoaoTMDias/react-a11y-tools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3Aenhancement
+[good-first-issue]: https://github.com/JoaoTMDias/react-a11y-tools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3Aenhancement+label%3A%22good+first+issue%22
+<!-- prettier-ignore-end -->

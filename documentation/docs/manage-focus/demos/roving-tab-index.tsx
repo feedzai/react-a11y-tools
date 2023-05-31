@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { callIfExists } from "../../../../src/helpers";
+import { callIfExists } from "@jtmdias/js-utilities";
 import {
 	RoverProvider,
 	useRover,
@@ -42,7 +42,7 @@ export const DemoRovingTabIndex = () => {
 				<nav
 					className={styles.rover__sidenav}
 					id="sidenav"
-					data-testid="fdz-js-roving-tabindex-sidenav"
+					data-testid="js-roving-tabindex-sidenav"
 				>
 					<span className={styles.rover__sidenav__label}>Menu</span>
 					<ul className={styles.rover__sidenav__list}>
