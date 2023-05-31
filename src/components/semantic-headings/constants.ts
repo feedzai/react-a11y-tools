@@ -1,16 +1,7 @@
 /*
  * Please refer to the terms of the license agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * constants.ts
- *
- * description
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 export const FIRST_HEADING_LEVEL = 1;
 export const LAST_HEADING_LEVEL = 6;

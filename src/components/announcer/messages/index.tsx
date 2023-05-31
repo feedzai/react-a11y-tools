@@ -2,14 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import type { Dispatch } from "react";
 export interface Announcement {

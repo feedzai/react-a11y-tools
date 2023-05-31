@@ -4,14 +4,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { FunctionComponent, RefObject, useEffect, useRef } from "react";
 import { useSafeLayoutEffect } from "../../hooks/index";
@@ -491,9 +484,9 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 
 	return (
 		<FocusContext.Provider value={value}>
-			<span hidden ref={initial} data-testid="fdz-js-focus-manager-guard-initial" />
+			<span hidden ref={initial} data-testid="js-focus-manager-guard-initial" />
 			{children}
-			<span hidden ref={final} data-testid="fdz-js-focus-manager-guard-final" />
+			<span hidden ref={final} data-testid="js-focus-manager-guard-final" />
 		</FocusContext.Provider>
 	);
 };

@@ -1,4 +1,4 @@
-.fdz-css-no-mouse *,
-.fdz-css-no-mouse *:hover {
+.css-no-mouse *,
+.css-no-mouse *:hover {
 	cursor: none !important;
 }

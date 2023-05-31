@@ -13,7 +13,7 @@ export function BrowserWindow({ children, minHeight }: Props) {
 		<article
 			className={styles.browser}
 			style={{ minHeight }}
-			data-testid="fdz-js-docs-browser-window"
+			data-testid="js-docs-browser-window"
 			tabIndex={-1}
 		>
 			<div className={styles["browser__header"]}>

@@ -139,7 +139,6 @@ styleguide/
 bundlestats.json
 
 node_modules/
-jest-coverage
 coverage/
 .sonar/
 coverage-reports

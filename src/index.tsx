@@ -3,14 +3,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 export {
 	MessagesAnnouncer,
@@ -34,7 +27,7 @@ export {
 	useRover,
 } from "./components/roving-tabindex/index";
 export { VisuallyHidden, visuallyHiddenStyle } from "./components/visually-hidden";
-export { callIfExists, focusWithoutScrolling, isBrowser, makeId } from "./helpers";
+export { focusWithoutScrolling, makeId } from "./helpers";
 export {
 	useAutoId,
 	useDisableEvent,

@@ -3,14 +3,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * run-after-transition.ts
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 const transitionsByElement = new Map<EventTarget, Set<string>>();
 const transitionCallbacks = new Set<() => void>();

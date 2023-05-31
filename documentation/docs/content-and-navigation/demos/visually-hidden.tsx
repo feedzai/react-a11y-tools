@@ -19,7 +19,7 @@ export const DemoVisuallyHidden = () => {
 				ref={ref}
 				id={ELEMENT_ID}
 				className={styles.skipLinks__button}
-				data-testid="fdz-js-skip-links-target-button"
+				data-testid="js-skip-links-target-button"
 			>
 				<VisuallyHidden>Press Enter to </VisuallyHidden>
 				<span>Return to Navigation</span>

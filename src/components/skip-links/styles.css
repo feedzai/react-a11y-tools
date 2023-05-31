@@ -1,4 +1,4 @@
-.fdz-css-skip-links__item {
+.css-skip-links__item {
 	--skip-link-background: #111;
 	--skip-link-color: #fff;
 
@@ -23,7 +23,7 @@
 	z-index: 100;
 }
 
-.fdz-css-skip-links__item:not(:focus) {
+.css-skip-links__item:not(:focus) {
 	border: 0;
 	clip: rect(0 0 0 0);
 	height: auto;

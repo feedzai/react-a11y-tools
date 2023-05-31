@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 export const DemoSkipLinks = () => {
 	return (
 		<>
-			<button className={styles.skipLinks__button} data-testid="fdz-js-skip-links-target-button">
+			<button className={styles.skipLinks__button} data-testid="js-skip-links-target-button">
 				Hey, start here!
 			</button>
 			<div className={styles.skipLinks__page}>
@@ -19,7 +19,7 @@ export const DemoSkipLinks = () => {
 							className={styles.skipLinks__target}
 							id="navigation-menu"
 							tabIndex={-1}
-							data-testid="fdz-js-skip-links-nav"
+							data-testid="js-skip-links-nav"
 						>
 							<ul className={styles.skipLinks__list}>
 								<li>
@@ -44,7 +44,7 @@ export const DemoSkipLinks = () => {
 						className={styles.skipLinks__target}
 						id="content"
 						tabIndex={-1}
-						data-testid="fdz-js-skip-links-main"
+						data-testid="js-skip-links-main"
 					>
 						<Heading className={styles["skipLinks__main-title"]}>Bacon Ipsum</Heading>
 						<p className={styles.skipLinks__paragraph}>
@@ -67,7 +67,7 @@ export const DemoSkipLinks = () => {
 						<a
 							className={styles.skipLinks__anchor}
 							id="website"
-							href="https://github.com/feedzai/react-a11y-tools"
+							href="https://github.com/joaotmdias/react-a11y-tools/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -76,7 +76,7 @@ export const DemoSkipLinks = () => {
 						<a
 							className={styles.skipLinks__anchor}
 							id="documentation"
-							href="https://www.npmjs.com/package/@feedzai/react-a11y-tools"
+							href="https://www.npmjs.com/package/@jtmdias/react-a11y-tools/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
