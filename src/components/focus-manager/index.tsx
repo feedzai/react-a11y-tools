@@ -19,6 +19,7 @@ import { focusSafely } from "./helpers/focus-safely";
 import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
 import { FocusContext } from "./context";
 import { FOCUSABLE_ELEMENT_SELECTOR, TABBABLE_ELEMENT_SELECTOR } from "./constants";
+import createFocusManagerState from "./helpers/state";
 
 export interface IFocusManagerProps {
 	/**
@@ -65,9 +66,6 @@ export interface IUseRestoreFocus {
 	restoreFocus?: boolean;
 	contain?: boolean;
 }
-
-let activeScope: RefObject<HTMLElement[]> | null = null;
-const scopes: Set<RefObject<HTMLElement[]>> = new Set();
 
 /**
  *
@@ -234,16 +232,18 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		 * @param {any} event
 		 */
 		const onFocus = (event: any) => {
-			const isInAnyScope = isElementInAnyScope(event.target, scopes);
+			const { __react_a11y_tools_scopes__ } = window;
+			let { __react_a11y_tools_activeScope__ } = window;
+			const isInAnyScope = isElementInAnyScope(event.target, __react_a11y_tools_scopes__);
 
 			if (!isInAnyScope) {
 				if (focusedNode.current) {
 					focusedNode.current.focus();
-				} else if (activeScope) {
-					focusFirstInScope(activeScope.current);
+				} else if (__react_a11y_tools_activeScope__) {
+					focusFirstInScope(__react_a11y_tools_activeScope__.current);
 				}
 			} else {
-				activeScope = scopeRef;
+				__react_a11y_tools_activeScope__ = scopeRef;
 				focusedNode.current = event.target;
 			}
 		};
@@ -253,12 +253,17 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		 * @param event
 		 */
 		const onBlur = (event: any) => {
+			const { __react_a11y_tools_scopes__ } = window;
+			let { __react_a11y_tools_activeScope__ } = window;
 			raf.current = requestAnimationFrame(() => {
 				// Use document.activeElement instead of e.relatedTarget so we can tell if user clicked into iframe
-				const isInAnyScope = isElementInAnyScope(document.activeElement, scopes);
+				const isInAnyScope = isElementInAnyScope(
+					document.activeElement,
+					__react_a11y_tools_scopes__,
+				);
 
 				if (!isInAnyScope) {
-					activeScope = scopeRef;
+					__react_a11y_tools_activeScope__ = scopeRef;
 					focusedNode.current = event.target;
 					focusedNode?.current?.focus();
 				}
@@ -325,10 +330,11 @@ function focusFirstInScope(scope: HTMLElement[] | null) {
  * @param {boolean} [autoFocus]
  */
 function useAutoFocus(items: RefObject<HTMLElement[]>, autoFocus?: boolean) {
+	let { __react_a11y_tools_activeScope__ } = window;
 	useEffect(() => {
 		if (autoFocus) {
-			activeScope = items;
-			if (!isElementInScope(document.activeElement, activeScope.current)) {
+			__react_a11y_tools_activeScope__ = items;
+			if (!isElementInScope(document.activeElement, __react_a11y_tools_activeScope__.current)) {
 				focusFirstInScope(items.current);
 			}
 		}
@@ -473,9 +479,9 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 		}
 
 		items.current = nodes as HTMLElement[];
-		scopes.add(items);
+		window.__react_a11y_tools_scopes__.add(items);
 		return () => {
-			scopes.delete(items);
+			window.__react_a11y_tools_scopes__.delete(items);
 		};
 	}, [children]);
 
@@ -497,6 +503,8 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 		</FocusContext.Provider>
 	);
 };
+
+createFocusManagerState();
 
 export * from "./useFocusManager";
 export * from "./consumer";

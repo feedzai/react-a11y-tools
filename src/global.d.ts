@@ -14,8 +14,8 @@
  */
 declare module "*.css";
 
-declare interface Navigator extends NavigatorUA { }
-declare interface WorkerNavigator extends NavigatorUA { }
+declare interface Navigator extends NavigatorUA {}
+declare interface WorkerNavigator extends NavigatorUA {}
 
 // https://wicg.github.io/ua-client-hints/#navigatorua
 declare interface NavigatorUA {
@@ -54,4 +54,9 @@ interface UALowEntropyJSON {
 interface NavigatorUAData extends UALowEntropyJSON {
 	getHighEntropyValues(hints: string[]): Promise<UADataValues>;
 	toJSON(): UALowEntropyJSON;
+}
+
+interface Window {
+	__react_a11y_tools_activeScope__: RefObject<HTMLElement[]> | null;
+	__react_a11y_tools_scopes__: Set<RefObject<HTMLElement[]>>;
 }
