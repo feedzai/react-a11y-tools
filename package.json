@@ -1,7 +1,7 @@
 {
 	"name": "@feedzai/react-a11y-tools",
 	"author": "Feedzai",
-	"version": "1.4.1-rc-window.0",
+	"version": "1.4.1",
 	"license": "MIT",
 	"main": "dist/index.cjs.js",
 	"typings": "dist/index.d.ts",
