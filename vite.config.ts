@@ -17,8 +17,18 @@ export default defineConfig({
 		lib: {
 			entry: path.resolve(__dirname, "src/index.tsx"),
 			name: "ReactA11yTools",
-			formats: ["es", "cjs"],
-			fileName: (format) => `index.${format}.js`,
+			formats: [
+				"es",
+				"umd",
+			],
+			fileName: (format) => {
+				const OUTPUT = {
+					"es": "index.es.mjs",
+					"umd": "index.umd.cjs",
+				};
+
+				return OUTPUT[format] ?? "index.js"
+			},
 		},
 		rollupOptions: {
 			external: ["react", "react-dom"],
