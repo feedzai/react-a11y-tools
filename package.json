@@ -3,37 +3,39 @@
 	"author": "Feedzai",
 	"version": "1.4.1",
 	"license": "MIT",
-	"main": "dist/index.cjs.js",
-	"typings": "dist/index.d.ts",
-	"module": "dist/index.es.js",
+	"main": "./dist/index.cjs.cjs",
+	"types": "./dist/types/index.d.ts",
+	"module": "./dist/index.es.mjs",
 	"exports": {
 		".": {
-			"import": "./dist/index.es.js",
-			"require": "./dist/index.cjs.js"
+			"import": "./dist/index.es.mjs",
+			"require": "./dist/index.cjs.cjs",
+			"types": "./dist/types/index.d.ts"
 		}
 	},
 	"files": [
 		"dist"
 	],
 	"engine": {
-		"node": "^16.15.1",
-		"npm": "^8.11.0"
+		"node": ">=18",
+		"npm": ">=8"
 	},
 	"scripts": {
 		"build": "vite build",
-		"format:fix": "yarn prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
+		"format:fix": "npm run prettier:base -- --write 'src/**/*.{ts,tsx,js,jsx}'",
 		"lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\" --fix",
 		"typecheck": "tsc --project ./tsconfig.json",
 		"prettier:base": "prettier --parser typescript",
 		"postbuild": "npx size-limit",
-		"documentation:start": "cd ./documentation && yarn start",
-		"documentation:start-ci": "cd ./documentation && yarn install && yarn start",
-		"documentation:build": "cd ./documentation && yarn build",
-		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && yarn deploy",
-		"reinstall": "rm -rf node_modules && yarn install",
+		"postinstall": "cd ./documentation && npm install",
+		"documentation:start": "cd ./documentation && npm run start",
+		"documentation:start-ci": "cd ./documentation && npm run start",
+		"documentation:build": "cd ./documentation && npm run build",
+		"documentation:deploy": "cd ./documentation && GIT_USER=feedzai && npm run deploy",
+		"reinstall": "rm -rf node_modules && npm install",
 		"coverage:clean": "rm -rf .nyc_output coverage-reports coverage || true",
 		"coverage:merge": "node ./scripts/merge-coverage.js",
-		"pretest": "yarn coverage:clean",
+		"pretest": "npm run coverage:clean",
 		"test:jest": "jest --env=jsdom --coverage --passWithNoTests",
 		"test:jest-watch": "jest --env=jsdom --watch --coverage --passWithNoTests",
 		"test:jest-ci": "jest --env=jsdom --ci --coverage --maxWorkers=2",
@@ -41,9 +43,9 @@
 		"test:component-run": "NODE_ENV=cypress cypress run --component --browser chrome",
 		"test:integration-open": "NODE_ENV=cypress cypress open --e2e",
 		"test:integration-run": "NODE_ENV=cypress cypress run --e2e --browser chrome",
-		"test:integration": "start-server-and-test documentation:start-ci 3000 'yarn test:integration-run'",
-		"test": "yarn test:jest && yarn test:component-run && yarn test:integration && yarn coverage:merge",
-		"test:ci": "yarn test:jest-ci && yarn test:component-run && yarn test:integration"
+		"test:integration": "start-server-and-test documentation:start-ci 3000 'npm run test:integration-run'",
+		"test": "npm run test:jest && npm run test:component-run && npm run test:integration && npm run coverage:merge",
+		"test:ci": "npm run test:jest-ci && npm run test:component-run && npm run test:integration"
 	},
 	"peerDependencies": {
 		"react": ">=16.14.0",
@@ -138,20 +140,20 @@
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,html}": [
-			"yarn format:fix",
-			"yarn lint"
+			"npm run format:fix",
+			"npm run lint"
 		]
 	},
 	"size-limit": [
 		{
-			"path": "dist/index.cjs.js",
+			"path": "dist/index.cjs.cjs",
 			"limit": "10 kB",
 			"ignore": [
 				"fs"
 			]
 		},
 		{
-			"path": "dist/index.es.js",
+			"path": "dist/index.es.mjs",
 			"limit": "10 kB",
 			"ignore": [
 				"fs"
