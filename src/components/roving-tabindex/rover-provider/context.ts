@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+
 /*
  * Please refer to the terms of the license
  * agreement.
@@ -13,7 +13,7 @@
  * @since 1.0.0
  */
 import { createContext } from "react";
-import { emptyfunction } from "../../../helpers";
+import { emptyFunction } from "@jtmdias/js-utilities";
 import { RovingContext, RovingState } from "../index";
 
 export const initialState: RovingState = {
@@ -27,5 +27,5 @@ export const RoverContext = createContext<RovingContext>({
 	state: {
 		...initialState,
 	},
-	dispatch: emptyfunction,
+	dispatch: emptyFunction,
 });

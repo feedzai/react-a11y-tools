@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import React from "react";
-import { isString } from "../../helpers/isString";
+import { isString } from "@jtmdias/js-utilities";
 
 export interface IAnnouncerProps {
 	id?: string;

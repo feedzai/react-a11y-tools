@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+
 /*
  * Please refer to the terms of the license
  * agreement.
@@ -34,7 +34,7 @@ export {
 	useRover,
 } from "./components/roving-tabindex/index";
 export { VisuallyHidden, visuallyHiddenStyle } from "./components/visually-hidden";
-export { callIfExists, focusWithoutScrolling, isBrowser, makeId } from "./helpers";
+export * from "./helpers";
 export {
 	useAutoId,
 	useDisableEvent,

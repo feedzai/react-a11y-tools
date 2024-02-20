@@ -14,6 +14,7 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { usePrevious } from "../../../hooks";
 import { Announcer } from "../announcer";
+import { GenericComponentPropsWithChildren } from "@jtmdias/js-utilities";
 
 export interface IRouteAnnouncerActions {
 	/**
@@ -97,7 +98,7 @@ export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({
 	pathname,
 	action = defaultProps.action,
 	children,
-}) => {
+}: GenericComponentPropsWithChildren & IRouteAnnouncerProps) => {
 	const [text, setText] = useState("");
 	const previousPathname = usePrevious(pathname);
 

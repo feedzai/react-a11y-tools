@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { isFunction } from "../helpers/isFunction";
+import { isFunction } from "@jtmdias/js-utilities";
 
 /**
  * React.Ref uses the readonly type `React.RefObject` instead of

@@ -1,17 +1,10 @@
 /* eslint-disable consistent-return */
-/* istanbul ignore file */
+
 /*
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { FunctionComponent, RefObject, useEffect, useRef } from "react";
 import { useSafeLayoutEffect } from "../../hooks/index";
@@ -19,7 +12,6 @@ import { focusSafely } from "./helpers/focus-safely";
 import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
 import { FocusContext } from "./context";
 import { FOCUSABLE_ELEMENT_SELECTOR, TABBABLE_ELEMENT_SELECTOR } from "./constants";
-import createFocusManagerState from "./helpers/state";
 
 export interface IFocusManagerProps {
 	/**
@@ -66,6 +58,9 @@ export interface IUseRestoreFocus {
 	restoreFocus?: boolean;
 	contain?: boolean;
 }
+
+let activeScope: RefObject<HTMLElement[]> | null = null;
+const scopes: Set<RefObject<HTMLElement[]>> = new Set();
 
 /**
  *
@@ -232,18 +227,16 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		 * @param {any} event
 		 */
 		const onFocus = (event: any) => {
-			const { __react_a11y_tools_scopes__ } = window;
-			let { __react_a11y_tools_activeScope__ } = window;
-			const isInAnyScope = isElementInAnyScope(event.target, __react_a11y_tools_scopes__);
+			const isInAnyScope = isElementInAnyScope(event.target, scopes);
 
 			if (!isInAnyScope) {
 				if (focusedNode.current) {
 					focusedNode.current.focus();
-				} else if (__react_a11y_tools_activeScope__) {
-					focusFirstInScope(__react_a11y_tools_activeScope__.current);
+				} else if (activeScope) {
+					focusFirstInScope(activeScope.current);
 				}
 			} else {
-				__react_a11y_tools_activeScope__ = scopeRef;
+				activeScope = scopeRef;
 				focusedNode.current = event.target;
 			}
 		};
@@ -253,17 +246,12 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		 * @param event
 		 */
 		const onBlur = (event: any) => {
-			const { __react_a11y_tools_scopes__ } = window;
-			let { __react_a11y_tools_activeScope__ } = window;
 			raf.current = requestAnimationFrame(() => {
 				// Use document.activeElement instead of e.relatedTarget so we can tell if user clicked into iframe
-				const isInAnyScope = isElementInAnyScope(
-					document.activeElement,
-					__react_a11y_tools_scopes__,
-				);
+				const isInAnyScope = isElementInAnyScope(document.activeElement, scopes);
 
 				if (!isInAnyScope) {
-					__react_a11y_tools_activeScope__ = scopeRef;
+					activeScope = scopeRef;
 					focusedNode.current = event.target;
 					focusedNode?.current?.focus();
 				}
@@ -330,11 +318,10 @@ function focusFirstInScope(scope: HTMLElement[] | null) {
  * @param {boolean} [autoFocus]
  */
 function useAutoFocus(items: RefObject<HTMLElement[]>, autoFocus?: boolean) {
-	let { __react_a11y_tools_activeScope__ } = window;
 	useEffect(() => {
 		if (autoFocus) {
-			__react_a11y_tools_activeScope__ = items;
-			if (!isElementInScope(document.activeElement, __react_a11y_tools_activeScope__.current)) {
+			activeScope = items;
+			if (!isElementInScope(document.activeElement, activeScope.current)) {
 				focusFirstInScope(items.current);
 			}
 		}
@@ -479,9 +466,9 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 		}
 
 		items.current = nodes as HTMLElement[];
-		window.__react_a11y_tools_scopes__.add(items);
+		scopes.add(items);
 		return () => {
-			window.__react_a11y_tools_scopes__.delete(items);
+			scopes.delete(items);
 		};
 	}, [children]);
 
@@ -497,14 +484,14 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 
 	return (
 		<FocusContext.Provider value={value}>
-			<span hidden ref={initial} data-testid="fdz-js-focus-manager-guard-initial" />
+			<span hidden ref={initial} data-testid="js-focus-manager-guard-initial" />
 			{children}
-			<span hidden ref={final} data-testid="fdz-js-focus-manager-guard-final" />
+			<span hidden ref={final} data-testid="js-focus-manager-guard-final" />
 		</FocusContext.Provider>
 	);
 };
 
-createFocusManagerState();
+FocusManager.displayName = "FocusManager";
 
 export * from "./useFocusManager";
 export * from "./consumer";

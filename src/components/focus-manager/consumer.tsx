@@ -2,14 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * consumer.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React from "react";
 import { IFocusManager } from ".";
@@ -60,3 +53,5 @@ export function FocusManagerConsumer({
 }) {
 	return <FocusContext.Consumer>{(context) => children(context)}</FocusContext.Consumer>;
 }
+
+FocusManagerConsumer.displayName = "FocusManagerConsumer";

@@ -11,7 +11,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import React, { FunctionComponent, useReducer } from "react";
+import React, { ReactNode, useReducer } from "react";
 import { Announcer } from "../announcer";
 import { defaultState, MessagesAnnouncerContext } from "./context";
 import { AnnouncementReducerState } from "./index";
@@ -52,7 +52,7 @@ function reducer(
  * @param {FunctionComponent} props
  * @returns {JSX.Element}
  */
-export const MessagesAnnouncer: FunctionComponent = ({ children }) => {
+export const MessagesAnnouncer = ({ children }: { children: ReactNode }) => {
 	const [state, setMessage] = useReducer(reducer, {
 		message: defaultState.message,
 		politeness: defaultState.politeness,

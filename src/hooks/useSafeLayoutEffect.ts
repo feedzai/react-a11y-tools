@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import { useLayoutEffect, useEffect } from "react";
-import { isBrowser } from "../helpers/isBrowser";
+import { isBrowser } from "@jtmdias/js-utilities";
 
 /**
  * `useLayoutEffect` that does not show warning when server-side rendering.
