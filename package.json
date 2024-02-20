@@ -3,13 +3,14 @@
 	"author": "Feedzai",
 	"version": "1.4.1",
 	"license": "MIT",
-	"main": "dist/index.cjs.js",
-	"typings": "dist/index.d.ts",
-	"module": "dist/index.es.js",
+	"main": "./dist/index.cjs.cjs",
+	"types": "./dist/index.d.ts",
+	"module": "./dist/index.es.mjs",
 	"exports": {
 		".": {
-			"import": "./dist/index.es.js",
-			"require": "./dist/index.cjs.js"
+			"import": "./dist/index.es.cjs",
+			"require": "./dist/index.cjs.mjs",
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"files": [
@@ -144,14 +145,14 @@
 	},
 	"size-limit": [
 		{
-			"path": "dist/index.cjs.js",
+			"path": "dist/index.cjs.cjs",
 			"limit": "10 kB",
 			"ignore": [
 				"fs"
 			]
 		},
 		{
-			"path": "dist/index.es.js",
+			"path": "dist/index.es.mjs",
 			"limit": "10 kB",
 			"ignore": [
 				"fs"
