@@ -4,7 +4,7 @@
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2023 feedzai.com, Rights Reserved.
  */
 import React, { useRef, useState, HTMLAttributes, InputHTMLAttributes } from "react";
 import { useAutoId, useTabbable } from "../../../../../src/index";
@@ -12,80 +12,80 @@ import { makeId } from "../../../../../src/helpers";
 import styles from "./index.modules.scss";
 
 type Tabbable = {
-	focusable?: boolean;
-	disabled?: boolean;
+  focusable?: boolean;
+  disabled?: boolean;
 };
 
 type Button = HTMLAttributes<HTMLButtonElement> & Tabbable;
 type Input = InputHTMLAttributes<HTMLInputElement> &
-	Tabbable & {
-		label: string;
-	};
+  Tabbable & {
+    label: string;
+  };
 
 const Button = ({ id, disabled, ...props }: Button) => {
-	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("js-tabbable-button-", autoId));
-	const { focusable, ...htmlProps } = useTabbable<Button>({
-		...props,
-		disabled,
-	});
+  const autoId = useAutoId(id);
+  const { current: generatedId } = useRef(makeId("js-tabbable-button-", autoId));
+  const { focusable, ...htmlProps } = useTabbable<Button>({
+    ...props,
+    disabled,
+  });
 
-	return (
-		<button id={generatedId} className={styles.button} data-focusable={focusable} {...htmlProps}>
-			{props.children}
-		</button>
-	);
+  return (
+    <button id={generatedId} className={styles.button} data-focusable={focusable} {...htmlProps}>
+      {props.children}
+    </button>
+  );
 };
 
 const Input = ({ id, disabled, ...props }: Input) => {
-	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("js-tabbable-", autoId));
-	const { label, focusable, ...htmlProps } = useTabbable<Input>({
-		...props,
-		disabled,
-	});
+  const autoId = useAutoId(id);
+  const { current: generatedId } = useRef(makeId("js-tabbable-", autoId));
+  const { label, focusable, ...htmlProps } = useTabbable<Input>({
+    ...props,
+    disabled,
+  });
 
-	return (
-		<fieldset className={styles.fieldset}>
-			<label htmlFor={generatedId} className={styles.label}>
-				{label}
-			</label>
-			<input id={generatedId} className={styles.input} data-focusable={focusable} {...htmlProps} />
-		</fieldset>
-	);
+  return (
+    <fieldset className={styles.fieldset}>
+      <label htmlFor={generatedId} className={styles.label}>
+        {label}
+      </label>
+      <input id={generatedId} className={styles.input} data-focusable={focusable} {...htmlProps} />
+    </fieldset>
+  );
 };
 
 export const DemoUseTabbable = () => {
-	const [value, setValue] = useState("John Doe");
-	return (
-		<div className={styles.wrapper}>
-			<div className={styles.row}>
-				<Button>Enabled</Button>
-				<Button focusable={false} disabled>
-					Disabled
-				</Button>
-				<Button focusable disabled>
-					Disabled, but Tabbable
-				</Button>
-			</div>
-			<div className={styles.row}>
-				<Input
-					id="ebff7158-f91d-4770-97fe-fb50a1e43a25"
-					label="Name"
-					onChange={(event) => setValue(event.currentTarget.value)}
-					name="tabbable"
-					value={value}
-				/>
-				<Input
-					type="password"
-					id="be9a3567-1b65-4d2a-8f6c-77b24ef571c0"
-					label="Password"
-					name="tabbable"
-					value="780fe320$5c9e&4425-a41b-0f8fa0594510"
-					focusable
-					disabled
-				/>
-			</div>
-		</div>
-	);
+  const [value, setValue] = useState("John Doe");
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.row}>
+        <Button>Enabled</Button>
+        <Button focusable={false} disabled>
+          Disabled
+        </Button>
+        <Button focusable disabled>
+          Disabled, but Tabbable
+        </Button>
+      </div>
+      <div className={styles.row}>
+        <Input
+          id="ebff7158-f91d-4770-97fe-fb50a1e43a25"
+          label="Name"
+          onChange={(event) => setValue(event.currentTarget.value)}
+          name="tabbable"
+          value={value}
+        />
+        <Input
+          type="password"
+          id="be9a3567-1b65-4d2a-8f6c-77b24ef571c0"
+          label="Password"
+          name="tabbable"
+          value="780fe320$5c9e&4425-a41b-0f8fa0594510"
+          focusable
+          disabled
+        />
+      </div>
+    </div>
+  );
 };

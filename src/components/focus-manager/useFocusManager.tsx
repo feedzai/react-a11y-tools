@@ -2,7 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2023 feedzai.com, Rights Reserved.
  */
 import { useContext } from "react";
 import { IFocusManager } from "./index";
@@ -44,5 +44,5 @@ import { FocusContext } from "./context";
  * @returns {IFocusManager}
  */
 export function useFocusManager(): IFocusManager | null {
-	return useContext(FocusContext);
+  return useContext(FocusContext);
 }

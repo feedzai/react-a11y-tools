@@ -67,7 +67,7 @@ export const DemoSkipLinks = () => {
 						<a
 							className={styles.skipLinks__anchor}
 							id="website"
-							href="https://github.com/joaotmdias/react-a11y-tools/"
+							href="https://github.com/feedzai/react-a11y-tools/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -76,7 +76,7 @@ export const DemoSkipLinks = () => {
 						<a
 							className={styles.skipLinks__anchor}
 							id="documentation"
-							href="https://www.npmjs.com/package/@jtmdias/react-a11y-tools/"
+							href="https://www.npmjs.com/package/@feedzai/react-a11y-tools/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>

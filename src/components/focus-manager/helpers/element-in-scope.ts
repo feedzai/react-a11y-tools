@@ -2,7 +2,7 @@
  * Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2023 feedzai.com, Rights Reserved.
  */
 import { RefObject } from "react";
 
@@ -14,10 +14,10 @@ import { RefObject } from "react";
  * @returns {boolean | undefined}
  */
 export function isElementInScope(
-	element: Element | null,
-	scope: HTMLElement[] | null,
+  element: Element | null,
+  scope: HTMLElement[] | null
 ): boolean | undefined {
-	return scope?.some((node) => node.contains(element));
+  return scope?.some((node) => node.contains(element));
 }
 
 /**
@@ -26,13 +26,13 @@ export function isElementInScope(
  * @returns {boolean}
  */
 export function isElementInAnyScope(
-	element: Element | null,
-	scopes: Set<RefObject<HTMLElement[]>>,
+  element: Element | null,
+  scopes: Set<RefObject<HTMLElement[]>>
 ): boolean {
-	for (const scope of scopes.values()) {
-		if (isElementInScope(element, scope.current)) {
-			return true;
-		}
-	}
-	return false;
+  for (const scope of scopes.values()) {
+    if (isElementInScope(element, scope.current)) {
+      return true;
+    }
+  }
+  return false;
 }

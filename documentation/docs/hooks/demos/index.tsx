@@ -4,7 +4,7 @@
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2023 joaodias.me, Rights Reserved.
+ * (c) 2023 feedzai.com, Rights Reserved.
  */
 export * from "./useTabbable";
 export * from "./useAutoId";
