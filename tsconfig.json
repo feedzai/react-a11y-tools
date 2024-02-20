@@ -29,9 +29,9 @@
 			"hooks/*": ["./src/hooks/*"],
 			"typings/*": ["./src/typings/*"]
 		},
-		"types": ["node", "jest", "@testing-library/jest-dom"]
+		"types": ["node", "@testing-library/jest-dom", "vitest/globals"]
 	},
-	"include": ["src", "global.d.ts"],
+	"include": ["src", "global.d.ts", "./setupVitest.ts"],
 	"exclude": ["node_modules", "dist", "coverage", "**/stories/*", "cypress.config.ts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

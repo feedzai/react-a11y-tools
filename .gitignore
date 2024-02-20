@@ -20,8 +20,8 @@ coverage/
 .sonar/
 coverage-reports
 .nyc_output
-cypress/results
-cypress/screenshots
+test/cypress/results
+test/cypress/screenshots
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
@@ -144,8 +144,6 @@ coverage/
 .sonar/
 coverage-reports
 .nyc_output
-cypress/results
-cypress/screenshots
 reports
 results
 .env

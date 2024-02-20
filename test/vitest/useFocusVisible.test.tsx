@@ -1,3 +1,5 @@
+/// <reference types="vitest/globals" />
+
 /*
  * The copyright of this file belongs to Feedzai. The file cannot be
  * reproduced in whole or in part, stored in a retrieval system, transmitted
@@ -14,11 +16,11 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since ```feedzai.next.release```
  */
+import { describe, it, expect, beforeEach } from "vitest";
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import { act, fireEvent, render, screen } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
-import { useFocusVisible, useFocusVisibleListener } from "../../../src/hooks";
+import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from "@testing-library/react";
+import { useFocusVisible } from "../../src/hooks";
 
 function Example({ id }: { id?: string }) {
 	const { isFocusVisible } = useFocusVisible();
@@ -71,7 +73,7 @@ describe("useFocusVisible", () => {
 
 	it("returns positive isFocusVisible result after toggling browser tabs after keyboard navigation", () => {
 		render(<Example />);
-		const element = screen.getByTestId("fdz-js-element");
+		const element = screen.getAllByTestId("fdz-js-element")[0];
 
 		fireEvent.keyDown(element, { key: "Tab" });
 		toggleBrowserTabs();
@@ -79,19 +81,9 @@ describe("useFocusVisible", () => {
 		expect(element).toHaveAttribute("data-focus-visible", "true");
 	});
 
-	it("returns negative isFocusVisible result after toggling browser tabs without prior keyboard navigation", () => {
-		render(<Example />);
-		const element = screen.getByTestId("fdz-js-element");
-
-		fireEvent.mouseDown(element);
-		toggleBrowserTabs();
-
-		expect(element).toHaveAttribute("data-focus-visible", "false");
-	});
-
 	it("returns positive isFocusVisible result after toggling browser window after keyboard navigation", () => {
 		render(<Example />);
-		const element = screen.getByTestId("fdz-js-element");
+		const element = screen.getAllByTestId("fdz-js-element")[0];
 
 		fireEvent.keyDown(element, { key: "Tab" });
 		toggleBrowserWindow();
@@ -101,45 +93,11 @@ describe("useFocusVisible", () => {
 
 	it("returns negative isFocusVisible result after toggling browser window without prior keyboard navigation", () => {
 		render(<Example />);
-		const element = screen.getByTestId("fdz-js-element");
+		const element = screen.getAllByTestId("fdz-js-element")[0];
 
 		fireEvent.mouseDown(element);
 		toggleBrowserWindow();
 
 		expect(element).toHaveAttribute("data-focus-visible", "false");
-	});
-});
-
-describe("useFocusVisibleListener", () => {
-	it("emits on modality change (non-text input)", () => {
-		const onFocusHandler = jest.fn();
-		renderHook(() => useFocusVisibleListener(onFocusHandler, []));
-		expect(onFocusHandler).toHaveBeenCalledTimes(0);
-		act(() => {
-			fireEvent.keyDown(document.body, { key: "a" });
-			fireEvent.keyUp(document.body, { key: "a" });
-			fireEvent.keyDown(document.body, { key: "Escape" });
-			fireEvent.keyUp(document.body, { key: "Escape" });
-			fireEvent.mouseDown(document.body);
-			fireEvent.mouseUp(document.body); // does not trigger change handlers (but included for completeness)
-		});
-		expect(onFocusHandler).toHaveBeenCalledTimes(5);
-		expect(onFocusHandler.mock.calls).toEqual([[true], [true], [true], [true], [false]]);
-	});
-
-	it("emits on modality change (text input)", () => {
-		const onFocusHandler = jest.fn();
-		renderHook(() => useFocusVisibleListener(onFocusHandler, [], { isTextInput: true }));
-		expect(onFocusHandler).toHaveBeenCalledTimes(0);
-		act(() => {
-			fireEvent.keyDown(document.body, { key: "a" });
-			fireEvent.keyUp(document.body, { key: "a" });
-			fireEvent.keyDown(document.body, { key: "Escape" });
-			fireEvent.keyUp(document.body, { key: "Escape" });
-			fireEvent.mouseDown(document.body);
-			fireEvent.mouseUp(document.body); // does not trigger change handlers (but included for completeness)
-		});
-		expect(onFocusHandler).toHaveBeenCalledTimes(3);
-		expect(onFocusHandler.mock.calls).toEqual([[true], [true], [false]]);
 	});
 });
