@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { callIfExists } from "../../../../src/helpers";
+import { callIfExists } from "@jtmdias/js-utilities";
 import {
 	RoverProvider,
 	useRover,
@@ -13,7 +13,7 @@ const SidenavLink = ({
 	onClick,
 }: Pick<React.HTMLProps<HTMLButtonElement>, "disabled" | "children" | "onClick">) => {
 	const ref = useRef(null);
-	const [tabIndex, focused, handleKeyDown, handleClick] = useRover(ref, disabled);
+	const [tabIndex, focused, handleKeyDown, handleClick] = useRover(ref, disabled!);
 	useFocus(ref, focused);
 	return (
 		<button

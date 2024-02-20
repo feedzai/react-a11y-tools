@@ -1,29 +1,30 @@
 {
-	"extends": "@tsconfig/docusaurus/tsconfig.json",
-	"include": ["src/", "docs/"],
-	"compilerOptions": {
-		/* Strict Type-Checking Options */
-		"strict": true,
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"strictFunctionTypes": true,
-		"strictBindCallApply": true,
-		"strictPropertyInitialization": true,
-		"noImplicitThis": true,
-		"alwaysStrict": true,
-		"isolatedModules": true,
-		"resolveJsonModule": true,
+  // This file is not used in compilation. It is here just for a nice editor experience.
+  "extends": "@docusaurus/tsconfig",
+  "include": ["src/", "docs/"],
+  "compilerOptions": {
+	  /* Strict Type-Checking Options */
+	  "strict": true,
+	  "noImplicitAny": true,
+	  "strictNullChecks": true,
+	  "strictFunctionTypes": true,
+	  "strictBindCallApply": true,
+	  "strictPropertyInitialization": true,
+	  "noImplicitThis": true,
+	  "alwaysStrict": true,
+	  "isolatedModules": true,
+	  "resolveJsonModule": true,
 
-		/* Additional Checks */
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
+	  /* Additional Checks */
+	  "noUnusedLocals": true,
+	  "noUnusedParameters": true,
+	  "noImplicitReturns": true,
+	  "noFallthroughCasesInSwitch": true,
 
-		/* Structure */
-		"baseUrl": "./",
-		"paths": {
-			"@src/*": ["../src/*"]
-		}
-	}
+	  /* Structure */
+	  "baseUrl": "./",
+	  "paths": {
+		  "@src/*": ["../src/*"]
+	  }
+  }
 }

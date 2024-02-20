@@ -1,12 +1,12 @@
 ---
 sidebar_position: 2
-title: The Rover
+title: Roving Tabindex
 ---
 
 import { DemoRovingTabIndex } from "./demos";
 import { Subtitle, BrowserWindow, PropsTable } from "../../src/components/index";
 
-<Subtitle>An accessibility pattern for a grouped set of inputs</Subtitle>
+<Subtitle>An accessibility pattern for a grouped set of elements</Subtitle>
 
 <BrowserWindow>
 	<DemoRovingTabIndex />
@@ -28,6 +28,8 @@ import { Subtitle, BrowserWindow, PropsTable } from "../../src/components/index"
 You can nest roving tabindex components in other DOM elements or React components.
 
 ```jsx
+import { RoverProvider } from "@feedzai/react-a11y-tools";
+...
 <RoverProvider>
 	{..content here}
 </RoverProvider>
@@ -37,6 +39,8 @@ You can also choose the direction of the navigation.
 It can either be "vertical" (default) or "horizontal".
 
 ```jsx
+import { RoverProvider } from "@feedzai/react-a11y-tools";
+...
 <RoverProvider direction="horizontal">
 	{..content here}
 </RoverProvider>
@@ -55,6 +59,8 @@ For composition, try to identify which elements are the ones that are going to b
 For each one of those, wrap them with your own component and use the `useRover` and `useFocus` hooks.
 
 ```jsx
+import { useRover, useFocus } from "@feedzai/react-a11y-tools";
+...
 const MenuButton = ({ disabled = false, children }) => {
 	const buttonRef = useRef(null);
 
@@ -93,6 +99,8 @@ Since `RovingTabIndex` relies on React Context, there's no need to have the butt
 You can nest as deep as you'd like and it will work as well 🙂
 
 ```jsx
+import { RoverProvider } from "@feedzai/react-a11y-tools";
+...
 <RoverProvider direction="horizontal">
 	<MenuButton>First Button</MenuButton>
 	<MenuButton disabled>Second Button</MenuButton>
@@ -104,6 +112,58 @@ You can nest as deep as you'd like and it will work as well 🙂
 	</ul>
 </RoverProvider>
 ```
+
+### Extra Features
+
+#### 1. Disable the "loop around" feature
+
+By default, if you try to tab past the very start or very end of the roving tabindex then tabbing does not wrap around. The `RoverProvider` has an optional `loopAround` property on the options prop that allows you to change this:
+
+```jsx
+import { RoverProvider } from "@feedzai/react-a11y-tools";
+...
+<RoverProvider direction="horizontal">
+...
+</RoverProvider>
+```
+
+If this option is set to `true` then tabbing will wrap around if you reach the very start or very end of the roving tabindex items, rather than stopping. Note that this option does not apply if the roving tabindex is being used with a grid.
+
+#### 2. Disable the "focus on click" feature
+
+By default, clicking on a roving tabindex item will result in `focus()` being invoked on the item (via `useFocus`).
+So, if you want to when you invoke `focus()` ONLY when you use the keyboard to move to an item, then the `RoverProvider` has an optional `focusOnClick` property on the `options` prop that allows you to change this:
+
+```jsx
+import { RoverProvider } from "@feedzai/react-a11y-tools";
+...
+<RoverProvider options={{
+	focusOnClick: false, // default is true
+	direction: "horizontal"
+}}>
+...
+</RoverProvider>
+```
+
+### Grid Usage
+
+This package supports a roving tabindex in a grid. For each usage of the `useRover` hook in the grid, you must pass a row index value as a property in the second argument to the hook:
+
+```jsx
+import { useRover } from "@feedzai/react-a11y-tools";
+...
+const [tabIndex, focused, handleKeyDown, handleClick] = useRover(
+  ref,
+  {
+	disabled,
+	rowIndex: yourRowIndexValueHere
+  },
+);
+```
+
+The row index value must be the zero-based row index for the grid item that the hook is being used with. Thus all items that represent the first row of grid items should have passed to the hook, the second row 1, and so on. If the shape of the grid can change dynamically then it is fine to update the row index value. For example, the grid might initially have four items per row but get updated to have three items per row.
+
+The `direction` property of the `RoverProvider` is ignored when row indexes are provided. This is because the ArrowUp and ArrowDown keys are always used to move between rows.
 
 ### Differences with `Focus Manager`
 

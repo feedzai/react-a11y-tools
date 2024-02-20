@@ -1,18 +1,10 @@
 /*
- * The copyright of this file belongs to Feedzai. The file cannot be
- * reproduced in whole or in part, stored in a retrieval system, transmitted
+ * The file cannot be reproduced in whole or in part, stored in a retrieval system, transmitted
  * in any form, or by any means electronic, mechanical, or otherwise, without
  * the prior permission of the owner. Please refer to the terms of the license
  * agreement.
  *
- * (c) 2021 Feedzai, Rights Reserved.
- */
-
-/**
- * index.tsx
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since ```feedzai.next.release```
+ * (c) 2023 joaodias.me, Rights Reserved.
  */
 import React, { useRef, useState, HTMLAttributes, InputHTMLAttributes } from "react";
 import { useAutoId, useTabbable } from "../../../../../src/index";
@@ -32,7 +24,7 @@ type Input = InputHTMLAttributes<HTMLInputElement> &
 
 const Button = ({ id, disabled, ...props }: Button) => {
 	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("fdz-js-tabbable-button-", autoId));
+	const { current: generatedId } = useRef(makeId("js-tabbable-button-", autoId));
 	const { focusable, ...htmlProps } = useTabbable<Button>({
 		...props,
 		disabled,
@@ -47,7 +39,7 @@ const Button = ({ id, disabled, ...props }: Button) => {
 
 const Input = ({ id, disabled, ...props }: Input) => {
 	const autoId = useAutoId(id);
-	const { current: generatedId } = useRef(makeId("fdz-js-tabbable-", autoId));
+	const { current: generatedId } = useRef(makeId("js-tabbable-", autoId));
 	const { label, focusable, ...htmlProps } = useTabbable<Input>({
 		...props,
 		disabled,

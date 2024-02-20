@@ -24,7 +24,7 @@ const Home = (): JSX.Element => (
 									<NavLink
 										to="/article-1"
 										className={styles["card__heading__link"]}
-										data-testid="fdz-js-route-announcer-card-link"
+										data-testid="js-route-announcer-card-link"
 									>
 										7 Steps to Get Professional Facial Results At Home
 									</NavLink>
@@ -183,7 +183,7 @@ const ArticleOne = (): JSX.Element => {
 								<NavLink
 									className={styles["read-more"]}
 									to="/"
-									data-testid="fdz-js-route-announer-go-back"
+									data-testid="js-route-announer-go-back"
 								>
 									<span>Go Back</span>
 									<svg className="icon" viewBox="0 0 32 32" aria-hidden="true">
@@ -248,7 +248,7 @@ const ArticleTwo = (): JSX.Element => (
 							<NavLink
 								className={styles["read-more"]}
 								to="/"
-								data-testid="fdz-js-route-announer-go-back"
+								data-testid="js-route-announer-go-back"
 							>
 								<span>Go Back</span>
 								<svg className="icon" viewBox="0 0 32 32" aria-hidden="true">
