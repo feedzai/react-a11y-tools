@@ -1,5 +1,7 @@
 export default function createFocusManagerState() {
-	if (!window.__react_a11y_tools_scopes__) {
+	const HAS_SCOPE = !!window.__react_a11y_tools_scopes__;
+
+	if (!HAS_SCOPE) {
 		window.__react_a11y_tools_scopes__ = new Set();
 	}
 }

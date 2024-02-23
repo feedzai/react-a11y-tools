@@ -17,10 +17,9 @@ import "cypress-real-events/support";
 import "./a11y";
 import { isAriaDisabled } from "./a11y/assertions/isAriaDisabled";
 import { recurse } from "cypress-recurse";
-import { mount, unmount, mountHook } from "cypress/react";
+import { mount, unmount } from "cypress/react";
 
 chai.use(isAriaDisabled);
-
 
 declare global {
 	namespace Cypress {
@@ -33,7 +32,6 @@ declare global {
 
 			mount: typeof mount;
 			unmount: typeof unmount;
-			mountHook: typeof mountHook;
 		}
 	}
 }
@@ -61,7 +59,10 @@ Cypress.Commands.add(
 	 * @param shift
 	 * @returns
 	 */
-	<GenericCallback extends Cypress.Chainable<JQuery<HTMLElement>>>(getElement: () => GenericCallback, shift = false) => {
+	<GenericCallback extends Cypress.Chainable<JQuery<HTMLElement>>>(
+		getElement: () => GenericCallback,
+		shift = false,
+	) => {
 		return recurse(
 			() => getElement(),
 			/**

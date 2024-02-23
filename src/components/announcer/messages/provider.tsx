@@ -52,7 +52,9 @@ function reducer(
  * @param {FunctionComponent} props
  * @returns {JSX.Element}
  */
-export const MessagesAnnouncer: FunctionComponent = ({ children }) => {
+export const MessagesAnnouncer: FunctionComponent<{ children: React.ReactNode }> = ({
+	children,
+}) => {
 	const [state, setMessage] = useReducer(reducer, {
 		message: defaultState.message,
 		politeness: defaultState.politeness,

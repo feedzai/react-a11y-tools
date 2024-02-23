@@ -20,6 +20,7 @@ import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scop
 import { FocusContext } from "./context";
 import { FOCUSABLE_ELEMENT_SELECTOR, TABBABLE_ELEMENT_SELECTOR } from "./constants";
 import createFocusManagerState from "./helpers/state";
+import { isBrowser } from "../../helpers/isBrowser";
 
 export interface IFocusManagerProps {
 	/**
@@ -36,6 +37,11 @@ export interface IFocusManagerProps {
 
 	/** Whether to auto focus the first focusable element in the focus scope on mount. */
 	autoFocus?: boolean;
+
+	/**
+	 * Any type of children inside the FocusManager
+	 */
+	children: React.ReactNode;
 }
 
 export interface IFocusManagerOptions {
@@ -503,7 +509,9 @@ export const FocusManager: FunctionComponent<IFocusManagerProps> = ({
 	);
 };
 
-createFocusManagerState();
+if (isBrowser) {
+	createFocusManagerState();
+}
 
 export * from "./useFocusManager";
 export * from "./consumer";

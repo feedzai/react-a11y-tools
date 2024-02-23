@@ -17,7 +17,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { useFocusVisible, useFocusVisibleListener } from "../../../src/hooks";
 
 function Example({ id }: { id?: string }) {
