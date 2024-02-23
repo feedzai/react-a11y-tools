@@ -3,23 +3,20 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
-
-/**
- * useTabbable.test.js
- *
- * Test suite for the custom hook for tabbable html elements
- *
- * @author João Dias <joao.dias@feedzai.com>
- * @since 1.0.0
- */
-import { mountHook } from "@cypress/react";
-import { useTabbable } from "../../../src/hooks/useTabbable";
+import { useTabbable } from "../../../src/hooks";
 
 const ELEMENT_PROPS = {
 	focusable: true,
 	disabled: false,
 	children: "An element content",
-	"data-testid": "fdz-js-element",
+	"data-testid": "js-element",
+};
+
+const DemoComponent = (hookProps: typeof ELEMENT_PROPS) => {
+	const tabbableProps = useTabbable(hookProps);
+	return (
+		<button type="button" {...tabbableProps}>A Button</button>
+	)
 };
 
 describe("useTabbable", () => {
@@ -35,53 +32,51 @@ describe("useTabbable", () => {
 	});
 
 	it("should disable an element semantically", () => {
-		mountHook(() =>
-			useTabbable({
-				...props,
-				disabled: true,
-			}),
-		).then(({ current }) => {
-			expect(current).to.have.property("aria-disabled", true);
-			expect(current).to.have.property("disabled", undefined);
-		});
+		const CUSTOM_PROPS: typeof props = {
+			...props,
+			disabled: true,
+		}
+
+		cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
+
+		cy.findByRole("button").should("not.be.disabled").and("have.attr", "aria-disabled", "true");
 	});
 
 	it("should disable an element natively", () => {
-		mountHook(() =>
-			useTabbable({
-				...props,
-				focusable: false,
-				disabled: true,
-			}),
-		).then(({ current }) => {
-			expect(current).to.have.property("aria-disabled", undefined);
-			expect(current).to.have.property("disabled", true);
-		});
+		const CUSTOM_PROPS: typeof props = {
+			...props,
+			focusable: false,
+			disabled: true,
+		}
+
+		cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
+
+		cy.findByRole("button").should("be.disabled").and("not.have.attr", "aria-disabled", "true");
 	});
 
-	it("should enable an element", () => {
-		// Native element
-		mountHook(() =>
-			useTabbable({
+	context("should enable an element", () => {
+		it("natively", () => {
+			const CUSTOM_PROPS: typeof props = {
 				...props,
 				focusable: false,
 				disabled: false,
-			}),
-		).then(({ current }) => {
-			expect(current).to.have.property("aria-disabled", undefined);
-			expect(current).to.have.property("disabled", false);
+			}
+
+			cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
+
+			cy.findByRole("button").should("not.be.disabled").and("not.have.attr", "aria-disabled", "true");
 		});
 
-		// Focusable element
-		mountHook(() =>
-			useTabbable({
+		it("focusable", () => {
+			const CUSTOM_PROPS: typeof props = {
 				...props,
 				focusable: true,
 				disabled: false,
-			}),
-		).then(({ current }) => {
-			expect(current).to.have.property("aria-disabled", undefined);
-			expect(current).to.have.property("disabled", false);
+			}
+
+			cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
+
+			cy.findByRole("button").should("not.be.disabled").and("not.have.attr", "aria-disabled", "true");
 		});
 	});
 });

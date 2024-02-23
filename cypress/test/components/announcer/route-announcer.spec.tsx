@@ -11,66 +11,12 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import {
-	Link,
-	RouteComponentProps,
-	Router,
-	useLocation,
-	createHistory,
-	createMemorySource,
-	LocationProvider,
-	History,
-} from "@reach/router";
-import React, { FunctionComponent, useEffect } from "react";
+import { RouteProps, useLocation, Routes, Route, Link } from "react-router-dom";
+import { FunctionComponent, useEffect } from "react";
 import { defaultProps, RouteAnnouncer } from "../../../../src/components/announcer/route-announcer";
-import { IRouteAnnouncerProps } from "../../../../src/components/announcer/route-announcer";
+import { renderWithRouter } from "../../helpers/renderWithRouter";
 
-export interface RenderWithRouterOptions {
-	route?: string;
-	history?: History;
-}
-
-export interface IRenderWithRouter {
-	ui: React.ReactElement;
-	options?: RenderWithRouterOptions;
-}
-
-export interface IRenderWithRouter {
-	history: History;
-}
-
-/**
- * Renders a component wrapped inside a `@reach/router` instance.
- * Adds `history` to the returned utilities to allow us to reference it in our tests
- *
- * @param {React.ReactElement} ui
- * @param {IRenderWithRouter} [options]
- */
-export function renderWithRouter(
-	ui: React.ReactElement,
-	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
-) {
-	cy.mount(<LocationProvider history={history}>{ui}</LocationProvider>);
-}
-
-/**
- * `renderWithRouter` with a Router wrapper from `@reach/router`
- *
- * @param {React.ReactElement} ui
- * @param {RenderWithRouterOptions} [options]
- */
-export function renderWithRouterWrapper(
-	ui: React.ReactElement,
-	{ route = "/", history = createHistory(createMemorySource(route)) }: RenderWithRouterOptions = {},
-) {
-	cy.mount(
-		<LocationProvider history={history}>
-			<Router>{ui}</Router>
-		</LocationProvider>,
-	);
-}
-
-const Home: FunctionComponent<RouteComponentProps> = () => {
+const Home: FunctionComponent<RouteProps> = () => {
 	return (
 		<div>
 			<h1>Home</h1>
@@ -79,7 +25,7 @@ const Home: FunctionComponent<RouteComponentProps> = () => {
 	);
 };
 
-const About: FunctionComponent<RouteComponentProps> = () => {
+const About: FunctionComponent<RouteProps> = () => {
 	return (
 		<div>
 			<h1>About</h1>
@@ -88,7 +34,7 @@ const About: FunctionComponent<RouteComponentProps> = () => {
 	);
 };
 
-const Contacts: FunctionComponent<RouteComponentProps> = () => {
+const Contacts: FunctionComponent<RouteProps> = () => {
 	return (
 		<div>
 			<p>You are on the contacts page</p>
@@ -96,7 +42,7 @@ const Contacts: FunctionComponent<RouteComponentProps> = () => {
 	);
 };
 
-const Work: FunctionComponent<RouteComponentProps> = () => {
+const Work: FunctionComponent<RouteProps> = () => {
 	useEffect(() => {
 		document.title = "Work";
 	}, []);
@@ -106,7 +52,7 @@ const Work: FunctionComponent<RouteComponentProps> = () => {
 		</div>
 	);
 };
-const NoMatch: FunctionComponent<RouteComponentProps> = () => {
+const NoMatch: FunctionComponent<RouteProps> = () => {
 	return (
 		<div>
 			<p>404: No Match</p>
@@ -122,27 +68,18 @@ const App = (): JSX.Element => {
 			<Link to="/about">About</Link>
 			<Link to="/work">Work</Link>
 			<Link to="/contacts">Contacts</Link>
-			<Router>
-				<Home path="/" />
-				<About path="/about" />
-				<Contacts path="/contacts" />
-				<Work path="/work" />
-				<NoMatch default />
-			</Router>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/contacts" element={<Contacts />} />
+				<Route path="/work" element={<Work />} />
+				<Route element={<NoMatch />} />
+			</Routes>
 		</RouteAnnouncer>
 	);
 };
 
 describe("<RouteAnnouncer />", () => {
-	let props: IRouteAnnouncerProps;
-
-	beforeEach(() => {
-		props = {
-			...defaultProps,
-			pathname: "/",
-		};
-	});
-
 	it("should find the heading on the document", () => {
 		renderWithRouter(<App />);
 		cy.get("#content-focus-wrapper h1").should("have.text", "Home");

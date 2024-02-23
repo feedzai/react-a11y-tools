@@ -7,7 +7,9 @@ module.exports = {
 	collectCoverage: true,
 	coverageDirectory: "<rootDir>/coverage-reports/jest",
 	coverageReporters: ["json", "lcov", "text-summary"],
-	testURL: "http://localhost/",
+	testEnvironmentOptions: {
+		url: "http://localhost/"
+	},
 	setupFiles: ["raf/polyfill"],
 	moduleNameMapper: {
 		"\\.(css|scss)$": "identity-obj-proxy",

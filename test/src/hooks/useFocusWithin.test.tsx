@@ -16,7 +16,7 @@
  */
 
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import { act, render, waitFor } from "@testing-library/react";
 import { useFocusWithin } from "../../../src/hooks";
 import { UseFocusWithinProps } from "../../../src/hooks/useFocusWithin/types";

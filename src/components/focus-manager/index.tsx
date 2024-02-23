@@ -254,7 +254,6 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 		 */
 		const onBlur = (event: any) => {
 			const { __react_a11y_tools_scopes__ } = window;
-			let { __react_a11y_tools_activeScope__ } = window;
 			raf.current = requestAnimationFrame(() => {
 				// Use document.activeElement instead of e.relatedTarget so we can tell if user clicked into iframe
 				const isInAnyScope = isElementInAnyScope(
@@ -263,7 +262,7 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain?: boole
 				);
 
 				if (!isInAnyScope) {
-					__react_a11y_tools_activeScope__ = scopeRef;
+					window.__react_a11y_tools_activeScope__ = scopeRef;
 					focusedNode.current = event.target;
 					focusedNode?.current?.focus();
 				}
