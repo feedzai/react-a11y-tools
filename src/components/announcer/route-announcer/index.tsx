@@ -42,6 +42,11 @@ export interface IRouteAnnouncerProps {
 	 * Content to be read by the screen-reader on the `aria-live` announcer
 	 */
 	action?: IRouteAnnouncerActions;
+
+	/**
+	 * Any type of React children inside the RouteAnnouncer
+	 */
+	children: React.ReactNode;
 }
 
 const DEFAULT_WRAPPER_ID = "content-focus-wrapper";
@@ -88,9 +93,6 @@ export function getHeadingText(id: string): string | undefined {
  *
  * // The screen reader outputs:
  * "Navigated to Create Account"
- *
- * @param {IRouteAnnouncerProps} props
- * @returns {JSX.Element}
  */
 export const RouteAnnouncer: FunctionComponent<IRouteAnnouncerProps> = ({
 	id = defaultProps.id,

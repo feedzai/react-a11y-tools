@@ -20,12 +20,12 @@ export default defineConfig({
 			formats: ["es", "cjs"],
 			fileName: (format) => {
 				const OUTPUT = {
-				  "es": "index.es.mjs",
-				  "cjs": "index.cjs.cjs",
+					es: "index.es.mjs",
+					cjs: "index.cjs.cjs",
 				};
 
-				return OUTPUT[format] ?? "index.js"
-			  },
+				return OUTPUT[format];
+			},
 		},
 		rollupOptions: {
 			external: ["react", "react-dom"],
