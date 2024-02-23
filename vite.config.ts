@@ -1,4 +1,4 @@
-import path from "node:path";
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -15,13 +15,13 @@ export default defineConfig({
 	],
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, "src/index.tsx"),
+			entry: resolve(__dirname, "src/index.tsx"),
 			name: "ReactA11yTools",
-			formats: ["es", "cjs"],
+			formats: ["es", "umd"],
 			fileName: (format) => {
 				const OUTPUT = {
 					es: "index.es.mjs",
-					cjs: "index.cjs.cjs",
+					umd: "index.umd.cjs",
 				};
 
 				return OUTPUT[format];
