@@ -43,7 +43,7 @@
 		"test:component-run": "NODE_ENV=cypress cypress run --component --browser chrome",
 		"test:integration-open": "NODE_ENV=cypress cypress open --e2e",
 		"test:integration-run": "NODE_ENV=cypress cypress run --e2e --browser chrome",
-		"test:integration": "start-server-and-test docs:start-ci 3000 'npm run test:integration-run'",
+		"test:integration": "start-server-and-test docs:start-ci http://localhost:3000/react-a11y-tools/ 'npm run test:integration-run'",
 		"test": "npm run test:jest && npm run test:component-run && npm run test:integration && npm run coverage:merge",
 		"test:ci": "npm run test:jest-ci && npm run test:component-run && npm run test:integration"
 	},
