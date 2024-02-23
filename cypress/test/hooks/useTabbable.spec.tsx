@@ -3,6 +3,7 @@
  *
  * (c) 2021 Feedzai, Rights Reserved.
  */
+import React from "react";
 import { useTabbable } from "../../../src/hooks";
 
 const ELEMENT_PROPS = {
@@ -15,8 +16,10 @@ const ELEMENT_PROPS = {
 const DemoComponent = (hookProps: typeof ELEMENT_PROPS) => {
 	const tabbableProps = useTabbable(hookProps);
 	return (
-		<button type="button" {...tabbableProps}>A Button</button>
-	)
+		<button type="button" {...tabbableProps}>
+			A Button
+		</button>
+	);
 };
 
 describe("useTabbable", () => {
@@ -35,7 +38,7 @@ describe("useTabbable", () => {
 		const CUSTOM_PROPS: typeof props = {
 			...props,
 			disabled: true,
-		}
+		};
 
 		cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
 
@@ -47,7 +50,7 @@ describe("useTabbable", () => {
 			...props,
 			focusable: false,
 			disabled: true,
-		}
+		};
 
 		cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
 
@@ -60,11 +63,13 @@ describe("useTabbable", () => {
 				...props,
 				focusable: false,
 				disabled: false,
-			}
+			};
 
 			cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
 
-			cy.findByRole("button").should("not.be.disabled").and("not.have.attr", "aria-disabled", "true");
+			cy.findByRole("button")
+				.should("not.be.disabled")
+				.and("not.have.attr", "aria-disabled", "true");
 		});
 
 		it("focusable", () => {
@@ -72,11 +77,13 @@ describe("useTabbable", () => {
 				...props,
 				focusable: true,
 				disabled: false,
-			}
+			};
 
 			cy.mount(<DemoComponent {...CUSTOM_PROPS} />);
 
-			cy.findByRole("button").should("not.be.disabled").and("not.have.attr", "aria-disabled", "true");
+			cy.findByRole("button")
+				.should("not.be.disabled")
+				.and("not.have.attr", "aria-disabled", "true");
 		});
 	});
 });

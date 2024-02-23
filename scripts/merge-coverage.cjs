@@ -51,10 +51,10 @@ function bootstrapFolders() {
 
 			// Copies each coverage file to the reports folder
 			runCommand([
-				`cp ${COVERAGE_FOLDER}/jest/coverage-final.json ${REPORTS_FOLDER}/from-jest.json`,
+				`cp ${COVERAGE_FOLDER}/vitest/coverage-final.json ${REPORTS_FOLDER}/from-vitest.json`,
 				`cp ${COVERAGE_FOLDER}/cypress/coverage-final.json ${REPORTS_FOLDER}/from-cypress.json`,
 			]);
-			log(chalk.green("✓ Copied jest and cypress coverage folders!"));
+			log(chalk.green("✓ Copied coverage folders!"));
 
 			// Cleans the nyc folder and the coverage folder
 			fs.emptyDirSync(".nyc_output");

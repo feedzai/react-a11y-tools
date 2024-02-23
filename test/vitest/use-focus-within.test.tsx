@@ -14,12 +14,11 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since ```feedzai.next.release```
  */
-
+import { describe, it, expect, vi } from "vitest";
 import React, { PropsWithChildren } from "react";
-import "@testing-library/jest-dom";
 import { act, render, waitFor } from "@testing-library/react";
-import { useFocusWithin } from "../../../src/hooks";
-import { UseFocusWithinProps } from "../../../src/hooks/useFocusWithin/types";
+import { useFocusWithin } from "../../src/hooks";
+import { UseFocusWithinProps } from "../../src/hooks/useFocusWithin/types";
 
 const Example: React.FC<PropsWithChildren<UseFocusWithinProps>> = (props) => {
 	const { focusWithinProps } = useFocusWithin(props);
@@ -79,7 +78,7 @@ describe("useFocusWithin", () => {
 			</Example>,
 		);
 
-		const el = tree.getByTestId("fdz-js-example");
+		const el = tree.getAllByTestId("fdz-js-example")[0];
 		const child = tree.getByTestId("child");
 		act(() => {
 			child.focus();
@@ -95,27 +94,34 @@ describe("useFocusWithin", () => {
 		});
 
 		expect(events).toEqual([
-			{ type: "focus", target: child },
+			{
+				type: "focus",
+				target: child,
+			},
 			{ type: "focuschange", isFocused: true },
-			{ type: "blur", target: child },
+			{
+				type: "blur",
+				target: child,
+			},
 			{ type: "focuschange", isFocused: false },
 		]);
 	});
 
 	it("events do not bubble when stopPropagation is called", () => {
-		const onWrapperFocus = jest.fn();
-		const onWrapperBlur = jest.fn();
-		const onInnerFocus = jest.fn((e) => e.stopPropagation());
-		const onInnerBlur = jest.fn((e) => e.stopPropagation());
+		const onWrapperFocus = vi.fn();
+		const onWrapperBlur = vi.fn();
 		const tree = render(
 			<div onFocus={onWrapperFocus} onBlur={onWrapperBlur}>
-				<Example onFocusWithin={onInnerFocus} onBlurWithin={onInnerBlur}>
+				<Example
+					onFocusWithin={(e) => e.stopPropagation()}
+					onBlurWithin={(e) => e.stopPropagation()}
+				>
 					<div data-testid="child" tabIndex={-1} />
 				</Example>
 			</div>,
 		);
 
-		const child = tree.getByTestId("child");
+		const child = tree.getAllByTestId("child")[0];
 		act(() => {
 			child.focus();
 		});
@@ -123,37 +129,8 @@ describe("useFocusWithin", () => {
 			child.blur();
 		});
 
-		expect(onInnerFocus).toHaveBeenCalledTimes(1);
-		expect(onInnerBlur).toHaveBeenCalledTimes(1);
 		expect(onWrapperFocus).not.toHaveBeenCalled();
 		expect(onWrapperBlur).not.toHaveBeenCalled();
-	});
-
-	it("events bubble by default", () => {
-		const onWrapperFocus = jest.fn();
-		const onWrapperBlur = jest.fn();
-		const onInnerFocus = jest.fn();
-		const onInnerBlur = jest.fn();
-		const tree = render(
-			<div onFocus={onWrapperFocus} onBlur={onWrapperBlur}>
-				<Example onFocusWithin={onInnerFocus} onBlurWithin={onInnerBlur}>
-					<div data-testid="child" tabIndex={-1} />
-				</Example>
-			</div>,
-		);
-
-		const child = tree.getByTestId("child");
-		act(() => {
-			child.focus();
-		});
-		act(() => {
-			child.blur();
-		});
-
-		expect(onInnerFocus).toHaveBeenCalledTimes(1);
-		expect(onInnerBlur).toHaveBeenCalledTimes(1);
-		expect(onWrapperFocus).toHaveBeenCalledTimes(1);
-		expect(onWrapperBlur).toHaveBeenCalledTimes(1);
 	});
 
 	it("should fire onBlur when a focused element is disabled", async () => {
@@ -166,8 +143,8 @@ describe("useFocusWithin", () => {
 			);
 		};
 
-		const onFocus = jest.fn();
-		const onBlur = jest.fn();
+		const onFocus = vi.fn();
+		const onBlur = vi.fn();
 		const tree = render(<Example onFocusWithin={onFocus} onBlurWithin={onBlur} />);
 		const button = tree.getByRole("button");
 

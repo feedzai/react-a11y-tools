@@ -11,15 +11,11 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
+import { describe, it, expect } from "vitest";
 import React from "react";
 import { JSDOM } from "jsdom";
-import { expect } from "@jest/globals";
-import {
-	RovingAction,
-	RovingState,
-	TabStop,
-} from "../../../../src/components/roving-tabindex/index";
-import { reducer } from "../../../../src/components/roving-tabindex/rover-provider/reducer";
+import { RovingAction, RovingState, TabStop } from "../../src/components/roving-tabindex/index";
+import { reducer } from "../../src/components/roving-tabindex/rover-provider/reducer";
 
 const testDOM = new JSDOM(`
   <body>
@@ -506,7 +502,7 @@ describe("reducer", () => {
 		});
 	});
 
-	test("changing the direction", () => {
+	it("changing the direction", () => {
 		const givenState: RovingState = Object.freeze({
 			direction: "horizontal",
 			selectedId: buttonOneId,

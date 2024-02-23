@@ -30,13 +30,13 @@
 - [Installation](#installation)
 - [Roadmap](#roadmap)
 - [Issues](#issues)
-	- [🐛 Bugs](#-bugs)
-	- [💡 Feature Requests](#-feature-requests)
+  - [🐛 Bugs](#-bugs)
+  - [💡 Feature Requests](#-feature-requests)
 - [Tests](#tests)
-	- [Run all component tests](#run-all-component-tests)
-	- [Jest tests](#jest-tests)
-	- [Cypress component tests:](#cypress-component-tests)
-	- [End-to-end tests:](#end-to-end-tests)
+  - [Run all tests](#run-all-tests)
+  - [Unit tests](#unit-tests)
+  - [Cypress component tests:](#cypress-component-tests)
+  - [End-to-end tests:](#end-to-end-tests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -115,23 +115,24 @@ a 👍. This helps maintainers prioritize what to work on.
 
 ## Tests
 
-There are two layers of tests written for this library:
+There are three layers of tests written for this library:
 
-- We use Jest and Cypress to do component testing.
-- The end-to-end tests are also made using the Cypress runner.
+- Unit tests: we use vitest
+- Component tests: we use cypress
+- End-to-end tests: we also use cypress
 
 To run the whole suite of tests, make sure you've done the steps in [installation](#installation), then:
 
-### Run all component tests
+### Run all tests
 
 ```sh
 npm run test
 ```
 
-### Jest tests
+### Unit tests
 
 ```sh
-npm run test:jest
+npm run test:unit
 ```
 
 ### Cypress component tests:
@@ -143,12 +144,5 @@ npm run test:ct
 ### End-to-end tests:
 
 ```sh
-# 1.1 Open Storybook
-npm run storybook
-
-# 1.2 Open Cypress
-npm run test:cypress
-
-# 2. Run them in Headless mode
 npm run test:e2e
 ```
