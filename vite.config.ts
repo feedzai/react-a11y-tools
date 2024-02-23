@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import IstanbulPlugin from "vite-plugin-istanbul";
 
@@ -10,7 +10,10 @@ export default defineConfig({
 		dts({
 			insertTypesEntry: true,
 		}),
-		IstanbulPlugin(),
+		IstanbulPlugin({
+			cypress: true,
+			requireEnv: false,
+		}),
 		react(),
 	],
 	build: {
