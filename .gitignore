@@ -22,6 +22,7 @@ coverage-reports
 .nyc_output
 cypress/results
 cypress/screenshots
+cypress/downloads
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt

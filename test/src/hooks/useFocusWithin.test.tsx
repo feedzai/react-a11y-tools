@@ -15,13 +15,13 @@
  * @since ```feedzai.next.release```
  */
 
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import "@testing-library/jest-dom";
 import { act, render, waitFor } from "@testing-library/react";
 import { useFocusWithin } from "../../../src/hooks";
 import { UseFocusWithinProps } from "../../../src/hooks/useFocusWithin/types";
 
-const Example: React.FC<UseFocusWithinProps> = (props) => {
+const Example: React.FC<PropsWithChildren<UseFocusWithinProps>> = (props) => {
 	const { focusWithinProps } = useFocusWithin(props);
 	return (
 		<div tabIndex={-1} {...focusWithinProps} data-testid="fdz-js-example">
