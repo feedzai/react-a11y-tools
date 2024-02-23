@@ -30,6 +30,5 @@
  * @returns {boolean} result
  */
 export function isNil<GenericValue>(value: GenericValue): boolean {
-	return typeof value === 'undefined' || value === null;
-};
-
+	return typeof value === "undefined" || value === null;
+}

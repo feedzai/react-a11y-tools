@@ -26,7 +26,11 @@ import { UseFocusWithinProps, UseFocusWithinReturns } from "./types";
  * @param {UseFocusWithinProps} { onBlurWithin, onFocusWithin, onFocusWithinChange }
  * @returns {UseFocusWithinReturns}
  */
-export function useFocusWithin({ onBlurWithin, onFocusWithin, onFocusWithinChange }: UseFocusWithinProps): UseFocusWithinReturns {
+export function useFocusWithin({
+	onBlurWithin,
+	onFocusWithin,
+	onFocusWithinChange,
+}: UseFocusWithinProps): UseFocusWithinReturns {
 	const state = useRef({
 		isFocusWithin: false,
 	});

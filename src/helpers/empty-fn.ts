@@ -20,4 +20,4 @@
  * @returns {void}
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export const emptyfunction = (): void => { }
+export const emptyfunction = (): void => {};

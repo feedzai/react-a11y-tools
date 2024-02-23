@@ -15,19 +15,18 @@
  * @since ```feedzai.next.release```
  */
 
-
 export type Modality = "keyboard" | "pointer" | "virtual";
 export type HandlerEvent = PointerEvent | MouseEvent | KeyboardEvent | FocusEvent;
 export type Handler = (modality: Modality, event: HandlerEvent | null) => void;
 export type FocusVisibleHandler = (isFocusVisible: boolean) => void;
 export interface FocusVisibleProps {
 	/** Whether the element is a text input. */
-	isTextInput?: boolean,
+	isTextInput?: boolean;
 	/** Whether the element will be auto focused. */
-	autoFocus?: boolean
+	autoFocus?: boolean;
 }
 
 export interface FocusVisibleResult {
 	/** Whether keyboard focus is visible globally. */
-	isFocusVisible: boolean
+	isFocusVisible: boolean;
 }

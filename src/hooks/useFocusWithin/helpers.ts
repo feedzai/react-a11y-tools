@@ -31,7 +31,7 @@ export class SyntheticFocusEvent implements ReactFocusEvent {
 	timeStamp: number;
 	type: string;
 
-	constructor (type: string, nativeEvent: FocusEvent) {
+	constructor(type: string, nativeEvent: FocusEvent) {
 		this.nativeEvent = nativeEvent;
 		this.target = nativeEvent.target as Element;
 		this.currentTarget = nativeEvent.currentTarget as Element;
@@ -64,7 +64,7 @@ export class SyntheticFocusEvent implements ReactFocusEvent {
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	persist() { }
+	persist() {}
 }
 
 export function useSyntheticBlurEvent(onBlur: (e: ReactFocusEvent) => void) {
@@ -117,7 +117,9 @@ export function useSyntheticBlurEvent(onBlur: (e: ReactFocusEvent) => void) {
 				}
 			};
 
-			target.addEventListener("focusout", onBlurHandler as EventListenerOrEventListenerObject, { once: true });
+			target.addEventListener("focusout", onBlurHandler as EventListenerOrEventListenerObject, {
+				once: true,
+			});
 
 			stateRef.current.observer = new MutationObserver(() => {
 				if (stateRef.current.isFocused && target.disabled) {

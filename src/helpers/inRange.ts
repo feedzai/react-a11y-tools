@@ -26,4 +26,4 @@
  * @returns {boolean}
  */
 export const inRange = (num: number, rangeStart: number, rangeEnd = 0) =>
-	(rangeStart < num && num < rangeEnd) || (rangeEnd < num && num < rangeStart)
+	(rangeStart < num && num < rangeEnd) || (rangeEnd < num && num < rangeStart);

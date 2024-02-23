@@ -9,10 +9,9 @@ import { isFunction } from "../helpers/isFunction";
  */
 export type AssignableRef<ValueType> =
 	| {
-		mutableRef(instance: ValueType | null): void;
-	}["mutableRef"]
+			mutableRef(instance: ValueType | null): void;
+	  }["mutableRef"]
 	| React.MutableRefObject<ValueType | null>;
-
 
 /**
  * Passes or assigns an arbitrary value to a ref function or object.
@@ -22,7 +21,7 @@ export type AssignableRef<ValueType> =
  */
 export function assignRef<RefValueType = any>(
 	ref: AssignableRef<RefValueType> | null | undefined,
-	value: any
+	value: any,
 ) {
 	if (ref == null) return;
 	if (isFunction(ref)) {

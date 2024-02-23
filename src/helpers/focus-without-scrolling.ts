@@ -22,7 +22,9 @@ interface IScrollableElement {
  * @param {HTMLElement} element
  * @returns {IScrollableElement[]}
  */
-function getAllScrollableElements<GenericElement extends HTMLElement | SVGElement>(element: GenericElement): IScrollableElement[] {
+function getAllScrollableElements<GenericElement extends HTMLElement | SVGElement>(
+	element: GenericElement,
+): IScrollableElement[] {
 	let parent = element.parentNode;
 	const IScrollableElements: IScrollableElement[] = [];
 	const rootScrollingElement = document.scrollingElement || document.documentElement;
@@ -73,7 +75,9 @@ function restoreScrollPosition(IScrollableElements: IScrollableElement[]) {
  * @export
  * @param {HTMLElement} element
  */
-export function focusWithoutScrolling<GenericElement extends HTMLElement | SVGElement>(element: GenericElement): void {
+export function focusWithoutScrolling<GenericElement extends HTMLElement | SVGElement>(
+	element: GenericElement,
+): void {
 	if (supportsPreventScroll()) {
 		element.focus({ preventScroll: true });
 	} else {

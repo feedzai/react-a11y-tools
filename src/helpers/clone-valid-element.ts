@@ -29,7 +29,5 @@ export function cloneValidElement<Props>(
 	props?: Partial<Props> & Attributes,
 	...children: ReactNode[]
 ): ReactElement<Props> | ReactNode {
-	return isValidElement(element)
-		? cloneElement(element, props, ...children)
-		: element;
+	return isValidElement(element) ? cloneElement(element, props, ...children) : element;
 }

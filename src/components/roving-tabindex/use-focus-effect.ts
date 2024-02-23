@@ -39,10 +39,14 @@ import { focusWithoutScrolling } from "../../helpers";
  * @param {(boolean)} [scrollWhenFocus=true]
  * @returns {void}
  */
-export function useFocus<GenericElement extends HTMLElement | SVGElement>(element: RefObject<GenericElement> | GenericElement, willFocus: boolean | undefined = true, scrollWhenFocus: boolean | undefined = true): void {
+export function useFocus<GenericElement extends HTMLElement | SVGElement>(
+	element: RefObject<GenericElement> | GenericElement,
+	willFocus: boolean | undefined = true,
+	scrollWhenFocus: boolean | undefined = true,
+): void {
 	useEffect(() => {
 		if (willFocus) {
-			const DOMElement = "current" in element ? element.current : element
+			const DOMElement = "current" in element ? element.current : element;
 
 			if (DOMElement) {
 				scrollWhenFocus ? DOMElement.focus() : focusWithoutScrolling(DOMElement);

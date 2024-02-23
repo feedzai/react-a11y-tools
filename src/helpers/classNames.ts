@@ -16,21 +16,21 @@ type ClassValue = ClassArray | ClassDictionary | string | number | null | boolea
 interface ClassDictionary {
 	[id: string]: any;
 }
-type ClassArray = Array<ClassValue>
+type ClassArray = Array<ClassValue>;
 
 function toVal<T>(mix: T | any) {
 	let k;
 	let y;
-	let str = '';
+	let str = "";
 
-	if (typeof mix === 'string' || typeof mix === 'number') {
+	if (typeof mix === "string" || typeof mix === "number") {
 		str += mix;
-	} else if (typeof mix === 'object') {
+	} else if (typeof mix === "object") {
 		if (Array.isArray(mix)) {
 			for (k = 0; k < mix.length; k++) {
 				if (mix[k]) {
-					if (y = toVal(mix[k])) {
-						str && (str += ' ');
+					if ((y = toVal(mix[k]))) {
+						str && (str += " ");
 						str += y;
 					}
 				}
@@ -38,7 +38,7 @@ function toVal<T>(mix: T | any) {
 		} else {
 			for (k in mix) {
 				if (mix[k]) {
-					str && (str += ' ');
+					str && (str += " ");
 					str += k;
 				}
 			}
@@ -85,14 +85,14 @@ function classNames(...classes: ClassValue[]): string {
 	let i = 0;
 	let tmp: any;
 	let x;
-	let str = '';
+	let str = "";
 
 	while (i < classes.length) {
 		// eslint-disable-next-line prefer-rest-params
-		if (tmp = classes[i++]) {
-			if (x = toVal(tmp)) {
-				str && (str += ' ');
-				str += x
+		if ((tmp = classes[i++])) {
+			if ((x = toVal(tmp))) {
+				str && (str += " ");
+				str += x;
 			}
 		}
 	}
