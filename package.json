@@ -31,7 +31,6 @@
 		"docs:start": "cd ./documentation && npm run start",
 		"docs:start-ci": "cd ./documentation && npm run start",
 		"docs:build": "cd ./documentation && npm run build",
-		"docs:deploy": "cd ./documentation && GIT_USER=feedzai && npm run deploy",
 		"reinstall": "rm -rf node_modules && npm install",
 		"coverage:clean": "merge-coverage clear && merge-coverage clear --folder coverage",
 		"coverage:merge": "merge-coverage combine-coverage --tools cypress,vitest",
@@ -48,7 +47,8 @@
 		"test": "npm run test:unit-ci && npm run test:component-run && npm run test:e2e",
 		"posttest": "npm run coverage:merge && npm run coverage:combine-reports",
 		"test:ci": "npm run test:unit-ci && npm run test:component-run && npm run test:e2e",
-		"check-updates": "npx npm-check-updates --format group --interactive"
+		"check-updates": "npx npm-check-updates --format group --interactive",
+		"semantic-release": "semantic-release"
 	},
 	"peerDependencies": {
 		"react": ">=16.14.0",
@@ -61,6 +61,12 @@
 	"devDependencies": {
 		"@cypress/code-coverage": "3.12.24",
 		"@jtmdias/merge-coverage": "^1.1.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^11.1.0",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^9.2.6",
+		"@semantic-release/npm": "^11.0.2",
+		"@semantic-release/release-notes-generator": "^12.1.0",
 		"@size-limit/preset-small-lib": "11.0.2",
 		"@testing-library/cypress": "10.0.1",
 		"@testing-library/jest-dom": "6.4.2",
@@ -100,6 +106,7 @@
 		"react-router": "^6.22.1",
 		"react-router-dom": "^6.22.1",
 		"sass": "1.71.1",
+		"semantic-release": "^22.0.12",
 		"size-limit": "11.0.2",
 		"start-server-and-test": "2.0.3",
 		"typescript": "5.3.3",
