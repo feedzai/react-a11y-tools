@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/feedzai/react-a11y-tools/compare/v1.5.1...v1.5.2) (2024-03-15)
+
+
+### Bug Fixes
+
+* **package.json:** fixed wrong exports file extensions ([a2838c7](https://github.com/feedzai/react-a11y-tools/commit/a2838c787798a59bd0741e47d503fd55476ed184))
+
 ## [1.5.1](https://github.com/feedzai/react-a11y-tools/compare/v1.5.0...v1.5.1) (2024-03-15)
 
 
