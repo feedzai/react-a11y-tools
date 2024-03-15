@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/feedzai/react-a11y-tools/compare/v1.5.0...v1.5.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **package.json:** removed postinstall script that ([4a98f56](https://github.com/feedzai/react-a11y-tools/commit/4a98f56d67bfa9edf0d062174e41eea86898bd8f))
+
 # [1.5.0](https://github.com/feedzai/react-a11y-tools/compare/v1.4.1...v1.5.0) (2024-03-04)
 
 
