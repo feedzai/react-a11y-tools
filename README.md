@@ -5,7 +5,7 @@
 
 <br />
 
-[**Read The Docs**](https://react-a11y-tools.wiki)
+[**Read The Docs**](https://feedzai.github.io/react-a11y-tools/)
 
 </div>
 
@@ -42,27 +42,27 @@
 
 ## The Problem
 
-We are in the era of design systems. Every company - from the smallest to the largest - has one or has thought about making one. These are great, and they provide the tools for building quick, fast and consistent user interfaces.
+We find ourselves amidst the age of design systems, where virtually every company, regardless of size, has either established one or contemplated its creation. These systems serve as invaluable resources, equipping us with the means to swiftly construct seamless and uniform user interfaces.
 
-However, accessibility is still far from an easy task, especially when using libraries like React. Whether we developers use others' design systems or build our own from scratch, accessibility is still considered a "last-minute-addition". And, sometimes, companies don't even have the resources or time to make it a priority.
+Yet, accessibility remains a challenging endeavor, particularly when integrating frameworks like React. Whether we rely on existing design systems or embark on crafting our own from the ground up, ensuring accessibility often emerges as an afterthought. Regrettably, some companies face constraints in resources and time, making it difficult to prioritize accessibility efforts.
 <br />
 <br/>
 
 ## The Solution
 
-Our goal is to make some parts of the accessibility process easier. Topics like focus management, navigation and announcements are all subjects we think can provide a helping hand.
+Our objective is to streamline certain aspects of the accessibility journey, focusing on key areas such as focus management, navigation, and announcements.
 
-This library provides accessibility and behaviour following the WAI-ARIA Authoring Practices, including screen-reader and keyboard navigation support.
+This library offers comprehensive accessibility features and behaviors in line with the WAI-ARIA Authoring Practices, encompassing support for screen-reader and keyboard navigation.
 
-We do not force any styling methodology or design-specific details. Instead, the little package provides the behaviour and interactions so that you can focus on your design.
+We refrain from imposing any specific styling methodology or design requirements. Instead, our compact package delivers essential behaviors and interactions, allowing you to concentrate on your design without constraints.
 
-We also provide a simple testing tool so that you can emulate a no-mouse environment.
+Additionally, we include a straightforward testing tool to simulate a mouse-free environment, facilitating thorough accessibility testing during development.
 <br />
 <br/>
 
 ## Installation
 
-Inside your React project directory, install React A11y Tools by running either of the following:
+To integrate React A11y Tools into your React project directory, execute one of the following commands:
 
 ```sh
 $ npm install @feedzai/react-a11y-tools
@@ -84,14 +84,16 @@ Here is a table of the components, custom hooks and their status.
 
 | Status | Name               |
 | ------ | ------------------ |
-| ✅     | Route Announcer    |
 | ✅     | Messages Announcer |
+| ✅     | Route Announcer    |
 | ✅     | Focus Manager      |
 | ✅     | Roving Tabindex    |
 | ✅     | Keyboard Only      |
 | ✅     | Skip Links         |
 | ✅     | Semantic Headings  |
+| ✅     | Visually Hidden    |
 | ✅     | useTabbable        |
+| ✅     | useAutoId          |
 
 <br/>
 
@@ -99,7 +101,7 @@ Here is a table of the components, custom hooks and their status.
 
 ### 🐛 Bugs
 
-Please file an issue for bugs, missing documentation, or unexpected behavior.
+Please file an issue for bugs, missing documentation, or unexpected behaviour.
 
 [**See Bugs**][bugs]
 <br />
@@ -138,7 +140,7 @@ npm run test:unit
 ### Cypress component tests:
 
 ```sh
-npm run test:ct
+npm run test:component-open
 ```
 
 ### End-to-end tests:
