@@ -3,8 +3,7 @@
 	"env": {
 		"browser": true,
 		"es6": true,
-		"node": true,
-		"jest": true
+		"node": true
 	},
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],

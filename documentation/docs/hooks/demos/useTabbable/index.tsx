@@ -15,8 +15,8 @@
  * @since ```feedzai.next.release```
  */
 import React, { useRef, useState, HTMLAttributes, InputHTMLAttributes } from "react";
-import { useAutoId, useTabbable } from "../../../../../src/index";
-import { makeId } from "../../../../../src/helpers";
+import { useTabbable } from "../../../../../src/index";
+import { makeId, useAutoId } from "@feedzai/js-utilities";
 import styles from "./index.modules.scss";
 
 type Tabbable = {

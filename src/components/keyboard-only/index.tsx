@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent } from "react";
-import { useSafeLayoutEffect } from "../../hooks/index";
+import { useSafeLayoutEffect } from "@feedzai/js-utilities";
 import "./styles.css";
 
 const addClass = (className: string) => document.documentElement.classList.add(className);

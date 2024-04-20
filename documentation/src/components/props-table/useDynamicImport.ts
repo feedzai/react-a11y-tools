@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Props } from "react-docgen-typescript";
-import { useSafeLayoutEffect } from "../../../../src";
+import { useSafeLayoutEffect } from "@feedzai/js-utilities";
 
 type DocgenInfo = {
 	props?: Props;

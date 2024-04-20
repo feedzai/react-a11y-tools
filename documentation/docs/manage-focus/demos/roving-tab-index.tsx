@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { callIfExists } from "../../../../src/helpers";
+import { callIfExists } from "@feedzai/js-utilities";
 import {
 	RoverProvider,
 	useRover,

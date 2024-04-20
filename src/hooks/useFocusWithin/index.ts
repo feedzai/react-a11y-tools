@@ -14,7 +14,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since ```feedzai.next.release```
  */
-import { callIfExists } from "../../helpers";
+import { callIfExists } from "@feedzai/js-utilities";
 import { FocusEvent, useCallback, useRef } from "react";
 import { useSyntheticBlurEvent } from "./helpers";
 import { UseFocusWithinProps, UseFocusWithinReturns } from "./types";

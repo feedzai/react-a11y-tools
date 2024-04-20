@@ -11,7 +11,8 @@
 			"import": "./dist/index.es.mjs",
 			"require": "./dist/index.umd.cjs",
 			"types": "./dist/index.d.ts"
-		}
+		},
+		"./dist/style.css": "./dist/style.css"
 	},
 	"files": [
 		"dist"
@@ -51,12 +52,15 @@
 		"semantic-release": "semantic-release"
 	},
 	"peerDependencies": {
-		"react": ">=16.14.0",
-		"react-dom": ">=16.14.0"
+		"react": ">=17.0.2",
+		"react-dom": ">=17.0.2"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/feedzai/react-a11y-tools.git"
+	},
+	"dependencies": {
+		"@feedzai/js-utilities": "^1.1.0"
 	},
 	"devDependencies": {
 		"@cypress/code-coverage": "3.12.24",

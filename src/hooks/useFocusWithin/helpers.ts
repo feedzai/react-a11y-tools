@@ -16,7 +16,7 @@
  * @since ```feedzai.next.release```
  */
 import { FocusEvent as ReactFocusEvent, useCallback, useRef } from "react";
-import { useSafeLayoutEffect } from "../index";
+import { useSafeLayoutEffect } from "@feedzai/js-utilities";
 
 export class SyntheticFocusEvent implements ReactFocusEvent {
 	nativeEvent: FocusEvent;

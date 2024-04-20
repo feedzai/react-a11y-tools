@@ -11,8 +11,7 @@
  * @since 1.0.0
  */
 import React, { useRef } from "react";
-import { makeId } from "../../helpers";
-import { useAutoId } from "../../hooks";
+import { makeId, useAutoId } from "@feedzai/js-utilities";
 import { CommonElement } from "../../typings/common";
 import { PolymorphicComponentProps } from "../../typings/polymorphic";
 

@@ -29,7 +29,7 @@
 		"paths": {
 			"src/*": ["./src/*"]
 		},
-		"types": ["node", "jest", "@testing-library/jest-dom"]
+		"types": ["node", "@testing-library/jest-dom"]
 	},
 	"include": ["src", "global.d.ts"],
 	"exclude": ["node_modules", "dist"],

@@ -14,13 +14,12 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent, RefObject, useEffect, useRef } from "react";
-import { useSafeLayoutEffect } from "../../hooks/index";
+import { useSafeLayoutEffect, isBrowser } from "@feedzai/js-utilities";
 import { focusSafely } from "./helpers/focus-safely";
 import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
 import { FocusContext } from "./context";
 import { FOCUSABLE_ELEMENT_SELECTOR, TABBABLE_ELEMENT_SELECTOR } from "./constants";
 import createFocusManagerState from "./helpers/state";
-import { isBrowser } from "../../helpers/isBrowser";
 
 export interface IFocusManagerProps {
 	/**

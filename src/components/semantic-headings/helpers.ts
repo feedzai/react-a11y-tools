@@ -10,7 +10,7 @@
  * @author João Dias <joao.dias@feedzai.com>
  * @since 1.0.0
  */
-import { inRange } from "../../helpers";
+import { inRange } from "@feedzai/js-utilities";
 import { FIRST_HEADING_LEVEL, LAST_HEADING_LEVEL } from "./constants";
 
 /**

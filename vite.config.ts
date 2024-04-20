@@ -54,6 +54,7 @@ export default defineConfig({
 		react(),
 	],
 	build: {
+		minify: true,
 		lib: {
 			entry: resolve(__dirname, "src/index.tsx"),
 			name: "ReactA11yTools",
@@ -68,11 +69,12 @@ export default defineConfig({
 			},
 		},
 		rollupOptions: {
-			external: ["react", "react-dom"],
+			external: ["react", "react-dom", "react/jsx-runtime"],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
+					"react/jsx-runtime": "react/jsx-runtime",
 				},
 			},
 		},

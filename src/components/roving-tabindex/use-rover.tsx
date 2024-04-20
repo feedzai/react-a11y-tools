@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import { useRef, useCallback, useContext, RefObject, KeyboardEvent } from "react";
-import { useSafeLayoutEffect } from "../../hooks/index";
+import { useSafeLayoutEffect } from "@feedzai/js-utilities";
 import { RoverContext } from "./rover-provider/context";
 import { RovingContext, TKeyDirection } from "./index";
 
