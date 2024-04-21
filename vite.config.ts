@@ -53,6 +53,11 @@ export default defineConfig({
 		}),
 		react(),
 	],
+	css: {
+		modules: {
+			generateScopedName: "fdz-css-[hash:base64:8]",
+		},
+	},
 	build: {
 		minify: true,
 		lib: {

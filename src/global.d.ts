@@ -13,6 +13,7 @@
  * @since 1.0.0
  */
 declare module "*.css";
+declare module "*.module.scss";
 
 declare interface Navigator extends NavigatorUA {}
 declare interface WorkerNavigator extends NavigatorUA {}

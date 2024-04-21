@@ -1,7 +1,7 @@
 import "@cypress/code-coverage/support";
 import "./commands";
 import "./hacks";
-import "../../src/components/skip-links/styles.css";
+import "../../src/components/skip-links/index.module.scss";
 import { mount, unmount } from "cypress/react";
 
 // Cypress component testing methods

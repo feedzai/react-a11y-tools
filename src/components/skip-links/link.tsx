@@ -12,7 +12,8 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent, useCallback, KeyboardEvent } from "react";
-import "./styles.css";
+import { classNames, useConstant } from "@feedzai/js-utilities";
+import styles from "./index.module.scss";
 
 export const SKIP_LINK_DEFAULT_PROPS: ISkipLink = {
 	target: "#content",
@@ -33,6 +34,10 @@ export interface ISkipLink {
  * @returns {JSX.Element}
  */
 export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => {
+	const CSS_CLASS = useConstant(() => {
+		return classNames(styles.item, "fdz-css-skip-links__item");
+	});
+
 	const onKeyUp = useCallback(
 		(event: KeyboardEvent<HTMLButtonElement>) => {
 			if (event.key === "Enter" || event.key === " ") {
@@ -50,7 +55,7 @@ export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => 
 				role="link"
 				type="button"
 				onKeyUp={onKeyUp}
-				className="fdz-css-skip-links__item"
+				className={CSS_CLASS}
 				data-testid="fdz-js-skip-link"
 			>
 				{text}
@@ -58,7 +63,7 @@ export const SkipLink: FunctionComponent<ISkipLink> = ({ target, text, as }) => 
 		);
 	}
 	return (
-		<a href={target} className="fdz-css-skip-links__item" data-testid="fdz-js-skip-link">
+		<a href={target} className={CSS_CLASS} data-testid="fdz-js-skip-link">
 			{text}
 		</a>
 	);
