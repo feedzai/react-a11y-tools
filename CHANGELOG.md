@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/feedzai/react-a11y-tools/compare/v1.5.2...v2.0.0) (2024-04-21)
+
+
+### Features
+
+* **bundle:** added dep to replace internal helpers and hooks ([e0fec1d](https://github.com/feedzai/react-a11y-tools/commit/e0fec1ddd6094a187ac70e3f02f1992e0f20c0bd))
+* **SkipLink:** added styles as scss modules ([720d8ed](https://github.com/feedzai/react-a11y-tools/commit/720d8ed56eca067662b096762accd11f39dcf535))
+
+
+### BREAKING CHANGES
+
+* **bundle:** Removed internal hooks (useAutoId, useMergedRefs, usePrevious and useSafeLayoutEffect) as exported modules
+* **bundle:** Removed internal hooks (callIfExists, cloneValidElement, emptyFunction, inRange, isBoolean, isBrowser, isFunction, isNil, isNumber, isString, keycodes, classNames, makeId) as exported modules
+* **bundle:** Removed "react/jsx-runtime" as a bundled dependency
+
 ## [1.5.2](https://github.com/feedzai/react-a11y-tools/compare/v1.5.1...v1.5.2) (2024-03-15)
 
 
