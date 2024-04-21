@@ -6,6 +6,10 @@ import styles from "./index.module.css";
 
 export default function Home() {
 	const { siteConfig } = useDocusaurusContext();
+
+	const PACKAGE_NAME = `@feedzai/react-a11y-tools`;
+	const PACKAGE_VERSION = siteConfig.customFields.version;
+
 	return (
 		<div className={styles.page}>
 			<header className={styles.header}>
@@ -31,7 +35,13 @@ export default function Home() {
 							d="M62.322 32.824c0-16.612-13.468-30.079-30.081-30.079-16.612 0-30.081 13.467-30.081 30.079 0 16.614 13.469 30.08 30.08 30.08 16.614 0 30.081-13.467 30.081-30.08v0z"
 						></path>
 					</svg>
-					<h1 className={styles.header__title}>@feedzai/react-a11y-tools</h1>
+					<h1 className={styles.header__title}>
+						{PACKAGE_NAME}{" "}
+						<span className={styles.header__version}>
+							<span className="sr-only">version</span>
+							<span>{PACKAGE_VERSION}</span>
+						</span>
+					</h1>
 				</div>
 			</header>
 			<main className={styles["main-content"]}>
