@@ -17,10 +17,6 @@
 	"files": [
 		"dist"
 	],
-	"engine": {
-		"node": ">= 18",
-		"npm": ">= 10"
-	},
 	"scripts": {
 		"types:check": "tsc --project ./tsconfig.json",
 		"build": "npm run types:check && vite build",
