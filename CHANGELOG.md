@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/feedzai/react-a11y-tools/compare/v2.0.0...v2.0.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* **deps:** added @feedzai/js-utilities as peer dependency ([dc58a51](https://github.com/feedzai/react-a11y-tools/commit/dc58a517411901c5748996d912cab4fe34900e4c))
+* **deps:** upgraded @feedzai/js-utilities to 1.4.2 and replaced imports ([121a5e8](https://github.com/feedzai/react-a11y-tools/commit/121a5e8b32451b6d0b7c3a5e858120a159da3d39))
+* **docs:** fixed Rover Provider link ([da59716](https://github.com/feedzai/react-a11y-tools/commit/da597161c8a60d42a29ad37c95b259bad100a619))
+
 # [2.0.0](https://github.com/feedzai/react-a11y-tools/compare/v1.5.2...v2.0.0) (2024-04-21)
 
 
