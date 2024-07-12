@@ -15,7 +15,7 @@
  */
 import { FOCUSABLE_ELEMENT_SELECTOR } from "../selectors/focusable";
 
-const ROVER_STORY_URL = "/docs/manage-focus/the-rover";
+const ROVER_STORY_URL = "/docs/manage-focus/rover-provider";
 
 describe("Roving Tab Index", () => {
 	beforeEach(() => {

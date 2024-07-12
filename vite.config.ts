@@ -1,10 +1,55 @@
 /// <reference types="vitest/globals" />
 import { resolve } from "node:path";
+import type { RollupOptions } from "rollup";
 import { InlineConfig } from "vitest";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import IstanbulPlugin from "vite-plugin-istanbul";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+type ModuleFormat =
+	| "amd"
+	| "cjs"
+	| "es"
+	| "iife"
+	| "system"
+	| "umd"
+	| "commonjs"
+	| "esm"
+	| "module"
+	| "systemjs";
+
+const BASE_EXTERNAL_LIBRARIES = {
+	react: "React",
+	"react-dom": "ReactDOM",
+	"react/jsx-runtime": "react/jsx-runtime",
+	"@feedzai/js-utilities": "JSUtilities",
+};
+
+const ROLLUP_OPTIONS: RollupOptions = {
+	external: [...Object.keys(BASE_EXTERNAL_LIBRARIES)],
+	output: {
+		globals: {
+			...BASE_EXTERNAL_LIBRARIES,
+		},
+	},
+};
+
+/**
+ * Gets a per-file format filename.
+ *
+ * @param format
+ * @returns
+ */
+function getFilename(format: ModuleFormat) {
+	const OUTPUT: Partial<Record<typeof format, string>> = {
+		es: `index.mjs`,
+		cjs: `index.cjs`,
+	};
+
+	return OUTPUT[format] ?? `index.cjs`;
+}
 
 const VITEST_CONFIG: InlineConfig = {
 	globals: true,
@@ -51,8 +96,17 @@ export default defineConfig({
 			cypress: true,
 			requireEnv: false,
 		}),
+		tsconfigPaths(),
 		react(),
 	],
+	resolve: {
+		alias: [
+			{
+				find: "src",
+				replacement: resolve(__dirname, "./src"),
+			},
+		],
+	},
 	css: {
 		modules: {
 			generateScopedName: "fdz-css-[hash:base64:8]",
@@ -61,29 +115,12 @@ export default defineConfig({
 	build: {
 		minify: true,
 		lib: {
-			entry: resolve(__dirname, "src/index.tsx"),
+			entry: resolve(__dirname, "src/index.ts"),
 			name: "ReactA11yTools",
-			formats: ["es", "umd"],
-			fileName: (format) => {
-				const OUTPUT: Partial<Record<typeof format, string>> = {
-					es: "index.es.mjs",
-					umd: "index.umd.cjs",
-				};
-
-				return OUTPUT[format] ?? `index.${format}.js`;
-			},
+			formats: ["es", "cjs"],
+			fileName: getFilename,
 		},
-		rollupOptions: {
-			external: ["react", "react-dom", "react/jsx-runtime"],
-			output: {
-				globals: {
-					react: "React",
-					"react-dom": "ReactDOM",
-					"react/jsx-runtime": "react/jsx-runtime",
-				},
-			},
-		},
+		rollupOptions: ROLLUP_OPTIONS,
 	},
-
 	test: VITEST_CONFIG,
 });
