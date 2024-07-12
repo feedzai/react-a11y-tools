@@ -56,7 +56,7 @@
 		"url": "https://github.com/feedzai/react-a11y-tools.git"
 	},
 	"dependencies": {
-		"@feedzai/js-utilities": "^1.1.0"
+		"@feedzai/js-utilities": "^1.4.2"
 	},
 	"devDependencies": {
 		"@cypress/code-coverage": "3.12.24",

@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
-import { usePrevious } from "@feedzai/js-utilities";
+import { usePrevious } from "@feedzai/js-utilities/hooks";
 import { Announcer } from "../announcer";
 
 export interface IRouteAnnouncerActions {

@@ -8,7 +8,7 @@
  * (c) 2022 Feedzai, Rights Reserved.
  */
 
-import { HTMLAttributes } from "react";
+import { FocusEvent, HTMLAttributes } from "react";
 
 /**
  * types.ts

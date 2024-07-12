@@ -12,7 +12,8 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent, useCallback, KeyboardEvent } from "react";
-import { classNames, useConstant } from "@feedzai/js-utilities";
+import { classNames } from "@feedzai/js-utilities";
+import { useConstant } from "@feedzai/js-utilities/hooks";
 import styles from "./index.module.scss";
 
 export const SKIP_LINK_DEFAULT_PROPS: ISkipLink = {

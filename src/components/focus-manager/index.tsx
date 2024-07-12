@@ -14,7 +14,8 @@
  * @since 1.0.0
  */
 import React, { FunctionComponent, RefObject, useEffect, useRef } from "react";
-import { useSafeLayoutEffect, isBrowser } from "@feedzai/js-utilities";
+import { useSafeLayoutEffect } from "@feedzai/js-utilities/hooks";
+import { isBrowser } from "@feedzai/js-utilities";
 import { focusSafely } from "./helpers/focus-safely";
 import { isElementInAnyScope, isElementInScope } from "./helpers/element-in-scope";
 import { FocusContext } from "./context";

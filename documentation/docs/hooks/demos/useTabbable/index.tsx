@@ -16,7 +16,8 @@
  */
 import React, { useRef, useState, HTMLAttributes, InputHTMLAttributes } from "react";
 import { useTabbable } from "../../../../../src/index";
-import { makeId, useAutoId } from "@feedzai/js-utilities";
+import { makeId } from "@feedzai/js-utilities";
+import { useAutoId } from "@feedzai/js-utilities/hooks";
 import styles from "./index.modules.scss";
 
 type Tabbable = {
