@@ -122,14 +122,14 @@
 	"size-limit": [
 		{
 			"path": "dist/index.cjs",
-			"limit": "10 kB",
+			"limit": "15 kB",
 			"ignore": [
 				"fs"
 			]
 		},
 		{
 			"path": "dist/index.mjs",
-			"limit": "10 kB",
+			"limit": "15 kB",
 			"ignore": [
 				"fs"
 			]
@@ -152,5 +152,8 @@
 		"include": [
 			"src/**/*"
 		]
+	},
+	"dependencies": {
+		"focus-trap-react": "^10.2.3"
 	}
 }

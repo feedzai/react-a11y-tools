@@ -1,0 +1,45 @@
+/**
+ * The copyright of this file belongs to Feedzai. The file cannot be
+ * reproduced in whole or in part, stored in a retrieval system, transmitted
+ * in any form, or by any means electronic, mechanical, or otherwise, without
+ * the prior permission of the owner. Please refer to the terms of the license
+ * agreement.
+ *
+ * (c) 2024 Feedzai, Rights Reserved.
+ */
+.table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	td,
+	th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	tr:nth-child(even) {
+		background-color: #dddddd;
+	}
+
+	tr:focus-within {
+		outline: 2px solid blue;
+		background-color: lightblue;
+	}
+}
+
+.dialog {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	max-width: 50vw;
+	display: grid;
+	place-items: center;
+	background-color: white;
+	outline: 2px solid black;
+	height: 50vh;
+
+	&:focus-within {
+		outline-color: blue;
+	}
+}

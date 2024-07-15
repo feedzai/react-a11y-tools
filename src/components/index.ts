@@ -11,7 +11,7 @@ export {
 } from "./announcer/messages/index";
 export { RouteAnnouncer } from "./announcer/route-announcer";
 export { KeyboardOnly } from "./keyboard-only";
-export { FocusManager, FocusManagerConsumer, useFocusManager } from "./focus-manager/index";
+export * from "./focus-manager/index";
 export { Heading, Level, Level as HeadingLevel, useHeadings } from "./semantic-headings";
 export { SkipLinks } from "./skip-links";
 export {
