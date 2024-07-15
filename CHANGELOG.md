@@ -1,3 +1,16 @@
+# [3.0.0](https://github.com/feedzai/react-a11y-tools/compare/v2.0.1...v3.0.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* **FocusManager:** Replaces implementation with focus-trap-react ([#28](https://github.com/feedzai/react-a11y-tools/issues/28)) ([19bc86c](https://github.com/feedzai/react-a11y-tools/commit/19bc86c03b120aa2bfedb1af5ab653fbd71c1cfb)), closes [#27](https://github.com/feedzai/react-a11y-tools/issues/27)
+
+
+### BREAKING CHANGES
+
+* **FocusManager:** autoFocus, restoreFocus and contain are now set to true by default
+* **FocusManager:** the `useFocusManager` was reimplemented. Since we no longer use a React context state management solution to travel between elements, the hook was re-implemented as an optional way to facilitate the creation of a `FocusTrap` instance, but without using the provided element by the package.
+
 ## [2.0.1](https://github.com/feedzai/react-a11y-tools/compare/v2.0.0...v2.0.1) (2024-07-12)
 
 
