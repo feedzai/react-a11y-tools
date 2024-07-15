@@ -25,6 +25,7 @@ const BASE_EXTERNAL_LIBRARIES = {
 	"react-dom": "ReactDOM",
 	"react/jsx-runtime": "react/jsx-runtime",
 	"@feedzai/js-utilities": "JSUtilities",
+	"focus-trap-react": "FocusTrapReact",
 };
 
 const ROLLUP_OPTIONS: RollupOptions = {

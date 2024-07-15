@@ -35,7 +35,7 @@ The component works primarily with the `tab` key so that you can go back and for
 #### 1. Wrap the content with the `Focus Manager`
 
 ```jsx
-<FocusScope contain restoreFocus autoFocus>
+<FocusManager>
 	<button type="button">Close</button>
 	<form>
 		<label htmlFor="first-name">First Name</label>
@@ -52,7 +52,7 @@ The component works primarily with the `tab` key so that you can go back and for
 		/>
 		<input type="submit" defaultValue="Submit" />
 	</form>
-</FocusScope>
+</FocusManager>
 ```
 
 #### 2. Handle its mounting/unmounting on the DOM
@@ -92,7 +92,7 @@ function SideMenu() {
 	function renderMenu() {
 		if (isOpen) {
 			return (
-				<FocusScope contain restoreFocus autoFocus>
+				<FocusManager>
 					<button onClick={() => setOpen(false)}>Close</button>
 					<form onSubmit={handleOnSubmit}>
 						<label htmlFor="first-name">First Name</label>
@@ -109,7 +109,7 @@ function SideMenu() {
 						/>
 						<button type="button">Submit</button>
 					</form>
-				</FocusScope>
+				</FocusManager>
 			);
 		}
 	}
@@ -170,13 +170,13 @@ function SideMenu() {
 	function renderMenu() {
 		if (isOpen) {
 			return (
-				<FocusScope contain restoreFocus autoFocus>
+				<FocusManager>
 					<SideMenuButton onClick={handleOnClickToClose}>Close</SideMenuButton>
 					<form onSubmit={handleOnSubmit}>
 						{...}
 						<SideMenuButton>Submit</SideMenuButton>
 					</form>
-				</FocusScope>
+				</FocusManager>
 			);
 		}
 	}
